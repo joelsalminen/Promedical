@@ -6,14 +6,13 @@ const NavBar = (props) =>
 		<div>
 			<ul>
 				<li><h1>Promedical</h1></li>
-				<li><Link to="/">Home</Link></li>
-				<li><Link to="/lend">Vuokraus ja palautus</Link></li>
-				<li><Link to="/">Varaus</Link></li>
-				<li><Link to="/">Lisää tuote</Link></li>
-				<li><Link to="/">Varasto</Link></li>
-				<li><Link to="/">Erääntyneet tuotteet</Link></li>
-				<li><Link to="/">Inventaario</Link></li>
-				<li><Link to="/">Historia</Link></li>
+				<li><Link to="/lainausjapalautus">Vuokraus ja palautus</Link></li>
+				<li><Link to="/varaus">Varaus</Link></li>
+				<li><Link to="/lisaatuote">Lisää tuote</Link></li>
+				<li><Link to="/varasto">Varasto</Link></li>
+				<li><Link to="/eraantyneet">Erääntyneet tuotteet</Link></li>
+				<li><Link to="/inventaario">Inventaario</Link></li>
+				<li><Link to="/historia">Historia</Link></li>
 
 			</ul>
 		</div>
