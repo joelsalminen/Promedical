@@ -2,13 +2,35 @@ import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
 
 class Storage extends Component{
+	constructor (props){
+		super(props)
+		this.state = {
+			state1: 1
+		}
+	}
+
 	
+
+
 	render(){
+		const testItems = {
+			item: [{"item_id":"1","name":"veitsi","serial_number":"123123"},
+				{"item_id":"2","name":"veitsi","serial_number":"123124"},
+				{"item_id":"3","name":"veitsi","serial_number":"123124"},
+			]
+		};
 		return(
-		<div>
-			<Menu />
-			<p>Storage</p>
-		</div>);
+			<div>
+				<Menu />
+				<ul>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					<li>1</li>
+					
+				</ul>
+			</div>
+		);
 	}
 
 }
