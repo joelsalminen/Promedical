@@ -1,5 +1,6 @@
 import React from 'react';
 import Main from './components/Main';
+import Lend from './components/LendAndReturn';
 import NavBar from "./components/MainComponents/NavBar";
 import './App.css';
 import {
@@ -12,6 +13,7 @@ const App = () =>
     <div>
       <NavBar />
       <Route exact path="/" component={Main}/>
+      <Route exact path="/lend" component={Lend}/>
 
     </div>
   </Router>
