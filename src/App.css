@@ -12,3 +12,24 @@
   to { transform: rotate(360deg); }
 }
 */
+
+#scan_button{
+	border: 1px solid black;
+	background: hotpink;
+	width: 200px;
+	height: 100px;
+	text-align: center;
+	display: flex;
+  flex-direction: column;
+ 	justify-content: center;
+}
+
+#scan_button:active{
+	background: white;
+	outline: 0;
+}
+
+
+button::-moz-focus-inner {
+  border: 0;
+}

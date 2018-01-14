@@ -6,10 +6,18 @@ class AddItem extends Component{
 	
 	render(){
 		return(
+
 		<div>
 			<Menu />
-			<p>Add Item</p>
-		</div>);
+			<button id="scan_button">Skannaa</button>
+			<input name="name" placeholder="Tuotteen nimi" />
+			<input name="serial_number" placeholder="Sarjanumero" />
+			<input name="amount" placeholder="Lukumäärä" />
+			<button>Lisää</button>
+			
+			
+		</div>
+		);
 	}
 
 }
