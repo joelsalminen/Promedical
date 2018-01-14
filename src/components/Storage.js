@@ -6,7 +6,7 @@ import Items from "./Items"
 export const testItems = {
 			item: [{"item_id":"1","name":"veitsi","serial_number":"123123"},
 				{"item_id":"2","name":"puukko","serial_number":"123124"},
-				{"item_id":"3","name":"lihaveitsi","serial_number":"123124"},
+				{"item_id":"3","name":"lihaveitsi","serial_number":"123125"},
 			]
 		};
 
@@ -19,7 +19,6 @@ class Storage extends Component{
 		}
 	}
 
-	
 
 	render(){
 		
