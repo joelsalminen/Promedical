@@ -14,12 +14,16 @@ class Items extends Component{
 	}
 
 	filterItems(items) {
+
 		/* Filtering items by name */
 		items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 
-
 		/* Filtering items by serial number */
 		items = items.filter(item => item.serial_number.indexOf(this.state.serialSearch)!== -1);
+
+		/* Filtering items by location */
+		items = items.filter(item => item.location.indexOf("varasto") !== -1)
+
 		return items;
 	}
 
@@ -43,11 +47,14 @@ class Items extends Component{
 			<div>
 				<input placeholder="tuotteen nimi" onChange={this.setNameSearch} value={this.state.nameSearch}></input>
 				<input placeholder="sarjanumero" onChange={this.setSerialSearch} value={this.state.setSerialSearch}></input>
-				
+				<input type="checkbox" name="inStorage" checked/>
+				<label htmlFor='inStorage'>Varastossa</label>
+				<input type="checkbox" name="withCustomer" checked />
+				<label htmlFor='withCustomer'>Asiakkaalla</label>
 
 
 				<ul>
-					{items.map(item =><li key={item.item_id}>{item.name} {item.serial_number}</li>)}
+					{items.map(item =><li key={item.item_id}>{item.name} {item.serial_number} - {item.location}</li>)}
 
 				</ul>
 			</div>
