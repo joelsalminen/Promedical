@@ -87,7 +87,8 @@ class Items extends Component{
 
 
 				<ul>
-					{items.map(item =><li key={item.item_id}>{item.name} {item.serial_number} - {item.location}</li>)}
+					<li>NIMI - SARJANUMERO - SIJAINTI</li>
+					{items.map(item =><li key={item.item_id}>{item.name} - {item.serial_number} - {item.location}</li>)}
 
 				</ul>
 			</div>
