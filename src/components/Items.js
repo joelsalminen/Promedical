@@ -7,7 +7,8 @@ class Items extends Component{
 			nameSearch: "",
 			serialSearch: "",
 			inStorage: true,
-			notInStorage: true
+			notInStorage: true,
+			expired: true
 		}
 
 		this.setNameSearch = this.setNameSearch.bind(this);
@@ -15,8 +16,37 @@ class Items extends Component{
 		this.filterItems = this.filterItems.bind(this);
 		this.inStorageCheckBoxChange = this.inStorageCheckBoxChange.bind(this);
 		this.notInStorageCheckBoxChange = this.notInStorageCheckBoxChange.bind(this);
+		this.expiredChange = this.expiredChange.bind(this);
+		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 	}
 
+
+	checkExpirationDate(date){
+
+		/* fetching the current date */
+		const current = new Date();
+		const currentYear = current.getUTCFullYear();
+		const currentMonth = current.getUTCMonth() + 1;
+		const currentDay = current.getUTCDate();
+		const currentDate = new Date(currentYear, currentMonth, currentDay, 0, 0, 0);
+
+		/* parsing the expiration date data*/
+		let exp = date.split("-");
+		exp[0] = parseInt(exp[0], 10);
+		exp[1] = parseInt(exp[1], 10);
+		exp[2] = parseInt(exp[2], 10);
+		const expirationDate = new Date(exp[0], exp[1], exp[2], 0, 0, 0);
+
+
+		/* returns -1 if the expiration date has been passed */
+		if (currentDate.getTime() >= expirationDate.getTime()){
+			return (-1);
+		}
+		else{
+			return 0;
+		}
+
+	}
 
 	filterItems(items) {
 
@@ -32,6 +62,12 @@ class Items extends Component{
 		}
 		if (this.state.notInStorage === false){
 			items = items.filter(item => item.location.indexOf("varasto")!== -1);
+		}
+
+
+		/* Filtering items by expiration */
+		if (this.state.expired === false){
+			items = items.filter(item => this.checkExpirationDate(item.expiration) !== -1);
 		}
 
 
@@ -69,11 +105,21 @@ class Items extends Component{
 		}
 	}
 
+	expiredChange(evt){
+		if (this.state.expired === true){
+			this.setState({expired: false})
+		}
+
+		else{
+			this.setState({expired: true})
+		}
+	}
+
 
 	render(){
 		let items = this.props.items.item.slice();
 		items = this.filterItems(items);
-
+		
 		return (
 			<div>
 				<input placeholder="tuotteen nimi" onChange={this.setNameSearch} value={this.state.nameSearch}></input>
@@ -84,6 +130,9 @@ class Items extends Component{
 
 				<input type="checkbox" name="notInStorage" onChange={this.notInStorageCheckBoxChange} defaultChecked={this.state.notInStorage} />
 				<label htmlFor='notInStorage'>Asiakkaalla</label>
+
+				<input type="checkbox" name="expired" onChange={this.expiredChange} defaultChecked={this.state.expired} />
+				<label htmlFor='expired'>Erääntyneet tuotteet</label>
 
 
 				<ul>
