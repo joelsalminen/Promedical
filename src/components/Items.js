@@ -64,7 +64,6 @@ class Items extends Component{
 			items = items.filter(item => item.location.indexOf("varasto")!== -1);
 		}
 
-
 		/* Filtering items by expiration */
 		if (this.state.expired === false){
 			items = items.filter(item => this.checkExpirationDate(item.expiration) !== -1);
@@ -125,19 +124,20 @@ class Items extends Component{
 				<input placeholder="tuotteen nimi" onChange={this.setNameSearch} value={this.state.nameSearch}></input>
 				<input placeholder="sarjanumero" onChange={this.setSerialSearch} value={this.state.setSerialSearch}></input>
 
-				<input type="checkbox" name="inStorage" onChange={this.inStorageCheckBoxChange} defaultChecked={this.state.inStorage} />
-				<label htmlFor='inStorage'>Varastossa</label>
+				<div>
+					<input type="checkbox" name="inStorage" onChange={this.inStorageCheckBoxChange} defaultChecked={this.state.inStorage} />
+					<label htmlFor='inStorage'>Varastossa</label>
 
-				<input type="checkbox" name="notInStorage" onChange={this.notInStorageCheckBoxChange} defaultChecked={this.state.notInStorage} />
-				<label htmlFor='notInStorage'>Asiakkaalla</label>
+					<input type="checkbox" name="notInStorage" onChange={this.notInStorageCheckBoxChange} defaultChecked={this.state.notInStorage} />
+					<label htmlFor='notInStorage'>Asiakkaalla</label>
 
-				<input type="checkbox" name="expired" onChange={this.expiredChange} defaultChecked={this.state.expired} />
-				<label htmlFor='expired'>Erääntyneet tuotteet</label>
-
+					<input type="checkbox" name="expired" onChange={this.expiredChange} defaultChecked={this.state.expired} />
+					<label htmlFor='expired'>Erääntyneet tuotteet</label>
+				</div>
 
 				<ul>
-					<li>NIMI - SARJANUMERO - SIJAINTI</li>
-					{items.map(item =><li key={item.item_id}>{item.name} - {item.serial_number} - {item.location}</li>)}
+					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
+					{items.map(item =><li key={item.item_id}>{item.name} - {item.serial_number} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
 
 				</ul>
 			</div>
