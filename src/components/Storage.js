@@ -15,19 +15,18 @@ class Storage extends Component{
 	render(){
 		const testItems = {
 			item: [{"item_id":"1","name":"veitsi","serial_number":"123123"},
-				{"item_id":"2","name":"veitsi","serial_number":"123124"},
-				{"item_id":"3","name":"veitsi","serial_number":"123124"},
+				{"item_id":"2","name":"puukko","serial_number":"123124"},
+				{"item_id":"3","name":"mora","serial_number":"123124"},
 			]
 		};
 		return(
 			<div>
 				<Menu />
 				<ul>
-					<li>1</li>
-					<li>1</li>
-					<li>1</li>
-					<li>1</li>
-					
+					{testItems.item.map(item =>
+            <li key={item.item_id}>{item.name}</li>
+          )}
+
 				</ul>
 			</div>
 		);
