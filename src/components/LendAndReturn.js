@@ -1,5 +1,8 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
+import S from "./ItemSuggestion";
+
+
 
 
 class LendAndReturn extends Component{
@@ -10,9 +13,12 @@ class LendAndReturn extends Component{
 			date: "",
 			amount: 0
 		}
+
+		
+
 		this.setDate = this.setDate.bind(this);
 		this.increaseByOne = this.increaseByOne.bind(this);
-		//this.decreaseByOne = this.decreaseByOne.bind(this);
+		this.decreaseByOne = this.decreaseByOne.bind(this);
 	}
 
 
@@ -27,13 +33,13 @@ class LendAndReturn extends Component{
 
 	}
 
-	// decreaseByOne(){
-	// 	let newAmount = this.state.amount -1;
-	// 	if (newAmount > 0){
-	// 	this.setState({amount: newAmount});
-	// 	}
-		
-	// }
+	decreaseByOne(){
+		let newAmount = this.state.amount -1;
+		if (newAmount > 0){
+		this.setState({amount: newAmount});
+		}
+
+	}
 
 	setDate(){
 		const current = new Date();
@@ -49,6 +55,8 @@ class LendAndReturn extends Component{
 	
 	render(){
 		console.log(this.state.amount);
+
+
 		return(
 		<div>
 			<Menu />
@@ -67,11 +75,8 @@ class LendAndReturn extends Component{
 
 			<br/>
 			<br/>
-			<input name="name" placeholder="Tuotteen nimi" />
-			<br/>
-			<input name="serial_number" placeholder="Sarjanumero" />
-			<br/>
-			<button>-</button>
+			<S/>
+			<button onClick={this.decreaseByOne}>-</button>
 			<input name="amount" placeholder="Lukumäärä" onChange={this.increaseByOne} value={this.state.amount}/>
 			<button onClick={this.increaseByOne} value={1}>+</button>
 			<br/>
@@ -89,6 +94,8 @@ class LendAndReturn extends Component{
 
 			<button>Lisää</button>
 
+
+			
 		</div>);
 	}
 
