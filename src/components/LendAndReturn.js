@@ -1,7 +1,7 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import S from "./ItemSuggestion";
-
+import Dropdown from "react-dropdown";
 
 
 
@@ -55,7 +55,9 @@ class LendAndReturn extends Component{
 	
 	render(){
 		console.log(this.state.amount);
-
+		 const options = [
+			"Koekäyttö", "Sijaislaite (maksullinen)", "Sijaislaite (maksuton)"
+		];
 
 		return(
 		<div>
@@ -87,8 +89,10 @@ class LendAndReturn extends Component{
 
 
 			<br/>
-			<input name="lending_type" placeholder="Lainauksen luonne" />
-			<br/>
+			<Dropdown
+        options={options}
+        changeHandler={this.props.sizeChange}
+        placeholder={"Lainauksen luonne"} />
 			<input name="price" placeholder="Hinta" />
 			<br/>
 
