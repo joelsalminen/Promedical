@@ -19,6 +19,8 @@ class LendAndReturn extends Component{
 		this.setDate = this.setDate.bind(this);
 		this.increaseByOne = this.increaseByOne.bind(this);
 		this.decreaseByOne = this.decreaseByOne.bind(this);
+		this.addItem = this.addItem.bind(this);
+		this.scanItem = this.scanItem.bind(this);
 	}
 
 
@@ -51,6 +53,13 @@ class LendAndReturn extends Component{
 		this.setState({date: datex});
 	}
 
+	addItem(){
+		console.log("Item added");
+	}
+
+	scanItem(){
+		console.log("Scanned");
+	}
 
 	
 	render(){
@@ -62,7 +71,7 @@ class LendAndReturn extends Component{
 		return(
 		<div>
 			<Menu />
-			<button id="scan_button">Skannaa</button>
+			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
 			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user}/>
 			<br/>
 			<input name="customer_name" placeholder="Asiakas" />
@@ -82,7 +91,7 @@ class LendAndReturn extends Component{
 			<input name="amount" placeholder="Lukumäärä" onChange={this.increaseByOne} value={this.state.amount}/>
 			<button onClick={this.increaseByOne} value={1}>+</button>
 			<br/>
-			<button>Lisää tuote</button>
+			<button >Lisää tuote</button>
 			<br/>
 			<button>Poista tuote</button>
 			<br/>
@@ -96,7 +105,7 @@ class LendAndReturn extends Component{
 			<input name="price" placeholder="Hinta" />
 			<br/>
 
-			<button>Lisää</button>
+			<button onClick={this.addItem}>Lisää</button>
 
 
 			
