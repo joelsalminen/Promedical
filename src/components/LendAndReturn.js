@@ -99,6 +99,7 @@ class LendAndReturn extends Component{
 
 			<button>Lisää</button>
 			<Calendar format='DD/MM/YYYY' date={this.state.date} />
+			
 
 
 			

@@ -23,6 +23,9 @@ class Items extends Component{
 
 	checkExpirationDate(date){
 
+		if (date === ""){
+			return 0;
+		}
 		/* fetching the current date */
 		const current = new Date();
 		const currentYear = current.getUTCFullYear();
