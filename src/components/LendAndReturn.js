@@ -120,7 +120,7 @@ class LendAndReturn extends Component{
 			{/* dates have no handlers yer*/}
 			<SuggestInput/>
 			<button onClick={this.decreaseByOne}>-</button>
-			<input name="amount" placeholder="Lukumäärä" changeHandler={this.increaseByOne} value={this.state.amount}/>
+			<input name="amount" placeholder="Lukumäärä" onChange={this.increaseByOne} value={this.state.amount}/>
 			<button onClick={this.increaseByOne} value={1}>+</button>
 			<br/>
 
