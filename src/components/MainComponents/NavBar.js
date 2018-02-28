@@ -13,7 +13,7 @@ const NavBar = (props) =>
 				<li><Link to="/eraantyneet">Erääntyneet tuotteet</Link></li>
 				<li><Link to="/inventaario">Inventaario</Link></li>
 				<li><Link to="/historia">Historia</Link></li>
-				<li><Link to="/A">A</Link></li>
+				
 
 
 			</ul>

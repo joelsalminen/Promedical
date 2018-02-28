@@ -7,7 +7,7 @@ import Expired from './components/Expired';
 import BookItem from './components/BookItem';
 import Inventory from './components/Inventory';
 import History from './components/History';
-import A from './components/A';
+
 
 import './App.css';
 
@@ -28,7 +28,7 @@ const App = () =>
       <Route exact path="/eraantyneet" component={Expired}/>
       <Route exact path="/inventaario" component={Inventory}/>
       <Route exact path="/historia" component={History}/>
-      <Route exact path="/a" component={A}/>
+
 
 
 

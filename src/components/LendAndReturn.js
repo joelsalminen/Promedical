@@ -3,6 +3,9 @@ import React, { Component } from 'react';
 import SuggestInput from "./ItemSuggestion";
 import Dropdown from "react-dropdown";
 
+import DatePicker from 'react-datepicker';
+import moment from 'moment';
+import 'react-datepicker/dist/react-datepicker.css';
 
 
 class LendAndReturn extends Component{
@@ -10,12 +13,16 @@ class LendAndReturn extends Component{
 		super(props)
 		this.state = {
 			user: "Test_user1",
-			date: "",
 			amount: 1,
 			customer: "",
 			contactInfo: "",
 			lendType: "",
-			price: ""
+			price: "",
+
+			startDate: moment(),
+      returnDate: moment(),
+      start: "",
+      return: ""
 		}
 
 
@@ -30,6 +37,9 @@ class LendAndReturn extends Component{
 		this.userChangeHandler = this.userChangeHandler.bind(this);
 		this.lendTypeChangeHandler = this.lendTypeChangeHandler.bind(this);
 		this.priceChangeHandler = this.priceChangeHandler.bind(this);
+
+		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
+    this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
 	}
 
 	customerChangeHandler(evt){
@@ -53,8 +63,35 @@ class LendAndReturn extends Component{
 		this.setState({price: evt.target.value });
 	}
 
+  startDateChangeHandler(date){
+    this.setState({
+      startDate: date
+    });
+
+    this.setState({
+      start: date.format().substring(0,10)
+    });
+    
+    
+  }
+
+  returnDateChangeHandler(date){
+    this.setState({
+    	returnDate: date
+    });
+
+    this.setState({
+      return: date.format().substring(0,10)
+    });
+    
+  }
+
+
 	componentWillMount(){
 		this.setDate();
+		this.setState({
+      start: moment().format().substring(0,10)
+    });
 	}
 
 
@@ -109,9 +146,16 @@ class LendAndReturn extends Component{
 			<br/>
 
 		{/* dates have no handlers yer*/}
-			<input name="current_date" placeholder="Päivämäärä tänään" defaultValue={this.state.date}/>
-			<br/>
-			<input name="expiration" placeholder="Palautuspäivämäärä" />
+			
+			<p>Lainauspv:</p>
+			<DatePicker
+	      selected={this.state.startDate}
+	      onChange={this.startDateChangeHandler} />
+
+	    <p>Palautuspv:</p>
+	    <DatePicker
+	     	selected={this.state.returnDate}
+	     	onChange={this.returnDateChangeHandler} />
 			<br/>
 
 
@@ -137,6 +181,10 @@ class LendAndReturn extends Component{
 
 
 			
+
+			<p>{this.state.start}</p>
+			<p>{this.state.return}</p>
+
 		</div>);
 	}
 
