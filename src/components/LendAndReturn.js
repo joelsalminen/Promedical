@@ -29,7 +29,7 @@ class LendAndReturn extends Component{
 		this.setDate = this.setDate.bind(this);
 		this.increaseByOne = this.increaseByOne.bind(this);
 		this.decreaseByOne = this.decreaseByOne.bind(this);
-		this.addItem = this.addItem.bind(this);
+		this.lendItem = this.lendItem.bind(this);
 		this.scanItem = this.scanItem.bind(this);
 
 		this.customerChangeHandler = this.customerChangeHandler.bind(this);
@@ -119,8 +119,8 @@ class LendAndReturn extends Component{
 		this.setState({date: datex});
 	}
 
-	addItem(){
-		console.log("Item added");
+	lendItem(){
+		console.log("Item Lended");
 	}
 
 	scanItem(){
@@ -177,7 +177,7 @@ class LendAndReturn extends Component{
 			<input name="price" placeholder="Hinta" onChange={this.priceChangeHandler}/>
 			<br/>
 
-			<button onClick={this.addItem}>Lisää</button>
+			<button onClick={this.lendItem}>Lisää</button>
 
 
 			
