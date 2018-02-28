@@ -2,7 +2,6 @@ import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import SuggestInput from "./ItemSuggestion";
 import Dropdown from "react-dropdown";
-import Calendar from 'react-input-calendar'
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -169,9 +168,6 @@ class LendAndReturn extends Component{
 			<br/>
 
 
-			<button>Lisää</button>
-			<Calendar format='DD/MM/YYYY' date={this.state.date} />
-			<button>Lisää</button>
 			<button onClick={this.lendItem}>Lisää</button>
 
 
