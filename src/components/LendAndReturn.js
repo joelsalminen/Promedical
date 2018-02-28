@@ -13,7 +13,6 @@ class LendAndReturn extends Component{
 		super(props)
 		this.state = {
 			user: "Test_user1",
-			amount: 1,
 			customer: "",
 			contactInfo: "",
 			lendType: "",
@@ -27,8 +26,6 @@ class LendAndReturn extends Component{
 
 
 		this.setDate = this.setDate.bind(this);
-		this.increaseByOne = this.increaseByOne.bind(this);
-		this.decreaseByOne = this.decreaseByOne.bind(this);
 		this.lendItem = this.lendItem.bind(this);
 		this.scanItem = this.scanItem.bind(this);
 
@@ -95,19 +92,6 @@ class LendAndReturn extends Component{
 	}
 
 
-	increaseByOne(){
-		let newAmount = this.state.amount + 1;
-		this.setState({amount: newAmount});
-
-	}
-
-	decreaseByOne(){
-		let newAmount = this.state.amount -1;
-		if (newAmount > 0){
-		this.setState({amount: newAmount});
-		}
-
-	}
 
 	setDate(){
 		const current = new Date();
@@ -120,7 +104,15 @@ class LendAndReturn extends Component{
 	}
 
 	lendItem(){
-		console.log("Item Lended");
+		console.log("user: ", this.state.user);
+		console.log("customer: ", this.state.customer);
+		console.log("contact info: ", this.state.contactInfo);
+		console.log("lendType", this.state.lendType);
+		console.log("price", this.state.price);
+		console.log("start: ", this.state.start);
+		console.log("return: ", this.state.return);
+
+
 	}
 
 	scanItem(){
@@ -161,11 +153,9 @@ class LendAndReturn extends Component{
 
 			<br/>
 
-			{/* dates have no handlers yer*/}
+			{/*suggest input doesn't give value*/}
 			<SuggestInput/>
-			<button onClick={this.decreaseByOne}>-</button>
-			<input name="amount" placeholder="Lukumäärä" onChange={this.increaseByOne} value={this.state.amount}/>
-			<button onClick={this.increaseByOne} value={1}>+</button>
+			
 			<br/>
 
 			<br/>
@@ -180,10 +170,6 @@ class LendAndReturn extends Component{
 			<button onClick={this.lendItem}>Lisää</button>
 
 
-			
-
-			<p>{this.state.start}</p>
-			<p>{this.state.return}</p>
 
 		</div>);
 	}
