@@ -7,7 +7,6 @@ class Main extends Component{
 		return(
 		<div>
 			<NavBar/>
-			hello
 		</div>);
 	}
 }

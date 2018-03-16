@@ -14,6 +14,7 @@ const NavBar = (props) =>
 				<li><Link to="/inventaario">Inventaario</Link></li>
 				<li><Link to="/historia">Historia</Link></li>
 				
+				
 
 
 			</ul>
