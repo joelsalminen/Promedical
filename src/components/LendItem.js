@@ -8,7 +8,7 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-class LendAndReturn extends Component{
+class LendItem extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
@@ -176,4 +176,4 @@ class LendAndReturn extends Component{
 	}
 
 }
-export default LendAndReturn;
+export default LendItem;

@@ -1,13 +1,13 @@
 import React from 'react';
 import Main from './components/Main';
-import LendAndReturn from './components/LendAndReturn';
+import LendItem from './components/LendItem';
 import AddItem from './components/AddItem';
 import Storage from './components/Storage';
 import Expired from './components/Expired';
 import BookItem from './components/BookItem';
 import Inventory from './components/Inventory';
 import History from './components/History';
-import Return from './components/Return'
+import ReturnItem from './components/Return'
 
 
 import './App.css';
@@ -23,8 +23,8 @@ const App = () =>
 
       <Route exact path="/" component={Main}/>
       <Route exact path="/varaus" component={BookItem}/>
-      <Route exact path="/lainaus" component={LendAndReturn}/>
-      <Route exact path="/palautus" component={Return}/>
+      <Route exact path="/lainaus" component={LendItem}/>
+      <Route exact path="/palautus" component={ReturnItem}/>
       <Route exact path="/lisaatuote" component={AddItem}/>
       <Route exact path="/varasto" component={Storage}/>
       <Route exact path="/eraantyneet" component={Expired}/>
