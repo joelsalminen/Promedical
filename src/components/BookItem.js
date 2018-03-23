@@ -7,9 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 let a = {
-	booking:[{
-		
-	}]
+	booking:[]
 	
 }
 
@@ -81,7 +79,7 @@ class BookItem extends Component{
 		});
 
   	console.log(obj);
-  	
+
   	this.setState({
   		list: obj,
   	})
