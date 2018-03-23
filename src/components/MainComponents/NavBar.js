@@ -6,15 +6,18 @@ const NavBar = (props) =>
 		<div>
 			<ul>
 				<li><h1>Promedical</h1></li>
-				<li><Link to="/lainausjapalautus">Vuokraus ja palautus</Link></li>
+				<li><Link to="/lainaus">Lainaus</Link></li>
+				<li><Link to="/palautus">Palautus</Link></li>
 				<li><Link to="/varaus">Varaus</Link></li>
 				<li><Link to="/lisaatuote">Lisää tuote</Link></li>
 				<li><Link to="/varasto">Varasto</Link></li>
+
+				{/*
 				<li><Link to="/eraantyneet">Erääntyneet tuotteet</Link></li>
 				<li><Link to="/inventaario">Inventaario</Link></li>
 				<li><Link to="/historia">Historia</Link></li>
 				
-				
+				*/}
 
 
 			</ul>

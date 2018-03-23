@@ -7,6 +7,7 @@ import Expired from './components/Expired';
 import BookItem from './components/BookItem';
 import Inventory from './components/Inventory';
 import History from './components/History';
+import Return from './components/Return'
 
 
 import './App.css';
@@ -22,7 +23,8 @@ const App = () =>
 
       <Route exact path="/" component={Main}/>
       <Route exact path="/varaus" component={BookItem}/>
-      <Route exact path="/lainausjapalautus" component={LendAndReturn}/>
+      <Route exact path="/lainaus" component={LendAndReturn}/>
+      <Route exact path="/palautus" component={Return}/>
       <Route exact path="/lisaatuote" component={AddItem}/>
       <Route exact path="/varasto" component={Storage}/>
       <Route exact path="/eraantyneet" component={Expired}/>
