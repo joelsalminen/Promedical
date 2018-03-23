@@ -7,7 +7,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 
 
 let a = {
-	"booking":[{
+	booking:[{
 		
 	}]
 	
@@ -72,13 +72,19 @@ class BookItem extends Component{
   addBooking(){
 
   	let obj = this.state.list;
+
   	obj['booking'].push({
   		"item":this.state.item,
 			"start":this.state.start,
 			"return":this.state.return,
 			"customer":this.state.customer,
 		});
+
   	console.log(obj);
+  	
+  	this.setState({
+  		list: obj,
+  	})
   }
 
   itemChangeHandler(evt){
@@ -103,7 +109,16 @@ class BookItem extends Component{
 	      onChange={this.returnDateChangeHandler} />
 	    <button onClick={this.addBooking}>Lisää varaus</button>
 
-	    <p>{this.state.x}</p>
+
+
+	    <ul>
+	      {this.state.list.booking.map((booking, index)=>
+        	<li key={index}>
+           
+            <p>{booking.customer}</p>
+        	</li>
+	      )}
+      </ul>
 
 		</div>);
 	}
