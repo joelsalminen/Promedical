@@ -83,6 +83,14 @@ class BookItem extends Component{
   	this.setState({
   		list: obj,
   	})
+
+
+  	this.setState({
+      start: moment().format().substring(0,10),
+      return: moment().format().substring(0,10),
+      item: "",
+      customer: "",
+    });
   }
 
   itemChangeHandler(evt){
@@ -95,8 +103,8 @@ class BookItem extends Component{
 		return(
 		<div>
 			<Menu />
-			<input name="customer" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
-			<input name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
+			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
+			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
 
 			<DatePicker
 	      selected={this.state.startDate}
@@ -113,7 +121,9 @@ class BookItem extends Component{
 	      {this.state.list.booking.map((booking, index)=>
         	<li key={index}>
            
-            <p>{booking.customer}</p>
+            <p>Customer: {booking.customer}</p>
+            <p>Item: {booking.item}</p>
+            <p>{booking.start} - {booking.return}</p>
         	</li>
 	      )}
       </ul>
