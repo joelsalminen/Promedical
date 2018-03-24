@@ -12,11 +12,16 @@ class Return extends Component{
 		}
 
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
+		this.returnItem = this.returnItem.bind(this);
 	}
 
 
 	serialChangeHandler (evt){
 		this.setState({serial: evt.target.value });
+	}
+
+	returnItem(){
+		console.log("return");
 	}
 
 	render(){
@@ -26,7 +31,7 @@ class Return extends Component{
 		<div>
 			<Menu />
 			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
-			<button>Palauta</button>
+			<button onClick={this.returnItem}>Palauta</button>
 
 			<p>{this.state.serial}</p>
 		</div>);
