@@ -32,8 +32,6 @@ const App = () =>
       <Route exact path="/historia" component={History}/>
 
 
-
-
     </div>
   </Router>
   

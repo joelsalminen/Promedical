@@ -21,7 +21,7 @@ class Return extends Component{
 	}
 
 	returnItem(){
-		console.log("return");
+		console.log("Serial number sent to backend");
 	}
 
 	render(){
