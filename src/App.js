@@ -3,7 +3,6 @@ import Main from './components/Main';
 import LendItem from './components/LendItem';
 import AddItem from './components/AddItem';
 import Storage from './components/Storage';
-import Expired from './components/Expired';
 import BookItem from './components/BookItem';
 import Inventory from './components/Inventory';
 import History from './components/History';
@@ -27,7 +26,6 @@ const App = () =>
       <Route exact path="/palautus" component={ReturnItem}/>
       <Route exact path="/lisaatuote" component={AddItem}/>
       <Route exact path="/varasto" component={Storage}/>
-      <Route exact path="/eraantyneet" component={Expired}/>
       <Route exact path="/inventaario" component={Inventory}/>
       <Route exact path="/historia" component={History}/>
 

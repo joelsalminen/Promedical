@@ -189,3 +189,10 @@ ul{
 #BookItemMenu p{
 	margin-bottom: 2px;
 }
+
+#StorageList li{
+	border: 1px solid black;
+	width: 60%;
+	margin: auto;
+	margin-top: 5px;
+}

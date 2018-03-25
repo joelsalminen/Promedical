@@ -124,6 +124,7 @@ class Items extends Component{
 		
 		return (
 			<div>
+				<h1>Varasto</h1>
 				<input placeholder="tuotteen nimi" onChange={this.setNameSearch} value={this.state.nameSearch}></input>
 				<input placeholder="sarjanumero" onChange={this.setSerialSearch} value={this.state.setSerialSearch}></input>
 
@@ -138,7 +139,7 @@ class Items extends Component{
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
 				</div>
 
-				<ul>
+				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
 					{items.map(item =><li key={item.item_id}>{item.name} - {item.serial_number} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
 
