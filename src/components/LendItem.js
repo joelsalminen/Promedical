@@ -126,49 +126,51 @@ class LendItem extends Component{
 		];
 
 		return(
-		<div>
+		<div id="LendItemMenu">
+			<h1>Lainaus</h1>
 			<Menu />
 			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
 			{/* why do these have names?  */}
+
+			<p>Tuotteen varastosta hakija:</p>
 			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.userChangeHandler}/>
 			<br/>
+			<p>Lainattava tuote:</p>
+			{/*suggest input doesn't give value*/}
+			<SuggestInput/>
+
+			<p>Asiakas</p>
 			<input name="customer_name" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
 			<br/>
-			<input name="customer_info" placeholder="Asiakkaan puhelinnumero" onChange={this.contactInfoChangeHandler}/>
+			<p>Asiakkaan yhteystiedot:</p>
+			<input name="customer_info" placeholder="Asiakkaan yhteystiedot" onChange={this.contactInfoChangeHandler}/>
 			<br/>
-
-		{/* dates have no handlers yer*/}
 			
-			<p>Lainauspv:</p>
+			<p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
 	      onChange={this.startDateChangeHandler} />
 
-	    <p>Palautuspv:</p>
+	    <p>Palautuspäivä:</p>
 	    <DatePicker
 	     	selected={this.state.returnDate}
 	     	onChange={this.returnDateChangeHandler} />
-			<br/>
-
 
 			<br/>
-
-			{/*suggest input doesn't give value*/}
-			<SuggestInput/>
-			
-			<br/>
-
-			<br/>
+			<p>Lainauksen luonne:</p>
+			<div className="Dropdown">
 			<Dropdown
         options={options}
         placeholder={"Lainauksen luonne"}
         onChange={this.lendTypeChangeHandler} />
-
+      </div>
+      <p>Lainauksen hinta:</p>
 			<input name="price" placeholder="Hinta" onChange={this.priceChangeHandler}/>
+			<br/>
 			<br/>
 
 
-			<button onClick={this.lendItem}>Lisää</button>
+			<button id="LendItemButton" onClick={this.lendItem}>Lisää</button>
 
 
 

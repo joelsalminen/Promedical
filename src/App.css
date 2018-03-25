@@ -20,18 +20,17 @@
 */
 
 #scan_button{
-	border: 1px solid black;
-	background: hotpink;
+	border: 3px solid black;
+	background: #0C4767;
+	color: white;
 	width: 200px;
 	height: 100px;
 	text-align: center;
-	display: flex;
-  	flex-direction: column;
- 	justify-content: center;
+	
 }
 
 #scan_button:active{
-	background: white;
+	background: #2C8C99;
 	outline: 0;
 }
 
@@ -60,6 +59,7 @@ ul{
 	width: 70%;
 	margin: auto;
 	border: 5px solid black;
+
 }
 
 #MenuList li{
@@ -84,39 +84,98 @@ ul{
 /*http://puu.sh/zPfH7/5796762eea.png*/
 
 
-a:link {
+#MenuList li a:link {
     text-decoration: none;
     color: white;
     outline: 0;
 }
 
-a:visited {
+#MenuList li a:visited {
     text-decoration: none;
     color: white;
     outline: 0;
 }
 
-a:hover {
+#MenuList li a:hover {
     text-decoration: none;
     color: #F9A03F;
     outline: 0;
 
 }
 
-a:active {
+#MenuList li a:active {
     text-decoration: none;
     color: #F8DDA4;
     outline: 0;
 }
 
-#MenuTitle{
+#MenuTitle, h1{
 	font-family: 'Oswald', sans-serif;
 	font-size: 50px;
 	border-top: 3px solid black;
 	border-bottom: 3px solid black;
-	
+	font-weight: normal;
 	margin-left: auto;
 	margin-right: auto;
 	background: #42D9C8;
 	margin-top: 10px;
+}
+
+
+#LendItemMenu{
+	font-size: 20px;
+}
+
+#LendItemMenu p{
+	margin-bottom: 2px;
+}
+
+
+
+
+#LendItemButton{
+	width: 300px;
+	height: 50px;
+	font-size: 20px;
+
+}
+
+
+
+.Dropdown-root {
+    width: 300px;
+    display: inline-block;
+}
+
+.Dropdown-root:hover {
+    cursor: pointer;
+}
+
+.Dropdown-control {
+    border-color: gray;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    margin: 2px;
+}
+
+.Dropdown-option {
+    padding: 5px;
+}
+
+.Dropdown-option:hover {
+    background: gray;
+}
+
+.Dropdown-menu {
+    background: lightgray;
+    border-color: gray;
+    border-style: solid;
+    border-width: 1px;
+    width: 300px;
+    position: absolute;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
 }

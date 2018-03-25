@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 const NavBar = (props) =>
 	<nav>
 		<div id="MainMenu">
-			<p id="MenuTitle">Promedical</p>
+			<h1 id="MenuTitle">Promedical</h1>
 			<ul id="MenuList">
 				
 				<li><Link to="/lainaus">Lainaus</Link></li>
