@@ -127,8 +127,10 @@ class LendItem extends Component{
 
 		return(
 		<div id="LendItemMenu">
-			<h1>Lainaus</h1>
+			
 			<Menu />
+
+			<h1>Lainaus</h1>
 			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
 			{/* why do these have names?  */}
 
@@ -170,7 +172,7 @@ class LendItem extends Component{
 			<br/>
 
 
-			<button id="LendItemButton" onClick={this.lendItem}>Lisää</button>
+			<button class="SubmitButton" onClick={this.lendItem}>Lisää</button>
 
 
 

@@ -101,19 +101,26 @@ class BookItem extends Component{
 
 	render(){
 		return(
-		<div>
+		<div id="BookItemMenu">
 			<Menu />
+
+      <h1>Varaus</h1>
+      <p>Asiakas:</p>
 			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
+
+      <p>Varattava tuote</p>
 			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
 
+      <p><p>Lainauspäivä:</p></p>
 			<DatePicker
 	      selected={this.state.startDate}
 	      onChange={this.startDateChangeHandler} />
 
+      <p>Palautuspäivä:</p>
 	    <DatePicker
 	      selected={this.state.returnDate}
 	      onChange={this.returnDateChangeHandler} />
-	    <button onClick={this.addBooking}>Lisää varaus</button>
+	    <button class="SubmitButton" onClick={this.addBooking}>Lisää varaus</button>
 
 
 
