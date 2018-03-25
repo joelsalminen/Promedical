@@ -48,8 +48,6 @@ ul{
 #root{
 	margin: auto;
 	text-align: center;
-	border-right: 2px solid black;
-	border-left: 2px solid black;
 
 
 }
@@ -133,7 +131,7 @@ ul{
 
 
 
-#LendItemButton{
+.SubmitButton{
 	width: 300px;
 	height: 50px;
 	font-size: 20px;
@@ -178,4 +176,16 @@ ul{
     max-height: 150px;
     overflow-y: auto;
     z-index: 1;
+}
+
+#BookingList li{
+	border: 1px solid black;
+	width: 50%;
+	margin: auto;
+	margin-top: 5px;
+	margin-bottom: 5px;
+}
+
+#BookItemMenu p{
+	margin-bottom: 2px;
 }
