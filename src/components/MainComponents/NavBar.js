@@ -3,9 +3,10 @@ import { Link } from 'react-router-dom'
 
 const NavBar = (props) =>
 	<nav>
-		<div>
-			<ul>
-				<li><h1>Promedical</h1></li>
+		<div id="MainMenu">
+			<p id="MenuTitle">Promedical</p>
+			<ul id="MenuList">
+				
 				<li><Link to="/lainaus">Lainaus</Link></li>
 				<li><Link to="/palautus">Palautus</Link></li>
 				<li><Link to="/varaus">Varaus</Link></li>

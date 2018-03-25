@@ -1,6 +1,12 @@
+
+@font-face {
+	src: url(/./styles/Oswald-Regular.tff) format('tff');
+}
+
 .App {
   text-align: center;
 }
+
 
 /*.App-logo {
   animation: App-logo-spin infinite 20s linear;
@@ -20,7 +26,7 @@
 	height: 100px;
 	text-align: center;
 	display: flex;
-  flex-direction: column;
+  	flex-direction: column;
  	justify-content: center;
 }
 
@@ -31,5 +37,86 @@
 
 
 button::-moz-focus-inner {
-  border: 0;
+	border: 0;
+}
+
+
+ul{
+	list-style-type: none;
+}
+
+
+#root{
+	margin: auto;
+	text-align: center;
+	border-right: 2px solid black;
+	border-left: 2px solid black;
+
+
+}
+
+#MainMenu{
+	/*background: hotpink;*/
+	width: 70%;
+	margin: auto;
+	border: 5px solid black;
+}
+
+#MenuList li{
+
+	background: #0C4767;
+	border: 5px solid #2C8C99;
+	width: 80%;
+	margin-top: 5px;
+	margin-bottom: 5px;
+	margin-left: auto;
+	margin-right: auto;
+
+	padding: 20px;
+	font-size: 25px;
+	font-family: 'Oswald', sans-serif;
+	/*font-family: arial;*/
+
+
+}
+
+
+/*http://puu.sh/zPfH7/5796762eea.png*/
+
+
+a:link {
+    text-decoration: none;
+    color: white;
+    outline: 0;
+}
+
+a:visited {
+    text-decoration: none;
+    color: white;
+    outline: 0;
+}
+
+a:hover {
+    text-decoration: none;
+    color: #F9A03F;
+    outline: 0;
+
+}
+
+a:active {
+    text-decoration: none;
+    color: #F8DDA4;
+    outline: 0;
+}
+
+#MenuTitle{
+	font-family: 'Oswald', sans-serif;
+	font-size: 50px;
+	border-top: 3px solid black;
+	border-bottom: 3px solid black;
+	
+	margin-left: auto;
+	margin-right: auto;
+	background: #42D9C8;
+	margin-top: 10px;
 }
