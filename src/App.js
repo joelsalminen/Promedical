@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import Main from './components/Main';
 import LendItem from './components/LendItem';
 import AddItem from './components/AddItem';
@@ -16,22 +16,28 @@ import {
   Route
 } from 'react-router-dom'
 
-const App = () =>
-  <Router>
-    <div>
+class App extends Component {
 
-      <Route exact path="/" component={Main}/>
-      <Route exact path="/varaus" component={BookItem}/>
-      <Route exact path="/lainaus" component={LendItem}/>
-      <Route exact path="/palautus" component={ReturnItem}/>
-      <Route exact path="/lisaatuote" component={AddItem}/>
-      <Route exact path="/varasto" component={Storage}/>
-      <Route exact path="/inventaario" component={Inventory}/>
-      <Route exact path="/historia" component={History}/>
+  render(){
+
+    return(
+    <Router>
+      <div>
+
+        <Route exact path="/" component={Main}/>
+        <Route exact path="/varaus" component={BookItem}/>
+        <Route exact path="/lainaus" component={LendItem}/>
+        <Route exact path="/palautus" component={ReturnItem}/>
+        <Route exact path="/lisaatuote" component={AddItem}/>
+        <Route exact path="/varasto" component={Storage}/>
+        <Route exact path="/inventaario" component={Inventory}/>
+        <Route exact path="/historia" component={History}/>
 
 
-    </div>
-  </Router>
-  
+      </div>
+    </Router>
+    );
+  }
+}
 
 export default App;
