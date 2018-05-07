@@ -25,7 +25,7 @@ class AddItem extends Component{
 
 			<br/>
 			<br/>
-			<button class="SubmitButton">Lisää</button>
+			<button className="SubmitButton">Lisää</button>
 			
 			
 		</div>

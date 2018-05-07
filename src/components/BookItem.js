@@ -111,7 +111,7 @@ class BookItem extends Component{
       <p>Varattava tuote</p>
 			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
 
-      <p><p>Lainauspäivä:</p></p>
+      <p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
 	      onChange={this.startDateChangeHandler} />
@@ -120,7 +120,7 @@ class BookItem extends Component{
 	    <DatePicker
 	      selected={this.state.returnDate}
 	      onChange={this.returnDateChangeHandler} />
-	    <button class="SubmitButton" onClick={this.addBooking}>Lisää varaus</button>
+	    <button className="SubmitButton" onClick={this.addBooking}>Lisää varaus</button>
 
 
 

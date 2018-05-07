@@ -30,10 +30,16 @@ class Return extends Component{
 		return(
 		<div>
 			<Menu />
-			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
-			<button onClick={this.returnItem}>Palauta</button>
+			<h1>Palautus</h1>
 
-			<p>{this.state.serial}</p>
+			<p>Sarjanumero:</p>
+			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
+
+			<br/>
+			<br/>
+			<button className="SubmitButton" onClick={this.returnItem}>Palauta</button>
+
+			
 		</div>);
 	}
 

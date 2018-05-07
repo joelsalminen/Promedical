@@ -31,7 +31,7 @@ class Return extends Component{
 		<div>
 			<Menu />
 			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
-			<button onClick={this.returnItem}>Palauta</button>
+			<button className="SubmitButton" onClick={this.returnItem}>Palauta</button>
 
 			<p>{this.state.serial}</p>
 		</div>);

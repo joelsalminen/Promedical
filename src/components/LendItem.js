@@ -172,7 +172,7 @@ class LendItem extends Component{
 			<br/>
 
 
-			<button class="SubmitButton" onClick={this.lendItem}>Lisää</button>
+			<button className="SubmitButton" onClick={this.lendItem}>Kirjaa lainaus</button>
 
 
 
