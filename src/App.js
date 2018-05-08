@@ -18,15 +18,17 @@ import {
 
 class App extends Component {
   state = {
-    response: ''
+    items: {}
   };
 
   componentDidMount() {
     this.callApi()
       .then(res => {
-      	this.setState({ response: res.express });
+      	this.setState({ items: res });
       })
       .catch(err => console.log(err));
+
+
   }
 
   callApi = async () => {
@@ -40,7 +42,8 @@ class App extends Component {
 
 
   render(){
-
+  	let items = this.state.items;
+  	
     return(
     <Router>
       <div>
@@ -54,7 +57,7 @@ class App extends Component {
         <Route exact path="/inventaario" component={Inventory}/>
         <Route exact path="/historia" component={History}/>
 
-        <p>{this.state.response}</p>
+        <p>{JSON.stringify(items, null, 2)}</p>
       </div>
     </Router>
     );
