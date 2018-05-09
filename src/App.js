@@ -43,6 +43,7 @@ class App extends Component {
 
   render(){
   	let items = this.state.items;
+  	items = JSON.stringify(items, null, 2);
   	
     return(
     <Router>
@@ -50,14 +51,14 @@ class App extends Component {
 
         <Route exact path="/" component={Main}/>
         <Route exact path="/varaus" component={BookItem}/>
-        <Route exact path="/lainaus" component={LendItem}/>
+        <Route exact path="/lainaus" render={() => <LendItem name={items}/>}/>
         <Route exact path="/palautus" component={ReturnItem}/>
         <Route exact path="/lisaatuote" component={AddItem}/>
         <Route exact path="/varasto" component={Storage}/>
         <Route exact path="/inventaario" component={Inventory}/>
         <Route exact path="/historia" component={History}/>
 
-        <p>{JSON.stringify(items, null, 2)}</p>
+        
       </div>
     </Router>
     );

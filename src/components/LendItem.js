@@ -21,7 +21,8 @@ class LendItem extends Component{
 			startDate: moment(),
       returnDate: moment(),
       start: "",
-      return: ""
+      return: "",
+      items: ""
 		}
 
 
@@ -38,6 +39,8 @@ class LendItem extends Component{
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
     this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
 	}
+
+
 
 	customerChangeHandler(evt){
 		this.setState({customer: evt.target.value });
@@ -73,12 +76,10 @@ class LendItem extends Component{
   }
 
   returnDateChangeHandler(date){
-    this.setState({
-    	returnDate: date
-    });
 
     this.setState({
-      return: date.format().substring(0,10)
+      return: date.format().substring(0,10),
+      returnDate: date
     });
     
   }
@@ -89,9 +90,21 @@ class LendItem extends Component{
 		this.setState({
       start: moment().format().substring(0,10)
     });
+
+		this.setState({
+			items: this.props.name
+		});
+		console.log(this.props.name);
+
 	}
 
-
+componentDidMount(){
+	setTimeout(()=>{this.setState({
+		items: this.props.name});
+		console.log(this.props.name);
+	}, 500);
+	
+}
 
 	setDate(){
 		const current = new Date();
@@ -124,6 +137,8 @@ class LendItem extends Component{
 		 const options = [
 			"Koekäyttö", "Sijaislaite (maksullinen)", "Sijaislaite (maksuton)"
 		];
+
+		
 
 		return(
 		<div id="LendItemMenu">
@@ -173,6 +188,8 @@ class LendItem extends Component{
 
 
 			<button className="SubmitButton" onClick={this.lendItem}>Kirjaa lainaus</button>
+
+			<p>{this.state.items}</p>
 
 
 
