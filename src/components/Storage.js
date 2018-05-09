@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
 import Items from "./Items"
 
-
+/*
 export const testItems = {
 			item: [{"item_id":"1","name":"veitsi","serial_number":"100", "location":"varasto", "expiration":""},
 				{"item_id":"2","name":"puukko","serial_number":"101", "location":"varasto", "expiration":""},
@@ -21,16 +21,22 @@ export const testItems = {
 
 			]
 		};
-
+*/
 
 class Storage extends Component{
 	constructor (props){
 		super(props)
 		this.state = {
-			items: testItems
+			items: {item: []},
 		}
 	}
 
+componentDidMount(){
+	setTimeout(()=>{
+		this.setState({items: this.props.items});
+	}, 500);
+	
+}
 
 	render(){
 		
@@ -39,6 +45,7 @@ class Storage extends Component{
 				<Menu />
 
 				<Items items={this.state.items}/>
+
 			</div>
 		);
 	}

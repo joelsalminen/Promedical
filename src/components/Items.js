@@ -8,7 +8,7 @@ class Items extends Component{
 			serialSearch: "",
 			inStorage: true,
 			notInStorage: true,
-			expired: true
+			showExpired: true
 		}
 
 		this.setNameSearch = this.setNameSearch.bind(this);
@@ -26,6 +26,8 @@ class Items extends Component{
 		if (date === ""){
 			return 0;
 		}
+
+
 		/* fetching the current date */
 		const current = new Date();
 		const currentYear = current.getUTCFullYear();
@@ -34,6 +36,7 @@ class Items extends Component{
 		const currentDate = new Date(currentYear, currentMonth, currentDay, 0, 0, 0);
 
 		/* parsing the expiration date data*/
+		console.log(date);
 		let exp = date.split("-");
 		exp[0] = parseInt(exp[0], 10);
 		exp[1] = parseInt(exp[1], 10);
@@ -57,7 +60,7 @@ class Items extends Component{
 		items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 
 		/* Filtering items by serial number */
-		items = items.filter(item => item.serial_number.indexOf(this.state.serialSearch)!== -1);
+		//items = items.filter(item => item.serial.indexOf(this.state.serialSearch)!== -1);
 
 		/* Filtering items by location */
 		if (this.state.inStorage === false){
@@ -68,8 +71,8 @@ class Items extends Component{
 		}
 
 		/* Filtering items by expiration */
-		if (this.state.expired === false){
-			items = items.filter(item => this.checkExpirationDate(item.expiration) !== -1);
+		if (this.state.showExpired === false){
+			//items = items.filter(item => this.checkExpirationDate(item.expiration) !== -1);
 		}
 
 
@@ -108,19 +111,23 @@ class Items extends Component{
 	}
 
 	expiredChange(evt){
-		if (this.state.expired === true){
-			this.setState({expired: false})
+		if (this.state.showExpired === true){
+			this.setState({showExpired: false})
 		}
 
 		else{
-			this.setState({expired: true})
+			this.setState({showExpired: true})
 		}
 	}
 
 
 	render(){
-		let items = this.props.items.item.slice();
-		items = this.filterItems(items);
+		let items = this.props.items;
+		if (items !== {}){
+			items = this.props.items.item.slice();
+			items = this.filterItems(items);
+		}
+		
 		
 		return (
 			<div>
@@ -141,7 +148,7 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map(item =><li key={item.item_id}>{item.name} - {item.serial_number} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
+					{items.map((item, index) =><li key={index}>{item.name} - {item.serial} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
 
 				</ul>
 			</div>

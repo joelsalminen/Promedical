@@ -22,7 +22,7 @@ class LendItem extends Component{
       returnDate: moment(),
       start: "",
       return: "",
-      items: ""
+      items: {}
 		}
 
 
@@ -91,17 +91,13 @@ class LendItem extends Component{
       start: moment().format().substring(0,10)
     });
 
-		this.setState({
-			items: this.props.name
-		});
-		console.log(this.props.name);
 
 	}
 
 componentDidMount(){
-	setTimeout(()=>{this.setState({
-		items: this.props.name});
-		console.log(this.props.name);
+	setTimeout(()=>{
+		this.setState({items: this.props.items});
+		console.log(this.state.items);
 	}, 500);
 	
 }
@@ -189,7 +185,7 @@ componentDidMount(){
 
 			<button className="SubmitButton" onClick={this.lendItem}>Kirjaa lainaus</button>
 
-			<p>{this.state.items}</p>
+			
 
 
 
