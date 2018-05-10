@@ -38,7 +38,11 @@ class Return extends Component{
 	}
 
 	suggestionClickHandler(item){
-		console.log(item);
+		let list = this.state.toReturn;
+		list.push(item);
+		this.setState({
+			toReturn: list
+		});
 	}
 
 
@@ -71,7 +75,7 @@ class Return extends Component{
 
 			<p>---------------------------------------------</p>
 			<ul>
-				{}
+				{this.state.toReturn.map((item, index)=><li key={index}>{item}</li>)}
 			</ul>
 			<br/>
 			<br/>
