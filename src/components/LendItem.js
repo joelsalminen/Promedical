@@ -75,9 +75,9 @@ class LendItem extends Component{
 		this.setState({price: evt.target.value });
 	}
 
-	suggestionClickHandler(name){
+	suggestionClickHandler(item){
 		let list = this.state.toLend;
-		list.push(name);
+		list.push(item.name);
 		this.setState({toLend: list, itemName:""});
 
 	}

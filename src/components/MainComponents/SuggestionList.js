@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 
 class SuggestionList extends Component{
 	handleClick = () => {
-		this.props.clickAction(this.props.item.name);
+		this.props.clickAction(this.props.item);
 	}
 
 	render(){

@@ -39,7 +39,7 @@ class Return extends Component{
 
 	suggestionClickHandler(item){
 		let list = this.state.toReturn;
-		list.push(item);
+		list.push(item.name);
 		this.setState({
 			toReturn: list
 		});
