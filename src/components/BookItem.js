@@ -85,6 +85,7 @@ class BookItem extends Component{
 
   	this.setState({
   		list: obj,
+      toBook: []
   	})
 
 
