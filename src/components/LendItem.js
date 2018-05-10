@@ -77,7 +77,7 @@ class LendItem extends Component{
 
 	suggestionClickHandler(item){
 		let list = this.state.toLend;
-		list.push(item.name);
+		list.push(item);
 		this.setState({toLend: list, itemName:""});
 
 	}
@@ -122,16 +122,16 @@ class LendItem extends Component{
 	}
 
 	filterItems(items) {
-		console.log(items);
-			items = items.item.slice();
-			items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
-			items = items.filter((item) => item.location.indexOf("varasto") !== -1);
-			//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
-			if (this.state.itemName === ""){
-				return [];	
-			}
-			return items;
+		
+		items = items.item.slice();
+		items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
+		items = items.filter((item) => item.location.indexOf("varasto") !== -1);
+		//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
+		if (this.state.itemName === ""){
+			return [];	
 		}
+		return items;
+	}
 
 
 
@@ -168,7 +168,7 @@ class LendItem extends Component{
 		];
 
 		let itemsList = this.filterItems(this.state.items);
-		
+
 
 		return(
 		<div id="LendItemMenu">
@@ -185,7 +185,7 @@ class LendItem extends Component{
 			<br/>
 			<p>Lainattava tuote:</p>
 			<ul>
-				{this.state.toLend.map((item, index) => <li key={index}>{item} </li> )}
+				{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
 			</ul>
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
 			<ul>				
