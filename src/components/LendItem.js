@@ -13,6 +13,7 @@ class LendItem extends Component{
 		super(props)
 		this.state = {
 			user: "Test_user1",
+			itemName: "",
 			customer: "",
 			contactInfo: "",
 			lendType: "",
@@ -22,7 +23,7 @@ class LendItem extends Component{
       returnDate: moment(),
       start: "",
       return: "",
-      items: {}
+      items: {item: []}
 		}
 
 
@@ -30,6 +31,7 @@ class LendItem extends Component{
 		this.lendItem = this.lendItem.bind(this);
 		this.scanItem = this.scanItem.bind(this);
 
+		this.itemNameChangeHandler = this.itemNameChangeHandler.bind(this);
 		this.customerChangeHandler = this.customerChangeHandler.bind(this);
 		this.contactInfoChangeHandler = this.contactInfoChangeHandler.bind(this);
 		this.userChangeHandler = this.userChangeHandler.bind(this);
@@ -38,12 +40,19 @@ class LendItem extends Component{
 
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
     this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
+
+    this.filterItems = this.filterItems.bind(this);
 	}
 
 
 
 	customerChangeHandler(evt){
 		this.setState({customer: evt.target.value });
+
+	}
+
+	itemNameChangeHandler(evt){
+		this.setState({itemName: evt.target.value });
 
 	}
 
@@ -94,13 +103,26 @@ class LendItem extends Component{
 
 	}
 
-componentDidMount(){
-	setTimeout(()=>{
-		this.setState({items: this.props.items});
-		console.log(this.state.items);
-	}, 500);
-	
-}
+	componentDidMount(){
+		setTimeout(()=>{
+			this.setState({items: this.props.items});
+			//console.log(this.state.items);
+		}, 500);
+		
+	}
+
+	filterItems(items) {
+			items = items.item.slice();
+			items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
+
+			//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
+			if (this.state.itemName === ""){
+				return [];	
+			}
+			return items;
+		}
+
+
 
 	setDate(){
 		const current = new Date();
@@ -134,6 +156,7 @@ componentDidMount(){
 			"Koekäyttö", "Sijaislaite (maksullinen)", "Sijaislaite (maksuton)"
 		];
 
+		let itemsList = this.filterItems(this.state.items);
 		
 
 		return(
@@ -142,6 +165,7 @@ componentDidMount(){
 			<Menu />
 
 			<h1>Lainaus</h1>
+			<p>{this.state.itemName}</p>
 			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
 			{/* why do these have names?  */}
 
@@ -151,6 +175,10 @@ componentDidMount(){
 			<p>Lainattava tuote:</p>
 			{/*suggest input doesn't give value*/}
 			<SuggestInput/>
+			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler}/>
+			<ul>				
+				{itemsList.map((item, index) => <li key={index}>{item.name}</li> )}
+			</ul>
 
 			<p>Asiakas</p>
 			<input name="customer_name" placeholder="Asiakas" onChange={this.customerChangeHandler}/>

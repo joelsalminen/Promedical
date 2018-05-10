@@ -124,7 +124,7 @@ class Items extends Component{
 	render(){
 		let items = this.props.items;
 		if (items !== {}){
-			items = this.props.items.item.slice();
+			items = items.item.slice();
 			items = this.filterItems(items);
 		}
 		
