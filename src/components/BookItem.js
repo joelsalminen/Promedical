@@ -24,7 +24,7 @@ class BookItem extends Component{
       return: "",
       item: "",
       list: a,
-      items: {items: []}
+      items: {item: []}
 		}
 
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
@@ -106,12 +106,16 @@ class BookItem extends Component{
   }
 
   filterItems(items){
-    console.log(items);
+    items = items.item.slice();
+    items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
+    return items;
   }
 
 	render(){
 
     let itemsList = this.filterItems(this.state.items);
+
+    
 
 		return(
 		<div id="BookItemMenu">
