@@ -151,6 +151,10 @@ class Items extends Component{
 					{items.map((item, index) =><li key={index}>{item.name} - {item.serial} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
 
 				</ul>
+
+
+
+
 			</div>
 		);
 	}

@@ -122,9 +122,10 @@ class LendItem extends Component{
 	}
 
 	filterItems(items) {
+		console.log(items);
 			items = items.item.slice();
 			items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
-
+			items = items.filter((item) => item.location.indexOf("varasto") !== -1);
 			//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 			if (this.state.itemName === ""){
 				return [];	

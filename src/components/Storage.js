@@ -31,15 +31,15 @@ class Storage extends Component{
 		}
 	}
 
-componentDidMount(){
-	setTimeout(()=>{
-		this.setState({items: this.props.items});
-	}, 500);
-	
-}
+	componentDidMount(){
+		setTimeout(()=>{
+			this.setState({items: this.props.items});
+		}, 500);
+		
+	}
 
 	render(){
-		
+
 		return(
 			<div>
 				<Menu />
