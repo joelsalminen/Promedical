@@ -54,7 +54,7 @@ class App extends Component {
       <div>
 
         <Route exact path="/" component={Main}/>
-        <Route exact path="/varaus" component={BookItem}/>
+        <Route exact path="/varaus" render={()=> <BookItem items={items_obj}/>}/>
         <Route exact path="/lainaus" render={() => <LendItem items={items_obj}/>}/>
         <Route exact path="/palautus" render={()=> <ReturnItem items={items_obj}/>}/>
         <Route exact path="/lisaatuote" component={AddItem}/>

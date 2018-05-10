@@ -24,7 +24,7 @@ class BookItem extends Component{
       return: "",
       item: "",
       list: a,
-      x: "",
+      items: {items: []}
 		}
 
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
@@ -32,6 +32,7 @@ class BookItem extends Component{
     this.customerChangeHandler = this.customerChangeHandler.bind(this);
     this.addBooking = this.addBooking.bind(this);
     this.itemChangeHandler = this.itemChangeHandler.bind(this);
+    this.filterItems = this.filterItems.bind(this);
 	}
 	
 	componentWillMount(){
@@ -39,6 +40,12 @@ class BookItem extends Component{
       start: moment().format().substring(0,10)
     });
 	}
+
+  componentDidMount(){
+    setTimeout(()=>{
+      this.setState({items: this.props.items});
+    }, 500);
+  }
 
 	startDateChangeHandler(date){
     this.setState({
@@ -78,7 +85,6 @@ class BookItem extends Component{
 			"customer":this.state.customer,
 		});
 
-  	console.log(obj);
 
   	this.setState({
   		list: obj,
@@ -99,7 +105,14 @@ class BookItem extends Component{
   	});
   }
 
+  filterItems(items){
+    console.log(items);
+  }
+
 	render(){
+
+    let itemsList = this.filterItems(this.state.items);
+
 		return(
 		<div id="BookItemMenu">
 			<Menu />
