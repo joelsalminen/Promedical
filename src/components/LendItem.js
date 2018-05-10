@@ -22,7 +22,8 @@ class LendItem extends Component{
       returnDate: moment(),
       start: "",
       return: "",
-      items: {item: []}
+      items: {item: []},
+      x: []
 		}
 
 
@@ -36,11 +37,13 @@ class LendItem extends Component{
 		this.userChangeHandler = this.userChangeHandler.bind(this);
 		this.lendTypeChangeHandler = this.lendTypeChangeHandler.bind(this);
 		this.priceChangeHandler = this.priceChangeHandler.bind(this);
+		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
     this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
 
     this.filterItems = this.filterItems.bind(this);
+
 	}
 
 
@@ -69,6 +72,10 @@ class LendItem extends Component{
 
 	priceChangeHandler(evt){
 		this.setState({price: evt.target.value });
+	}
+
+	suggestionClickHandler(evt){
+		console.log(evt);
 	}
 
   startDateChangeHandler(date){
@@ -164,7 +171,7 @@ class LendItem extends Component{
 			<Menu />
 
 			<h1>Lainaus</h1>
-			<p>{this.state.itemName}</p>
+
 			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
 			{/* why do these have names?  */}
 
@@ -172,10 +179,12 @@ class LendItem extends Component{
 			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.userChangeHandler}/>
 			<br/>
 			<p>Lainattava tuote:</p>
-
-			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler}/>
+			<ul>
+				{this.state.x.map((item, index) => <li key={index}>{item} </li> )}
+			</ul>
+			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
 			<ul>				
-				{itemsList.map((item, index) => <li className="ItemSuggestion" key={index}>{item.name} </li> )}
+				{itemsList.map((item, index) => <li className="ItemSuggestion" onClick={()=>{let list = this.state.x; list.push(item.name); this.setState({x: list, itemName:""}); console.log(this.state.x); console.log(itemsList)}} key={index}>{item.name} </li> )}
 			</ul>
 
 			<p>Asiakas</p>
