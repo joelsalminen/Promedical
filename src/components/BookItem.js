@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
+import SuggestionList from "./MainComponents/SuggestionList";
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -24,7 +25,8 @@ class BookItem extends Component{
       return: "",
       item: "",
       list: a,
-      items: {item: []}
+      items: {item: []},
+      toBook: []
 		}
 
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
@@ -33,6 +35,7 @@ class BookItem extends Component{
     this.addBooking = this.addBooking.bind(this);
     this.itemChangeHandler = this.itemChangeHandler.bind(this);
     this.filterItems = this.filterItems.bind(this);
+    this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 	}
 	
 	componentWillMount(){
@@ -107,8 +110,21 @@ class BookItem extends Component{
 
   filterItems(items){
     items = items.item.slice();
-    items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
+    items = items.filter((item)=> item.name.indexOf(this.state.item) !== -1);
+    //items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
+    if (this.state.item === ""){
+      return [];
+    }
     return items;
+  }
+
+  suggestionClickHandler(item){
+    let list = this.state.toBook;
+    list.push(item);
+    this.setState({
+      toBook: list
+    });
+    console.log(this.state.toBook);
   }
 
 	render(){
@@ -127,6 +143,10 @@ class BookItem extends Component{
 
       <p>Varattava tuote</p>
 			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
+
+      <ul>
+        {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.suggestionClickHandler}/>)}
+      </ul>
 
       <p>Lainauspäivä:</p>
 			<DatePicker
