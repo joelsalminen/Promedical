@@ -147,6 +147,8 @@ class LendItem extends Component{
 
 	lendItem(){
 		console.log("user: ", this.state.user);
+		console.log("item name: ");
+		console.log(this.state.toLend);
 		console.log("customer: ", this.state.customer);
 		console.log("contact info: ", this.state.contactInfo);
 		console.log("lendType", this.state.lendType);
