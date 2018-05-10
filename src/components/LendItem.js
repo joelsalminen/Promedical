@@ -1,6 +1,5 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
-import SuggestInput from "./ItemSuggestion";
 import Dropdown from "react-dropdown";
 
 import DatePicker from 'react-datepicker';
@@ -174,7 +173,7 @@ class LendItem extends Component{
 			<br/>
 			<p>Lainattava tuote:</p>
 			{/*suggest input doesn't give value*/}
-			<SuggestInput/>
+
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler}/>
 			<ul>				
 				{itemsList.map((item, index) => <li key={index}>{item.name}</li> )}
