@@ -7,12 +7,6 @@ import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
 
-let a = {
-	booking:[]
-	
-}
-
-
 class BookItem extends Component{
 
 	constructor(props){
@@ -24,7 +18,7 @@ class BookItem extends Component{
       start: "",
       return: "",
       item: "",
-      list: a,
+      list: {booking: []},
       items: {item: []},
       toBook: []
 		}
@@ -82,13 +76,13 @@ class BookItem extends Component{
   	let obj = this.state.list;
 
   	obj['booking'].push({
-  		"item":this.state.item,
+  		"items":this.state.toBook,
 			"start":this.state.start,
 			"return":this.state.return,
 			"customer":this.state.customer,
 		});
 
-
+    console.log(obj);
   	this.setState({
   		list: obj,
   	})
@@ -124,7 +118,7 @@ class BookItem extends Component{
     this.setState({
       toBook: list
     });
-    console.log(this.state.toBook);
+
   }
 
 	render(){
