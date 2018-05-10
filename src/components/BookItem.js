@@ -82,7 +82,7 @@ class BookItem extends Component{
 			"customer":this.state.customer,
 		});
 
-    console.log(obj);
+
   	this.setState({
   		list: obj,
   	})
@@ -125,8 +125,6 @@ class BookItem extends Component{
 
     let itemsList = this.filterItems(this.state.items);
 
-    
-
 		return(
 		<div id="BookItemMenu">
 			<Menu />
@@ -160,7 +158,11 @@ class BookItem extends Component{
         	<li key={index}>
            
             <p>Customer: {booking.customer}</p>
-            <p>Item: {booking.item}</p>
+
+            <ul>
+              {booking.items.map((item, index)=> <li className="BookingList" key={index}>{item.name}</li>)}
+            </ul>
+
             <p>{booking.start} - {booking.return}</p>
         	</li>
 	      )}
