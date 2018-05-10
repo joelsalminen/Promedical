@@ -24,7 +24,7 @@ class LendItem extends Component{
       start: "",
       return: "",
       items: {item: []},
-      lending: []
+      toLend: []
 		}
 
 
@@ -76,9 +76,9 @@ class LendItem extends Component{
 	}
 
 	suggestionClickHandler(name){
-		let list = this.state.lending;
+		let list = this.state.toLend;
 		list.push(name);
-		this.setState({lending: list, itemName:""});
+		this.setState({toLend: list, itemName:""});
 
 	}
 
@@ -184,12 +184,12 @@ class LendItem extends Component{
 			<br/>
 			<p>Lainattava tuote:</p>
 			<ul>
-				{this.state.lending.map((item, index) => <li key={index}>{item} </li> )}
+				{this.state.toLend.map((item, index) => <li key={index}>{item} </li> )}
 			</ul>
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
 			<ul>				
 				{ /* {itemsList.map((item, index) => <li className="ItemSuggestion" onClick={()=>{let list = this.state.x; list.push(item.name); this.setState({x: list, itemName:""}); console.log(this.state.x); console.log(itemsList)}} key={index}>{item.name} </li> )} */}
-				{itemsList.map((item, index) => <SuggestionList item={item} index={index} onClickAction={this.suggestionClickHandler} />)}
+				{itemsList.map((item, index) => <SuggestionList item={item} index={index} clickAction={this.suggestionClickHandler} />)}
 			</ul>
 
 			<p>Asiakas</p>

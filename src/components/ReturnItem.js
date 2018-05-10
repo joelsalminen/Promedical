@@ -1,5 +1,6 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
+import SuggestionList from './MainComponents/SuggestionList'
 
 
 
@@ -9,12 +10,14 @@ class Return extends Component{
 
 		this.state = {
 			serial: "",
-			items: {item: []}, 
+			items: {item: []},
+			toReturn: []
 		}
 
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
 		this.returnItem = this.returnItem.bind(this);
 		this.filterItems = this.filterItems.bind(this);
+		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 	}
 
 
@@ -32,6 +35,10 @@ class Return extends Component{
 			//console.log(this.state.items);
 		}, 500);
 		
+	}
+
+	suggestionClickHandler(item){
+		console.log(item);
 	}
 
 
@@ -59,7 +66,12 @@ class Return extends Component{
 			<p>Sarjanumero:</p>
 			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
 			<ul>
-				{itemsList.map((item, index)=> <li key={index}>{item.name} {item.serial}</li> )}
+				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.suggestionClickHandler}/> )}
+			</ul>
+
+			<p>---------------------------------------------</p>
+			<ul>
+				{}
 			</ul>
 			<br/>
 			<br/>
