@@ -1,6 +1,7 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import Dropdown from "react-dropdown";
+import SuggestionList from "./MainComponents/SuggestionList";
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -23,7 +24,7 @@ class LendItem extends Component{
       start: "",
       return: "",
       items: {item: []},
-      x: []
+      lending: []
 		}
 
 
@@ -74,8 +75,11 @@ class LendItem extends Component{
 		this.setState({price: evt.target.value });
 	}
 
-	suggestionClickHandler(evt){
-		console.log(evt);
+	suggestionClickHandler(name){
+		let list = this.state.lending;
+		list.push(name);
+		this.setState({lending: list, itemName:""});
+
 	}
 
   startDateChangeHandler(date){
@@ -180,11 +184,12 @@ class LendItem extends Component{
 			<br/>
 			<p>Lainattava tuote:</p>
 			<ul>
-				{this.state.x.map((item, index) => <li key={index}>{item} </li> )}
+				{this.state.lending.map((item, index) => <li key={index}>{item} </li> )}
 			</ul>
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
 			<ul>				
-				{itemsList.map((item, index) => <li className="ItemSuggestion" onClick={()=>{let list = this.state.x; list.push(item.name); this.setState({x: list, itemName:""}); console.log(this.state.x); console.log(itemsList)}} key={index}>{item.name} </li> )}
+				{ /* {itemsList.map((item, index) => <li className="ItemSuggestion" onClick={()=>{let list = this.state.x; list.push(item.name); this.setState({x: list, itemName:""}); console.log(this.state.x); console.log(itemsList)}} key={index}>{item.name} </li> )} */}
+				{itemsList.map((item, index) => <SuggestionList item={item} index={index} onClickAction={this.suggestionClickHandler} />)}
 			</ul>
 
 			<p>Asiakas</p>
