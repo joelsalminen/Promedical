@@ -9,6 +9,7 @@ class Return extends Component{
 
 		this.state = {
 			serial: "",
+			items: {}, 
 		}
 
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
@@ -24,8 +25,15 @@ class Return extends Component{
 		console.log("Serial number sent to backend");
 	}
 
-	render(){
+	componentDidMount(){
+		setTimeout(()=>{
+			this.setState({items: this.props.items});
+			//console.log(this.state.items);
+		}, 500);
+		
+	}
 
+	render(){
 
 		return(
 		<div>
