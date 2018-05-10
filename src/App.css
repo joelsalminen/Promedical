@@ -196,3 +196,11 @@ ul{
 	margin: auto;
 	margin-top: 5px;
 }
+
+.ItemSuggestion {
+	border: 2px solid black;
+	background: hotpink;
+	width: 300px;
+	margin: auto;
+	margin-bottom: 3px;
+}

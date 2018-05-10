@@ -172,11 +172,10 @@ class LendItem extends Component{
 			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.userChangeHandler}/>
 			<br/>
 			<p>Lainattava tuote:</p>
-			{/*suggest input doesn't give value*/}
 
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler}/>
 			<ul>				
-				{itemsList.map((item, index) => <li key={index}>{item.name}</li> )}
+				{itemsList.map((item, index) => <li className="ItemSuggestion" key={index}>{item.name} </li> )}
 			</ul>
 
 			<p>Asiakas</p>
