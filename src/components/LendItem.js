@@ -2,6 +2,7 @@ import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import Dropdown from "react-dropdown";
 import SuggestionList from "./MainComponents/SuggestionList";
+import $ from 'jquery';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -146,16 +147,24 @@ class LendItem extends Component{
 	}
 
 	lendItem(){
-		console.log("user: ", this.state.user);
-		console.log("item name: ");
-		console.log(this.state.toLend);
-		console.log("customer: ", this.state.customer);
-		console.log("contact info: ", this.state.contactInfo);
-		console.log("lendType", this.state.lendType);
-		console.log("price", this.state.price);
-		console.log("start: ", this.state.start);
-		console.log("return: ", this.state.return);
+		// console.log("user: ", this.state.user);
+		// console.log("item name: ");
+		// console.log(this.state.toLend);
+		// console.log("customer: ", this.state.customer);
+		// console.log("contact info: ", this.state.contactInfo);
+		// console.log("lendType", this.state.lendType);
+		// console.log("price", this.state.price);
+		// console.log("start: ", this.state.start);
+		// console.log("return: ", this.state.return);
+		let data = {data: 'xdxd'};
 
+		let request = $.ajax({
+			url: '/api/test',
+			type: 'POST',
+			data: {'data': data}
+
+		});
+		request.done((response)=>{console.log(response)});
 
 	}
 

@@ -6,7 +6,7 @@ import Storage from './components/Storage';
 import BookItem from './components/BookItem';
 import Inventory from './components/Inventory';
 import History from './components/History';
-import ReturnItem from './components/ReturnItem'
+import ReturnItem from './components/ReturnItem';
 
 
 import './App.css';
