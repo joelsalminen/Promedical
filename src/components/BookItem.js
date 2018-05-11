@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
 import SuggestionList from "./MainComponents/SuggestionList";
+import $ from 'jquery';
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
@@ -19,7 +20,7 @@ class BookItem extends Component{
       return: "",
       item: "",
       list: {booking: []},
-      items: {item: []},
+      items: [],
       toBook: []
 		}
 
@@ -31,17 +32,19 @@ class BookItem extends Component{
     this.filterItems = this.filterItems.bind(this);
     this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 	}
-	
-	componentWillMount(){
-		this.setState({
-      start: moment().format().substring(0,10)
-    });
-	}
+
 
   componentDidMount(){
-    setTimeout(()=>{
-      this.setState({items: this.props.items});
-    }, 500);
+    this.setState({
+      start: moment().format().substring(0,10)
+    });
+
+    $.ajax({
+      url: 'api/items',
+      method: 'get',
+      success: (res)=>{this.setState({items: res})}
+    });
+
   }
 
 	startDateChangeHandler(date){
@@ -104,7 +107,7 @@ class BookItem extends Component{
   }
 
   filterItems(items){
-    items = items.item.slice();
+    //items = items.item.slice();
     items = items.filter((item)=> item.name.indexOf(this.state.item) !== -1);
     //items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
     if (this.state.item === ""){
