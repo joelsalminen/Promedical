@@ -24,19 +24,6 @@ export const testItems = {
 */
 
 class Storage extends Component{
-	constructor (props){
-		super(props)
-		this.state = {
-			items: {item: []},
-		}
-	}
-
-	componentDidMount(){
-		setTimeout(()=>{
-			this.setState({items: this.props.items});
-		}, 500);
-		
-	}
 
 	render(){
 
@@ -44,7 +31,7 @@ class Storage extends Component{
 			<div>
 				<Menu />
 
-				<Items items={this.state.items}/>
+				<Items />
 
 			</div>
 		);

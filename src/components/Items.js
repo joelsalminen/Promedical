@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 class Items extends Component{
 	constructor(props){
@@ -8,7 +9,8 @@ class Items extends Component{
 			serialSearch: "",
 			inStorage: true,
 			notInStorage: true,
-			showExpired: true
+			showExpired: true,
+			items: []
 		}
 
 		this.setNameSearch = this.setNameSearch.bind(this);
@@ -18,6 +20,28 @@ class Items extends Component{
 		this.notInStorageCheckBoxChange = this.notInStorageCheckBoxChange.bind(this);
 		this.expiredChange = this.expiredChange.bind(this);
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
+	}
+
+
+	componentDidMount(){
+		// setTimeout(()=>{
+		// 	this.setState({items: this.props.items});
+		// 	console.log("From props");
+		// 	console.log(this.props.items);
+		// }, 500);
+
+		let req = $.ajax({
+			url: 'api/items',
+			method: 'get',
+
+		});
+		req.done((res)=>{
+			this.setState({items: res});
+
+		});
+		
+
+		
 	}
 
 
@@ -122,9 +146,11 @@ class Items extends Component{
 
 
 	render(){
-		let items = this.props.items;
+
+		let items = this.state.items;
 		if (items !== {}){
-			items = items.item.slice();
+			//items = items.item.slice();
+
 			items = this.filterItems(items);
 		}
 		
