@@ -15,7 +15,7 @@ class AddItem extends Component{
 	}
 
 	submitClickHandler(){
-		console.log(this.state.itemName + " " + this.state.serial);
+
 		let itemData = {
 			name: this.state.itemName,
 			serial: this.state.serial,
@@ -37,6 +37,17 @@ class AddItem extends Component{
 
 	serialChangeHandler(evt){
 		this.setState({serial: evt.target.value});
+	}
+
+	componentDidMount(){
+		$.ajax({
+			url: 'api/items',
+			method: 'get',
+			success: (res)=>{console.log(res)}
+		});
+
+
+
 	}
 
 	render(){

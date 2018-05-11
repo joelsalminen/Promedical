@@ -24,21 +24,12 @@ class Items extends Component{
 
 
 	componentDidMount(){
-		// setTimeout(()=>{
-		// 	this.setState({items: this.props.items});
-		// 	console.log("From props");
-		// 	console.log(this.props.items);
-		// }, 500);
-
-		let req = $.ajax({
+		$.ajax({
 			url: 'api/items',
 			method: 'get',
-
+			success: (res)=>{this.setState({items: res})}
 		});
-		req.done((res)=>{
-			this.setState({items: res});
 
-		});
 		
 
 		
