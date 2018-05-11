@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
-
+import $ from "jquery";
 
 class AddItem extends Component{
 	constructor(props){
@@ -15,7 +15,20 @@ class AddItem extends Component{
 	}
 
 	submitClickHandler(){
-
+		console.log(this.state.itemName + " " + this.state.serial);
+		let itemData = {
+			name: this.state.itemName,
+			serial: this.state.serial,
+			location: "varasto",
+			expiration: ""
+		};
+		
+		let request = $.ajax({
+			url: '/api/items',
+			method: 'post',
+			data: itemData, 
+		});
+		request.done((res)=>{console.log(res)});
 	}
 
 	nameChangeHandler(evt){
@@ -33,7 +46,6 @@ class AddItem extends Component{
 			<Menu />
 			<h1>Lisää tuote</h1>
 
-			<p>{this.state.serial}</p>
 			<button id="scan_button">Skannaa</button>
 			<p>Tuote</p>
 
