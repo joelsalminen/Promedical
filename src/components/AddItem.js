@@ -3,7 +3,16 @@ import Menu from "./MainComponents/MainMenuButton";
 
 
 class AddItem extends Component{
-	
+	constructor(props){
+		super(props);
+		this.submitClickHandler = this.submitClickHandler.bind(this);
+	}
+
+	submitClickHandler(){
+		console.log('submit button action');
+	}
+
+
 	render(){
 		return(
 
@@ -25,7 +34,7 @@ class AddItem extends Component{
 
 			<br/>
 			<br/>
-			<button className="SubmitButton">Lisää</button>
+			<button className="SubmitButton" onClick={this.submitClickHandler}>Lisää</button>
 			
 			
 		</div>
