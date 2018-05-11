@@ -24,7 +24,7 @@ class LendItem extends Component{
       returnDate: moment(),
       start: "",
       return: "",
-      items: {item: []},
+      items: [],
       toLend: []
 		}
 
@@ -115,16 +115,17 @@ class LendItem extends Component{
 	}
 
 	componentDidMount(){
-		setTimeout(()=>{
-			this.setState({items: this.props.items});
-			//console.log(this.state.items);
-		}, 500);
+		$.ajax({
+			url: '/api/items',
+			post: 'get',
+			success: (res)=>{this.setState({items: res})}
+		});
 		
 	}
 
 	filterItems(items) {
 		
-		items = items.item.slice();
+		//items = items.item.slice();
 		items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
 		items = items.filter((item) => item.location.indexOf("varasto") !== -1);
 		//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);

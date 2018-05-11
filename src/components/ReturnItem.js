@@ -1,7 +1,7 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import SuggestionList from './MainComponents/SuggestionList'
-
+import $ from 'jquery';
 
 
 class Return extends Component{
@@ -10,7 +10,7 @@ class Return extends Component{
 
 		this.state = {
 			serial: "",
-			items: {item: []},
+			items: [],
 			toReturn: []
 		}
 
@@ -30,10 +30,11 @@ class Return extends Component{
 	}
 
 	componentDidMount(){
-		setTimeout(()=>{
-			this.setState({items: this.props.items});
-			//console.log(this.state.items);
-		}, 500);
+		$.ajax({
+			url: '/api/items',
+			method: 'get',
+			success: (res)=>{this.setState({items: res})}
+		});
 		
 	}
 
@@ -48,7 +49,7 @@ class Return extends Component{
 
 	filterItems(items) {
 		
-		items = items.item.slice();
+		//items = items.item.slice();
 		items = items.filter((item) => item.serial.toString().indexOf(this.state.serial) !== -1);
 
 		//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
