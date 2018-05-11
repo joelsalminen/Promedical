@@ -5,13 +5,20 @@ import Menu from "./MainComponents/MainMenuButton";
 class AddItem extends Component{
 	constructor(props){
 		super(props);
+		this.state = {
+			itemName: ""
+		};
 		this.submitClickHandler = this.submitClickHandler.bind(this);
+		this.nameChangeHandler = this.nameChangeHandler.bind(this);
 	}
 
 	submitClickHandler(){
-		console.log('submit button action');
+
 	}
 
+	nameChangeHandler(evt){
+		this.setState({itemName: evt.target.value});
+	}
 
 	render(){
 		return(
@@ -20,10 +27,11 @@ class AddItem extends Component{
 			<Menu />
 			<h1>Lisää tuote</h1>
 
+
 			<button id="scan_button">Skannaa</button>
 			<p>Tuote</p>
 
-			<input name="name" placeholder="Tuotteen nimi" />
+			<input name="name" placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>
 			<p>Sarjanumero</p>
 
 			<input name="serial_number" placeholder="Sarjanumero" />
