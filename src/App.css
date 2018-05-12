@@ -161,6 +161,8 @@ ul{
     z-index: 1;
 }
 
+
+/* BookItem bookings */
 #BookingList li{
 	border: 1px solid black;
 	width: 50%;
@@ -172,6 +174,8 @@ ul{
 #BookItemMenu p{
 	margin-bottom: 2px;
 }
+
+
 
 #StorageList li{
 	border: 1px solid black;
@@ -189,6 +193,6 @@ ul{
 }
 
 
-.BookingList {
+.BookingListItem {
 	background: orange;
 }

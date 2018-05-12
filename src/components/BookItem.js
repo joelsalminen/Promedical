@@ -164,7 +164,7 @@ class BookItem extends Component{
             <p>Customer: {booking.customer}</p>
 
             <ul>
-              {booking.items.map((item, index)=> <li className="BookingList" key={index}>{item.name}</li>)}
+              {booking.items.map((item, index)=> <li className="BookingListItem" key={index}>{item.name}</li>)}
             </ul>
 
             <p>{booking.start} - {booking.return}</p>
