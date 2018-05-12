@@ -3,12 +3,15 @@ import Menu from "./MainComponents/MainMenuButton";
 import $ from "jquery";
 
 class AddItem extends Component{
+
 	constructor(props){
 		super(props);
 		this.state = {
 			itemName: "",
 			serial: "",
 		};
+
+
 		this.submitClickHandler = this.submitClickHandler.bind(this);
 		this.nameChangeHandler = this.nameChangeHandler.bind(this);
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);
@@ -57,7 +60,7 @@ class AddItem extends Component{
 			<Menu />
 			<h1>Lisää tuote</h1>
 
-			<button id="scan_button">Skannaa</button>
+			<button className="ScanButton">Skannaa</button>
 			<p>Tuote</p>
 
 			<input name="name" placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>

@@ -148,24 +148,16 @@ class LendItem extends Component{
 	}
 
 	lendItem(){
-		// console.log("user: ", this.state.user);
-		// console.log("item name: ");
-		// console.log(this.state.toLend);
-		// console.log("customer: ", this.state.customer);
-		// console.log("contact info: ", this.state.contactInfo);
-		// console.log("lendType", this.state.lendType);
-		// console.log("price", this.state.price);
-		// console.log("start: ", this.state.start);
-		// console.log("return: ", this.state.return);
-		let data = {data: 'xdxd'};
 
-		let request = $.ajax({
-			url: '/api/test',
-			type: 'POST',
-			data: {'data': data}
+		// let data = {data: 'xdxd'};
 
-		});
-		request.done((response)=>{console.log(response)});
+		// let request = $.ajax({
+		// 	url: '/api/test',
+		// 	type: 'POST',
+		// 	data: {'data': data}
+
+		// });
+		// request.done((response)=>{console.log(response)});
 
 	}
 
@@ -189,7 +181,7 @@ class LendItem extends Component{
 
 			<h1>Lainaus</h1>
 
-			<button onClick={this.scanItem} id="scan_button">Skannaa</button>
+			<button onClick={this.scanItem} className="ScanButton">Skannaa</button>
 			{/* why do these have names?  */}
 
 			<p>Tuotteen varastosta hakija:</p>
