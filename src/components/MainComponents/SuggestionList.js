@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+
+/* Prints suggestion list items */
 class SuggestionList extends Component{
 	handleClick = () => {
 		this.props.clickAction(this.props.item);
@@ -12,5 +14,6 @@ class SuggestionList extends Component{
 	}
 }
 
-
 export default SuggestionList;
+
+/* Joel Salminen - joel.salminen@student.lut */

@@ -93,13 +93,11 @@ ul{
 }
 
 
-#LendItemMenu{
+p {
 	font-size: 20px;
-}
-
-#LendItemMenu p{
 	margin-bottom: 2px;
 }
+
 
 .SubmitButton{
 	width: 300px;
@@ -196,3 +194,5 @@ ul{
 .BookingListItem {
 	background: orange;
 }
+
+/* Joel Salminen - joel.salminen@student.lut.fi */

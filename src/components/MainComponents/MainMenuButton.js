@@ -9,3 +9,5 @@ const MainMenuButton = (props) =>
 	</nav>;
 
 export default MainMenuButton;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */ 

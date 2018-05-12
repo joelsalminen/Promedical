@@ -15,29 +15,18 @@ class Return extends Component{
 		}
 
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
+		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
+
 		this.returnItem = this.returnItem.bind(this);
 		this.filterItems = this.filterItems.bind(this);
-		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 	}
 
-
+	/* Fired whenever Serial field data changes */
 	serialChangeHandler (evt){
 		this.setState({serial: evt.target.value });
 	}
 
-	returnItem(){
-		console.log("Serial number sent to backend");
-	}
-
-	componentDidMount(){
-		$.ajax({
-			url: '/api/items',
-			method: 'get',
-			success: (res)=>{this.setState({items: res})}
-		});
-		
-	}
-
+	/* Fired whenever Suggestion button is clicked */
 	suggestionClickHandler(item){
 		let list = this.state.toReturn;
 		list.push(item.name);
@@ -46,13 +35,28 @@ class Return extends Component{
 		});
 	}
 
+	/* Documents that a item was returned to storage */
+	returnItem(){
+		console.log("Serial number sent to backend");
+	}
 
+
+	componentDidMount(){
+		/* Fetch item data from database */
+		$.ajax({
+			url: '/api/items',
+			method: 'get',
+			success: (res)=>{this.setState({items: res})}
+		});
+		
+	}
+
+	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
 		
-		//items = items.item.slice();
 		items = items.filter((item) => item.serial.toString().indexOf(this.state.serial) !== -1);
 
-		//items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
+		/* The list of items is only shown when some input typed into Lend Item Name field*/
 		if (this.state.serial === ""){
 			return [];	
 		}
@@ -60,6 +64,7 @@ class Return extends Component{
 	}
 
 	render(){
+		/* Filter items based on Lend Item Name field input */
 		let itemsList = this.filterItems(this.state.items);
 		
 		return(
@@ -88,3 +93,5 @@ class Return extends Component{
 
 }
 export default Return;
+
+/* Joel Salminen - joel.salminen@student.fi */ 

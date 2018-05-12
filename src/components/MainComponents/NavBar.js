@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from 'react-router-dom'
 
+/* Display Main menu */
 const NavBar = (props) =>
 	<nav>
 		<div id="MainMenu">
@@ -13,16 +14,10 @@ const NavBar = (props) =>
 				<li><Link to="/lisaatuote">Lisää tuote</Link></li>
 				<li><Link to="/varasto">Varasto</Link></li>
 
-				{/*
-				<li><Link to="/eraantyneet">Erääntyneet tuotteet</Link></li>
-				<li><Link to="/inventaario">Inventaario</Link></li>
-				<li><Link to="/historia">Historia</Link></li>
-				
-				*/}
-
-
 			</ul>
 		</div>
 	</nav>;
 
 export default NavBar;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */;

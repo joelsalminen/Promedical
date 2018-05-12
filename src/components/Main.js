@@ -13,3 +13,5 @@ class Main extends Component{
 
 
 export default Main;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */
