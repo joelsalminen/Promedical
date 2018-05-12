@@ -1,39 +1,7 @@
-
+/* import font */
 @font-face {
 	src: url(/./styles/Oswald-Regular.tff) format('tff');
 }
-
-.App {
-  text-align: center;
-}
-
-
-/*.App-logo {
-  animation: App-logo-spin infinite 20s linear;
-  height: 80px;
-}*/
-
-/*@keyframes App-logo-spin {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-*/
-
-#scan_button{
-	border: 3px solid black;
-	background: #0C4767;
-	color: white;
-	width: 200px;
-	height: 100px;
-	text-align: center;
-	
-}
-
-#scan_button:active{
-	background: #2C8C99;
-	outline: 0;
-}
-
 
 button::-moz-focus-inner {
 	border: 0;
@@ -45,11 +13,20 @@ ul{
 }
 
 
+.App {
+  text-align: center;
+}
+
+
+
+
+
+
+
+
 #root{
 	margin: auto;
 	text-align: center;
-
-
 }
 
 #MainMenu{
@@ -77,10 +54,6 @@ ul{
 
 
 }
-
-
-/*http://puu.sh/zPfH7/5796762eea.png*/
-
 
 #MenuList li a:link {
     text-decoration: none;
@@ -129,8 +102,6 @@ ul{
 }
 
 
-
-
 .SubmitButton{
 	width: 300px;
 	height: 50px;
@@ -138,7 +109,20 @@ ul{
 
 }
 
+#scan_button{
+	border: 3px solid black;
+	background: #0C4767;
+	color: white;
+	width: 200px;
+	height: 100px;
+	text-align: center;
+}
 
+
+#scan_button:active{
+	background: #2C8C99;
+	outline: 0;
+}
 
 .Dropdown-root {
     width: 300px;
