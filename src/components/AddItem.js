@@ -11,14 +11,14 @@ class AddItem extends Component{
 			serial: "",
 		};
 
-
 		this.submitClickHandler = this.submitClickHandler.bind(this);
 		this.nameChangeHandler = this.nameChangeHandler.bind(this);
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);
 	}
 
-	submitClickHandler(){
 
+	submitClickHandler(){
+		/* Assemble data to send */
 		let itemData = {
 			name: this.state.itemName,
 			serial: this.state.serial,
@@ -26,12 +26,14 @@ class AddItem extends Component{
 			expiration: ""
 		};
 		
-		let request = $.ajax({
+		/* Send assembled data to backend API */
+		$.ajax({
 			url: '/api/items',
 			method: 'post',
-			data: itemData, 
+			data: itemData,
+			success: ((res)=>{console.log(res)})
 		});
-		request.done((res)=>{console.log(res)});
+		
 	}
 
 	nameChangeHandler(evt){
