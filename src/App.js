@@ -4,7 +4,6 @@ import LendItem from './components/LendItem';
 import AddItem from './components/AddItem';
 import Storage from './components/Storage';
 import BookItem from './components/BookItem';
-import Inventory from './components/Inventory';
 import History from './components/History';
 import ReturnItem from './components/ReturnItem';
 
@@ -21,6 +20,8 @@ class App extends Component {
   render(){
 	
     return(
+
+    /* Routing: */ 
     <Router>
       <div>
 
@@ -30,7 +31,6 @@ class App extends Component {
         <Route exact path="/palautus" render={()=> <ReturnItem />}/>
         <Route exact path="/lisaatuote" component={AddItem}/>
         <Route exact path="/varasto" render={()=> <Storage />}/>
-        <Route exact path="/inventaario" component={Inventory}/>
         <Route exact path="/historia" component={History}/>
 
         
@@ -41,3 +41,6 @@ class App extends Component {
 }
 
 export default App;
+
+
+/* Joel Salminen - joel.salminen@student.lut.fi */
