@@ -38,7 +38,7 @@ class Return extends Component{
 	/* Documents that a item was returned to storage */
 	returnItem(){
 
-		/* Go through all items in toReturn */
+		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
 			item.location = "varasto";
 			item.expiration = "";
@@ -51,19 +51,21 @@ class Return extends Component{
 					'expiration': "",
 					'location': "varasto"
 				},
-				success: ((res)=>console.log(res))
+
+				success: ((res)=>{
+					console.log(res);
+
+					/* Reset toReturn */
+					this.setState({
+						toReturn: []
+					});
+
+				})
+
 			});
 
 		});
 
-
-		
-
-		/* Reset toReturn */
-		/* this should be inside success: (), in ajax call*/
-		this.setState({
-			toReturn: []
-		});
 	}
 
 
