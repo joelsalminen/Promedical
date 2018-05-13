@@ -29,7 +29,7 @@ class Return extends Component{
 	/* Fired whenever Suggestion button is clicked */
 	suggestionClickHandler(item){
 		let list = this.state.toReturn;
-		list.push(item.name);
+		list.push(item);
 		this.setState({
 			toReturn: list
 		});
@@ -37,7 +37,33 @@ class Return extends Component{
 
 	/* Documents that a item was returned to storage */
 	returnItem(){
-		console.log("Serial number sent to backend");
+
+		/* Go through all items in toReturn */
+		this.state.toReturn.forEach((item) => {
+			item.location = "varasto";
+			item.expiration = "";
+
+			/* Ajax call that edits Item data */
+			$.ajax({
+				url: '/api/items/' + item._id,
+				method: 'put',
+				data: {
+					'expiration': "",
+					'location': "varasto"
+				},
+				success: ((res)=>console.log(res))
+			});
+
+		});
+
+
+		
+
+		/* Reset toReturn */
+		/* this should be inside success: (), in ajax call*/
+		this.setState({
+			toReturn: []
+		});
 	}
 
 
@@ -81,7 +107,7 @@ class Return extends Component{
 
 			<p>---------------------------------------------</p>
 			<ul>
-				{this.state.toReturn.map((item, index)=><li key={index}>{item}</li>)}
+				{this.state.toReturn.map((item, index)=><li key={index}>{item.name}</li>)}
 			</ul>
 			<br/>
 			<br/>
