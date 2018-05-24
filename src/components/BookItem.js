@@ -46,6 +46,7 @@ class BookItem extends Component{
       customer: this.state.customer,
     });
 
+    // update booking list, reset toBook list
     this.setState({
       bookings: list,
       toBook: []
@@ -91,10 +92,19 @@ class BookItem extends Component{
       url: 'api/reservations/',
       method: 'get',
       success: (reservations)=>{
-        this.setState({
-          reservations: reservations
+        // place items into a list 
+        reservations.forEach((reservation)=>{
+          let r = reservation;
+          r.items = [];
+          r.items.push(reservation.item);
+          delete r['item'];
         });
-        console.log(reservations);
+        
+        
+        this.setState({
+          bookings: reservations
+        });
+        console.log(this.state.reservations);
       }
     });
 
