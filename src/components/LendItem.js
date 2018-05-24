@@ -76,15 +76,34 @@ class LendItem extends Component{
 	/* Fired whenever Lend Item button is clicked */
 	lendItem(){
 
-		let data = {data: 'xdxd'};
+		this.state.toLend.forEach((item)=>{
+			let data = {
+				lender: this.state.user,
+				customerName: this.state.customer,
+				contactInfo: this.state.contactInfo,
+				startDate: this.state.date,
+				returnDate: this.state.return,
+				lendType: this.state.lendType,
+				price: this.state.price,
+				itemName: item.name,
+				itemSerial: item.serial,
+				itemId: item._id
 
-		let request = $.ajax({
-			url: '/api/lendings',
-			type: 'POST',
-			data: {'data': data}
 
+			};
+			let request = $.ajax({
+				url: '/api/lendings',
+				type: 'POST',
+				data: data
+
+			});
+			request.done((response)=>{console.log(response)});
+			
+			
 		});
-		request.done((response)=>{console.log(response)});
+
+
+
 
 	}
 
