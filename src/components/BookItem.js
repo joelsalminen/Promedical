@@ -20,9 +20,10 @@ class BookItem extends Component{
       item: "",
       bookings: [],
       items: [],
-      toBook: []
+      toBook: [],
+      reservations: []
 		}
-    
+
     this.filterItems = this.filterItems.bind(this);
 
     this.addBookingButtonHandler = this.addBookingButtonHandler.bind(this);
@@ -39,13 +40,11 @@ class BookItem extends Component{
     let list = this.state.bookings;
 
     list.push({
-      "items":this.state.toBook,
-      "start":this.state.start,
-      "return":this.state.return,
-      "customer":this.state.customer,
+      items: this.state.toBook,
+      startDate: this.state.start,
+      returnDate: this.state.return,
+      customer: this.state.customer,
     });
-
-
 
     this.setState({
       bookings: list,
@@ -95,6 +94,7 @@ class BookItem extends Component{
         this.setState({
           reservations: reservations
         });
+        console.log(reservations);
       }
     });
 
@@ -187,7 +187,7 @@ class BookItem extends Component{
               {booking.items.map((item, index)=> <li className="BookingListItem" key={index}>{item.name}</li>)}
             </ul>
 
-            <p>{booking.start} - {booking.return}</p>
+            <p>{booking.startDate} - {booking.returnDate}</p>
         	</li>
 	      )}
       </ul>
