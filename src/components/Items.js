@@ -27,12 +27,33 @@ class Items extends Component{
 
 	// parses the lendings data in a way that it can be used in the item list
 	parseLendings(lendings){
+		let lentItems = [];
+
 		lendings.forEach((lending)=>{
 
+			let item = {};
+			item.inStorage = true;
+			item.serial = lending.item.serial;
+			item._id = lending.item._id;
+			item.name = lending.item.name;
+			item.lender = lendings.lender;
+			item.customer = lending.customer;
+			item.startDate = lending.startDate;
+			item.returnDate = lending.returnDate;
+			item.lendType = lending.lendType;
+			item.price = lending.price;
+
+			lentItems.push(item);
 		});
+		console.log("lent items:");
+		console.log(lentItems);
 	}
 
+	// parses item data for later usage
 	parseItems(items){
+		items.forEach((item)=>{
+			item.inStorage = false;
+		});
 		console.log(items);
 	}
 
@@ -55,7 +76,7 @@ class Items extends Component{
 	 	method: 'get', 
 	 	success: (res)=>{
 	 		this.setState({lendings: res});
-	 		
+	 		this.parseLendings(res);
 	 	}
 	 });
 
