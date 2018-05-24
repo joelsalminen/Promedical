@@ -182,6 +182,10 @@ p {
 	margin-top: 5px;
 }
 
+.NotInStorage {
+	background: #ed872d;
+}
+
 .ItemSuggestion {
 	border: 2px solid black;
 	background: hotpink;
