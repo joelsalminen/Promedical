@@ -86,6 +86,18 @@ class BookItem extends Component{
       success: (res)=>{this.setState({items: res})}
     });
 
+
+    /* Fetch reservation data from backend */
+    $.ajax({
+      url: 'api/reservations/',
+      method: 'get',
+      success: (reservations)=>{
+        this.setState({
+          reservations: reservations
+        });
+      }
+    });
+
   }
 
   /* Fired whenever Start Date field data changes */
