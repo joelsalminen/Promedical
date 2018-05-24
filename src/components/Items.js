@@ -14,6 +14,7 @@ class Items extends Component{
 			lendings: [],
 		}
 
+		this.parseLendings = this.parseLendings.bind(this);
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
 		this.filterItems = this.filterItems.bind(this);
@@ -23,21 +24,32 @@ class Items extends Component{
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 	}
 
+	parseLendings(lendings){
+		console.log(lendings);
+	}
+
+
 
 	componentDidMount(){
 		// get items data
 		$.ajax({
 			url: 'api/items',
 			method: 'get',
-			success: (res)=>{this.setState({items: res})}
+			success: (res)=>{
+				this.setState({items: res});
+			}
 		});
 
 	 // get lendings data
 	 $.ajax({
 	 	url: 'api/lendings',
 	 	method: 'get', 
-	 	success: (res)=>{this.setState({lendings: res}); console.log(this.state.lendings)}
+	 	success: (res)=>{
+	 		this.setState({lendings: res});
+	 		this.parseLendings(res);
+	 	}
 	 });
+
 	}
 
 
@@ -147,7 +159,7 @@ class Items extends Component{
 		if (items !== {}){
 			//items = items.item.slice();
 
-			items = this.filterItems(items);
+			//items = this.filterItems(items);
 		}
 		
 		
