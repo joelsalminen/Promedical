@@ -40,22 +40,21 @@ class Return extends Component{
 
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
-			item.location = "varasto";
-			item.expiration = "";
-
-			/* Ajax call that edits Item data */
+			
+			/* Ajax call that adds an item back to Items */
 			$.ajax({
-				url: '/api/items/' + item._id,
-				method: 'put',
+				url: '/api/items/',
+				method: 'post',
 				data: {
-					'expiration': "",
-					'location': "varasto"
+
 				},
 
 				success: ((res)=>{
-					console.log(res);
+					//console.log(res);
+					/* Ajax call that removes lending */
 
-					/* Reset toReturn */
+
+					/* Reset toReturn state to an empty array */
 					this.setState({
 						toReturn: []
 					});
