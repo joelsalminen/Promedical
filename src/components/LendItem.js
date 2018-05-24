@@ -47,9 +47,8 @@ class LendItem extends Component{
 
 	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
-		
+		/* filter out items that don't include the same data that is in this.state.itemName */
 		items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
-		items = items.filter((item) => item.location.indexOf("varasto") !== -1);
 		
 		/* The list of items is only shown when some input typed into Lend Item Name field*/
 		if (this.state.itemName === ""){
@@ -93,14 +92,14 @@ class LendItem extends Component{
 
 			};
 
-			// ajax call to post a lending
+			/* ajax call to post a lending */
 			$.ajax({
 				url: '/api/lendings',
 				method: 'post',
 				data: data,
 				success: (lending)=>{
 
-					// delete item from items
+					/* delete item from items */
 					$.ajax({
 						url: '/api/items/' + lending.item._id,
 						method: 'delete',
