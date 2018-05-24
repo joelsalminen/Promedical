@@ -18,7 +18,7 @@ class BookItem extends Component{
       start: "",
       return: "",
       item: "",
-      list: {booking: []},
+      bookings: [],
       items: [],
       toBook: []
 		}
@@ -36,9 +36,9 @@ class BookItem extends Component{
 
   addBooking(){
     /* Add booking to the webpage */
-    let obj = this.state.list;
+    let obj = this.state.bookings;
 
-    obj['booking'].push({
+    obj.push({
       "items":this.state.toBook,
       "start":this.state.start,
       "return":this.state.return,
@@ -48,7 +48,7 @@ class BookItem extends Component{
 
 
     this.setState({
-      list: obj,
+      bookings: obj,
       toBook: []
     })
 
@@ -178,7 +178,7 @@ class BookItem extends Component{
 
     {/* Move this to a new component */ }
 	    <ul id="BookingList">
-	      {this.state.list.booking.map((booking, index)=>
+	      {this.state.bookings.map((booking, index)=>
         	<li key={index}>
            
             <p>Customer: {booking.customer}</p>
