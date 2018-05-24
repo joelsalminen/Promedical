@@ -40,7 +40,7 @@ class Return extends Component{
 
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
-			
+
 			/* Ajax call that adds an item back to Items */
 			$.ajax({
 				url: '/api/items/',
@@ -69,18 +69,25 @@ class Return extends Component{
 
 
 	componentDidMount(){
-		/* Fetch item data from database */
+		/* Fetch lending data from database */
 		$.ajax({
-			url: '/api/items',
+			url: '/api/lendings',
 			method: 'get',
-			success: (res)=>{this.setState({items: res})}
+			success: (lendings)=>{
+				let items = [];
+				lendings.forEach((lending)=>{
+					items.push(lending.item);
+				});
+				this.setState({items: items});
+				
+			}
 		});
 		
 	}
 
 	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
-		
+		/* filter out serial numbers that don't include the same data as this.state.serial */
 		items = items.filter((item) => item.serial.toString().indexOf(this.state.serial) !== -1);
 
 		/* The list of items is only shown when some input typed into Lend Item Name field*/
