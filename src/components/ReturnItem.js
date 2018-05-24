@@ -40,24 +40,31 @@ class Return extends Component{
 
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
+			//console.log(item);
+			let itemData = item.item;
 
 			/* Ajax call that adds an item back to Items */
 			$.ajax({
 				url: '/api/items/',
 				method: 'post',
-				data: {
-
-				},
+				data: itemData,
 
 				success: ((res)=>{
-					//console.log(res);
-					/* Ajax call that removes lending */
-
-
-					/* Reset toReturn state to an empty array */
-					this.setState({
-						toReturn: []
+					/* Ajax call that removes a lending */
+					$.ajax({
+						url: '/api/lendings/' + item._id,
+						method: 'delete',
+						success: ((res)=>{
+							
+							/* Reset toReturn state to an empty array */
+							this.setState({
+								toReturn: []
+							});
+						})
 					});
+
+
+
 
 				})
 
@@ -82,7 +89,6 @@ class Return extends Component{
 
 	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
-		console.log(items);
 		/* filter out serial numbers that don't include the same data as this.state.serial */
 		items = items.filter((item) => item.item.serial.toString().indexOf(this.state.serial) !== -1);
 
@@ -106,12 +112,12 @@ class Return extends Component{
 			<p>Sarjanumero:</p>
 			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
 			<ul>
-				{itemsList.map((item, index)=> <SuggestionList item={item.item} key={index} clickAction={this.suggestionClickHandler}/> )}
+				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.suggestionClickHandler}/> )}
 			</ul>
 
 			<p>---------------------------------------------</p>
 			<ul>
-				{this.state.toReturn.map((item, index)=><li key={index}>{item.name}</li>)}
+				{this.state.toReturn.map((item, index)=><li key={index}>{item.item.name}</li>)}
 			</ul>
 			<br/>
 			<br/>
