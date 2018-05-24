@@ -15,6 +15,7 @@ class Items extends Component{
 		}
 
 		this.parseLendings = this.parseLendings.bind(this);
+		this.parseItems = this.parseItems.bind(this);
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
 		this.filterItems = this.filterItems.bind(this);
@@ -24,8 +25,15 @@ class Items extends Component{
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 	}
 
+	// parses the lendings data in a way that it can be used in the item list
 	parseLendings(lendings){
-		console.log(lendings);
+		lendings.forEach((lending)=>{
+
+		});
+	}
+
+	parseItems(items){
+		console.log(items);
 	}
 
 
@@ -37,6 +45,7 @@ class Items extends Component{
 			method: 'get',
 			success: (res)=>{
 				this.setState({items: res});
+				this.parseItems(res);
 			}
 		});
 
@@ -46,7 +55,7 @@ class Items extends Component{
 	 	method: 'get', 
 	 	success: (res)=>{
 	 		this.setState({lendings: res});
-	 		this.parseLendings(res);
+	 		
 	 	}
 	 });
 
