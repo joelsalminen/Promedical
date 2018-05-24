@@ -79,9 +79,9 @@ class LendItem extends Component{
 		this.state.toLend.forEach((item)=>{
 			let data = {
 				lender: this.state.user,
-				customerName: this.state.customer,
+				customer: this.state.customer,
 				contactInfo: this.state.contactInfo,
-				startDate: this.state.date,
+				startDate: this.state.start,
 				returnDate: this.state.return,
 				lendType: this.state.lendType,
 				price: this.state.price,
