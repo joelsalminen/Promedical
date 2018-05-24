@@ -33,7 +33,7 @@ class Items extends Component{
 		lendings.forEach((lending)=>{
 
 			let item = {};
-			item.inStorage = true;
+			item.inStorage = false;
 			item.serial = lending.item.serial;
 			item._id = lending.item._id;
 			item.name = lending.item.name;
@@ -52,7 +52,7 @@ class Items extends Component{
 	// parses item data for later usage
 	parseItems(items){
 		items.forEach((item)=>{
-			item.inStorage = false;
+			item.inStorage = true;
 		});
 	}
 
