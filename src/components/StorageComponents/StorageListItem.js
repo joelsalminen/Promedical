@@ -2,9 +2,9 @@ import React, {Component} from 'react';
 
 // used when printing a list of all items (lent and in storage)
 class StorageListItem extends Component{
-	constructor(props){
-		super(props)
-	}
+	// constructor(props){
+	// 	super(props)
+	// }
 	render(){
 		// items that are in storage
 		if (this.props.item.inStorage === false){
