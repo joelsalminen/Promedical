@@ -76,6 +76,7 @@ class LendItem extends Component{
 	/* Fired whenever Lend Item button is clicked */
 	lendItem(){
 
+		// get required data
 		this.state.toLend.forEach((item)=>{
 			let data = {
 				lender: this.state.user,
@@ -91,14 +92,29 @@ class LendItem extends Component{
 
 
 			};
-			let request = $.ajax({
-				url: '/api/lendings',
-				type: 'POST',
-				data: data
 
-			});
-			request.done((response)=>{console.log(response)});
+			// ajax call to post a lending
+			$.ajax({
+				url: '/api/lendings',
+				method: 'post',
+				data: data,
+				success: (lending)=>{
+					//console.log(lending);
+
+					// delete item from items
+					$.ajax({
+						url: '/api/items/' + lending.item._id,
+						method: 'delete',
+						success: (res)=>{
+							console.log(res);
+						}
+					});
 			
+				}
+					
+			});
+
+				
 			
 		});
 
