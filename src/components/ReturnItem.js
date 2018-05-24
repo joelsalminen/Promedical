@@ -74,12 +74,7 @@ class Return extends Component{
 			url: '/api/lendings',
 			method: 'get',
 			success: (lendings)=>{
-				let items = [];
-				lendings.forEach((lending)=>{
-					items.push(lending.item);
-				});
-				this.setState({items: items});
-				
+				this.setState({items: lendings});
 			}
 		});
 		
@@ -87,8 +82,9 @@ class Return extends Component{
 
 	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
+		console.log(items);
 		/* filter out serial numbers that don't include the same data as this.state.serial */
-		items = items.filter((item) => item.serial.toString().indexOf(this.state.serial) !== -1);
+		items = items.filter((item) => item.item.serial.toString().indexOf(this.state.serial) !== -1);
 
 		/* The list of items is only shown when some input typed into Lend Item Name field*/
 		if (this.state.serial === ""){
@@ -110,7 +106,7 @@ class Return extends Component{
 			<p>Sarjanumero:</p>
 			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
 			<ul>
-				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.suggestionClickHandler}/> )}
+				{itemsList.map((item, index)=> <SuggestionList item={item.item} key={index} clickAction={this.suggestionClickHandler}/> )}
 			</ul>
 
 			<p>---------------------------------------------</p>
