@@ -35,6 +35,30 @@ class ReserveItem extends Component{
 
 
   addReservationButtonHandler(){
+    /* Save reservations into a database */
+    this.state.toReserve.forEach(item =>{
+      let reservationData = {
+        customer: this.state.customer,
+        startDate: this.state.start,
+        returnDate: this.state.return,
+        itemName: item.name,
+        itemSerial: item.serial,
+        itemId: item._id
+      }
+
+      $.ajax({
+        url: 'api/reservations/',
+        method: 'post',
+        data: reservationData,
+        success: ((res)=>{
+          console.log(res);
+        })
+      });
+
+    });
+
+
+
     /* Add reservation to the webpage */
     let list = this.state.reservations;
 
@@ -49,7 +73,7 @@ class ReserveItem extends Component{
     this.setState({
       reservations: list,
       toReserve: []
-    })
+    });
 
 
     this.setState({
