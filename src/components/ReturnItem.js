@@ -1,6 +1,6 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
-import SuggestionList from './MainComponents/SuggestionList'
+import SuggestionList from './ReturnComponents/ReturnSuggestionList'
 import $ from 'jquery';
 
 
@@ -37,7 +37,6 @@ class Return extends Component{
 
 	/* Documents that a item was returned to storage */
 	returnItemButtonHandler(){
-
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
 			//console.log(item);
@@ -55,17 +54,13 @@ class Return extends Component{
 						url: '/api/lendings/' + item._id,
 						method: 'delete',
 						success: ((res)=>{
-							
+							console.log(res);
 							/* Reset toReturn state to an empty array */
 							this.setState({
 								toReturn: []
 							});
 						})
 					});
-
-
-
-
 				})
 
 			});
