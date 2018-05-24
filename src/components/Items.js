@@ -10,7 +10,8 @@ class Items extends Component{
 			inStorage: true,
 			notInStorage: true,
 			showExpired: true,
-			items: []
+			items: [],
+			lendings: [],
 		}
 
 		this.setNameSearch = this.setNameSearch.bind(this);
@@ -24,15 +25,19 @@ class Items extends Component{
 
 
 	componentDidMount(){
+		// get items data
 		$.ajax({
 			url: 'api/items',
 			method: 'get',
 			success: (res)=>{this.setState({items: res})}
 		});
 
-		
-
-		
+	 // get lendings data
+	 $.ajax({
+	 	url: 'api/lendings',
+	 	method: 'get', 
+	 	success: (res)=>{this.setState({lendings: res}); console.log(this.state.lendings)}
+	 });
 	}
 
 
