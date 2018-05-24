@@ -76,15 +76,15 @@ class LendItem extends Component{
 	/* Fired whenever Lend Item button is clicked */
 	lendItem(){
 
-		// let data = {data: 'xdxd'};
+		let data = {data: 'xdxd'};
 
-		// let request = $.ajax({
-		// 	url: '/api/test',
-		// 	type: 'POST',
-		// 	data: {'data': data}
+		let request = $.ajax({
+			url: '/api/lendings',
+			type: 'POST',
+			data: {'data': data}
 
-		// });
-		// request.done((response)=>{console.log(response)});
+		});
+		request.done((response)=>{console.log(response)});
 
 	}
 
