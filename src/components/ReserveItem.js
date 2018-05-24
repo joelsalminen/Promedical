@@ -35,7 +35,7 @@ class ReserveItem extends Component{
 
 
   addReservationButtonHandler(){
-    /* Save reservations into a database */
+    /* collect reservation data */
     this.state.toReserve.forEach(item =>{
       let reservationData = {
         customer: this.state.customer,
@@ -46,42 +46,42 @@ class ReserveItem extends Component{
         itemId: item._id
       }
 
+      /* Save reservations into a database */
       $.ajax({
         url: 'api/reservations/',
         method: 'post',
         data: reservationData,
         success: ((res)=>{
-          console.log(res);
+          /* Adding reservation to the webpage */
+          let list = this.state.reservations;
+
+          list.push({
+            items: this.state.toReserve,
+            startDate: this.state.start,
+            returnDate: this.state.return,
+            customer: this.state.customer,
+          });
+
+          // update reservation list, reset toReserve list
+          this.setState({
+            reservations: list,
+            toReserve: []
+          });
+
+          // reset input fields
+          this.setState({
+            start: moment().format().substring(0,10),
+            return: moment().format().substring(0,10),
+            item: "",
+            customer: "",
+          });
         })
       });
 
     });
 
 
-
-    /* Add reservation to the webpage */
-    let list = this.state.reservations;
-
-    list.push({
-      items: this.state.toReserve,
-      startDate: this.state.start,
-      returnDate: this.state.return,
-      customer: this.state.customer,
-    });
-
-    // update reservation list, reset toReserve list
-    this.setState({
-      reservations: list,
-      toReserve: []
-    });
-
-
-    this.setState({
-      start: moment().format().substring(0,10),
-      return: moment().format().substring(0,10),
-      item: "",
-      customer: "",
-    });
+          
   }
 
   /* Filters items on a list based input data of Lend Item Name */
