@@ -22,23 +22,23 @@ class BookItem extends Component{
       items: [],
       toBook: []
 		}
+    
+    this.filterItems = this.filterItems.bind(this);
 
-		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
+    this.addBookingButtonHandler = this.addBookingButtonHandler.bind(this);
+    this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
     this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
     this.customerChangeHandler = this.customerChangeHandler.bind(this);
     this.itemChangeHandler = this.itemChangeHandler.bind(this);
     this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
-
-    this.filterItems = this.filterItems.bind(this);
-    this.addBooking = this.addBooking.bind(this);
 	}
 
 
-  addBooking(){
+  addBookingButtonHandler(){
     /* Add booking to the webpage */
-    let obj = this.state.bookings;
+    let list = this.state.bookings;
 
-    obj.push({
+    list.push({
       "items":this.state.toBook,
       "start":this.state.start,
       "return":this.state.return,
@@ -48,7 +48,7 @@ class BookItem extends Component{
 
 
     this.setState({
-      bookings: obj,
+      bookings: list,
       toBook: []
     })
 
@@ -174,7 +174,7 @@ class BookItem extends Component{
 	    <DatePicker
 	      selected={this.state.returnDate}
 	      onChange={this.returnDateChangeHandler} />
-	    <button className="SubmitButton" onClick={this.addBooking}>Lisää varaus</button>
+	    <button className="SubmitButton" onClick={this.addBookingButtonHandler}>Lisää varaus</button>
 
     {/* Move this to a new component */ }
 	    <ul id="BookingList">
