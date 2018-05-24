@@ -6,8 +6,8 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
-/* Documents booking information */
-class BookItem extends Component{
+/* Documents reservation information */
+class ReserveItem extends Component{
 
 	constructor(props){
 		super(props);
@@ -18,15 +18,14 @@ class BookItem extends Component{
       start: "",
       return: "",
       item: "",
-      bookings: [],
+      reservations: [],
       items: [],
-      toBook: [],
-      reservations: []
+      toReserbe: [],
 		}
 
     this.filterItems = this.filterItems.bind(this);
 
-    this.addBookingButtonHandler = this.addBookingButtonHandler.bind(this);
+    this.addReservationButtonHandler = this.addReservationButtonHandler.bind(this);
     this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
     this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
     this.customerChangeHandler = this.customerChangeHandler.bind(this);
@@ -35,21 +34,21 @@ class BookItem extends Component{
 	}
 
 
-  addBookingButtonHandler(){
-    /* Add booking to the webpage */
-    let list = this.state.bookings;
+  addReservationButtonHandler(){
+    /* Add reservation to the webpage */
+    let list = this.state.reservations;
 
     list.push({
-      items: this.state.toBook,
+      items: this.state.toReserve,
       startDate: this.state.start,
       returnDate: this.state.return,
       customer: this.state.customer,
     });
 
-    // update booking list, reset toBook list
+    // update reservation list, reset toReserve list
     this.setState({
-      bookings: list,
-      toBook: []
+      reservations: list,
+      toReserve: []
     })
 
 
@@ -102,9 +101,8 @@ class BookItem extends Component{
         
         
         this.setState({
-          bookings: reservations
+          reservations: reservations
         });
-        console.log(this.state.reservations);
       }
     });
 
@@ -148,11 +146,11 @@ class BookItem extends Component{
 
   /* Fired whenever suggested items on a list are clicked */
   suggestionClickHandler(item){
-    let list = this.state.toBook;
+    let list = this.state.toReserve;
     list.push(item);
     /* Add items to toLend state */
     this.setState({
-      toBook: list
+      toReserve: list
     });
 
   }
@@ -162,7 +160,7 @@ class BookItem extends Component{
     let itemsList = this.filterItems(this.state.items);
 
 		return(
-		<div id="BookItemMenu">
+		<div id="ReserveItemMenu">
 			<Menu />
       <h1>Varaus</h1>
 
@@ -184,20 +182,20 @@ class BookItem extends Component{
 	    <DatePicker
 	      selected={this.state.returnDate}
 	      onChange={this.returnDateChangeHandler} />
-	    <button className="SubmitButton" onClick={this.addBookingButtonHandler}>Lisää varaus</button>
+	    <button className="SubmitButton" onClick={this.addReservationButtonHandler}>Lisää varaus</button>
 
     {/* Move this to a new component */ }
-	    <ul id="BookingList">
-	      {this.state.bookings.map((booking, index)=>
+	    <ul id="ReservationList">
+	      {this.state.reservations.map((reservation, index)=>
         	<li key={index}>
            
-            <p>Customer: {booking.customer}</p>
+            <p>Customer: {reservation.customer}</p>
 
             <ul>
-              {booking.items.map((item, index)=> <li className="BookingListItem" key={index}>{item.name}</li>)}
+              {reservation.items.map((item, index)=> <li className="ReservationListItem" key={index}>{item.name}</li>)}
             </ul>
 
-            <p>{booking.startDate} - {booking.returnDate}</p>
+            <p>{reservation.startDate} - {reservation.returnDate}</p>
         	</li>
 	      )}
       </ul>
@@ -206,6 +204,6 @@ class BookItem extends Component{
 	}
 
 }
-export default BookItem;
+export default ReserveItem;
 
 /* Joel Salminen - joel.salminen@student.lut.fi */

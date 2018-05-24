@@ -3,7 +3,7 @@ import Main from './components/Main';
 import LendItem from './components/LendItem';
 import AddItem from './components/AddItem';
 import Storage from './components/Storage';
-import BookItem from './components/BookItem';
+import ReserveItem from './components/ReserveItem';
 //import History from './components/History';
 import ReturnItem from './components/ReturnItem';
 
@@ -25,7 +25,7 @@ class App extends Component {
       <div>
 
         <Route exact path="/" component={Main}/>
-        <Route exact path="/varaus" render={()=> <BookItem />}/>
+        <Route exact path="/varaus" render={()=> <ReserveItem />}/>
         <Route exact path="/lainaus" render={() => <LendItem />}/>
         <Route exact path="/palautus" render={()=> <ReturnItem />}/>
         <Route exact path="/lisaatuote" component={AddItem}/>

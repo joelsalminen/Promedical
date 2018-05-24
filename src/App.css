@@ -160,8 +160,8 @@ p {
 }
 
 
-/* BookItem bookings */
-#BookingList li{
+/* ReserveItem reservations */
+#ReservationList li{
 	border: 1px solid black;
 	width: 50%;
 	margin: auto;
@@ -169,7 +169,7 @@ p {
 	margin-bottom: 5px;
 }
 
-#BookItemMenu p{
+#ReserveItemMenu p{
 	margin-bottom: 2px;
 }
 
@@ -191,7 +191,7 @@ p {
 }
 
 
-.BookingListItem {
+.ReservationListItem {
 	background: orange;
 }
 
