@@ -9,7 +9,7 @@ class SuggestionList extends Component{
 
 	render(){
 		return(
-			<li className="ItemSuggestion" onClick={this.handleClick} key={this.props.index}>{this.props.item.name} {this.props.item.serial}</li>
+			<li className="ItemSuggestion" onClick={this.handleClick} key={this.props.item._id}>{this.props.item.name} {this.props.item.serial}</li>
 		);
 	}
 }

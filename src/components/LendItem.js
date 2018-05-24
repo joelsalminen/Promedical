@@ -232,7 +232,7 @@ class LendItem extends Component{
 
 			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
 			<ul>
-				{itemsList.map((item, index) => <SuggestionList item={item} index={index} clickAction={this.suggestionClickHandler} />)}
+				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.suggestionClickHandler} />)}
 			</ul>
 
 			<p>Asiakas</p>

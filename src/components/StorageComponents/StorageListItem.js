@@ -7,10 +7,10 @@ class StorageListItem extends Component{
 	// }
 	render(){
 		// items that are in storage
-		if (this.props.item.inStorage === false){
+		if (this.props.item.inStorage === true){
 			return(
 
-				<li key={this.props.index}>{this.props.item.name} - {this.props.item.serial} - {this.props.item.location} - {this.props.item.expiration} -{this.props.item.customer}--<button>Muokkaa</button></li>
+				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} - {this.props.item.location} - {this.props.item.expiration} -{this.props.item.customer}--<button>Muokkaa</button></li>
 			);
 		}
 
@@ -18,7 +18,7 @@ class StorageListItem extends Component{
 		else {
 			return(
 
-				<li key={this.props.index}> {this.props.item.name} - {this.props.item.serial} - {this.props.item.location} - {this.props.item.expiration} -{this.props.item.customer}--<button>Muokkaa</button></li>
+				<li key={this.props.item._id}> {this.props.item.name} - {this.props.item.serial} - {this.props.item.location} - {this.props.item.expiration} -{this.props.item.customer}--<button>Muokkaa</button></li>
 			);
 			}
 		}

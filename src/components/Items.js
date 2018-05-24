@@ -215,7 +215,7 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem index={index} item={item}/> )}
+					{items.map((item, index) => <StorageListItem key={index} item={item}/> )}
 
 				</ul>
 
