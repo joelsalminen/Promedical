@@ -45,8 +45,7 @@ class Items extends Component{
 
 			lentItems.push(item);
 		});
-		console.log("lent items:");
-		console.log(lentItems);
+		return lentItems;
 	}
 
 	// parses item data for later usage
@@ -54,7 +53,6 @@ class Items extends Component{
 		items.forEach((item)=>{
 			item.inStorage = false;
 		});
-		console.log(items);
 	}
 
 
@@ -75,8 +73,12 @@ class Items extends Component{
 	 	url: 'api/lendings',
 	 	method: 'get', 
 	 	success: (res)=>{
-	 		this.setState({lendings: res});
-	 		this.parseLendings(res);
+	 		//this.setState({lendings: res});
+	 		let items = this.state.items;
+	 		let lentItems = this.parseLendings(res);
+	 		
+	 		items.push(...lentItems);
+	 		this.setState({items: items});
 	 	}
 	 });
 
