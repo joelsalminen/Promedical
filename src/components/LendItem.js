@@ -30,7 +30,7 @@ class LendItem extends Component{
 
 
 		this.setDate = this.setDate.bind(this);
-		this.lendItem = this.lendItem.bind(this);
+		this.lendItemButtonHandler = this.lendItemButtonHandler.bind(this);
 		this.scanItem = this.scanItem.bind(this);
 		this.filterItems = this.filterItems.bind(this);
 
@@ -74,7 +74,7 @@ class LendItem extends Component{
 
 	/* Send data to backend to be stored in a database*/
 	/* Fired whenever Lend Item button is clicked */
-	lendItem(){
+	lendItemButtonHandler(){
 
 		// get required data
 		this.state.toLend.forEach((item)=>{
@@ -99,7 +99,6 @@ class LendItem extends Component{
 				method: 'post',
 				data: data,
 				success: (lending)=>{
-					//console.log(lending);
 
 					// delete item from items
 					$.ajax({
@@ -270,7 +269,7 @@ class LendItem extends Component{
 			<br/>
 			<br/>
 
-			<button className="SubmitButton" onClick={this.lendItem}>Kirjaa lainaus</button>
+			<button className="SubmitButton" onClick={this.lendItemButtonHandler}>Kirjaa lainaus</button>
 
 
 

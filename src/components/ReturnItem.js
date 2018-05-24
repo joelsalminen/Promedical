@@ -17,7 +17,7 @@ class Return extends Component{
 		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
 		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 
-		this.returnItem = this.returnItem.bind(this);
+		this.returnItemButtonHandler = this.returnItemButtonHandler.bind(this);
 		this.filterItems = this.filterItems.bind(this);
 	}
 
@@ -36,7 +36,7 @@ class Return extends Component{
 	}
 
 	/* Documents that a item was returned to storage */
-	returnItem(){
+	returnItemButtonHandler(){
 
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
@@ -113,7 +113,7 @@ class Return extends Component{
 			</ul>
 			<br/>
 			<br/>
-			<button className="SubmitButton" onClick={this.returnItem}>Palauta</button>
+			<button className="SubmitButton" onClick={this.returnItemButtonHandler}>Palauta</button>
 
 			
 		</div>);
