@@ -20,7 +20,7 @@ class ReserveItem extends Component{
       item: "",
       reservations: [],
       items: [],
-      toReserbe: [],
+      toReserve: [],
 		}
 
     this.filterItems = this.filterItems.bind(this);
