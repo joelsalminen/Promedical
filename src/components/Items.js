@@ -215,10 +215,12 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) =><li key={index}>{item.name} - {item.serial} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
+					{/*{items.map((item, index) =><li key={index}>{item.name} - {item.serial} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
+	*/}
+					{items.map((item, index) => <StorageListItem index={index} item={item}/> )}
 
 				</ul>
-				<StorageListItem />
+
 
 
 
