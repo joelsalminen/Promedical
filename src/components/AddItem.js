@@ -23,8 +23,6 @@ class AddItem extends Component{
 		let itemData = {
 			name: this.state.itemName,
 			serial: this.state.serial,
-			location: "varasto",
-			expiration: ""
 		};
 		
 		/* Send assembled data to backend API using AJAX */
