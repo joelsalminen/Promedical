@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import StorageListItem from './StorageComponents/StorageListItem';
 
 class Items extends Component{
 	constructor(props){
@@ -217,7 +218,7 @@ class Items extends Component{
 					{items.map((item, index) =><li key={index}>{item.name} - {item.serial} - {item.location} - {item.expiration} ---<button>Muokkaa</button></li>)}
 
 				</ul>
-
+				<StorageListItem />
 
 
 
