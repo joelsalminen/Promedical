@@ -20,9 +20,9 @@ class Items extends Component{
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
 		this.filterItems = this.filterItems.bind(this);
-		this.inStorageCheckBoxChange = this.inStorageCheckBoxChange.bind(this);
-		this.notInStorageCheckBoxChange = this.notInStorageCheckBoxChange.bind(this);
-		this.expiredChange = this.expiredChange.bind(this);
+		this.inStorageCheckBoxChangeHandler = this.inStorageCheckBoxChangeHandler.bind(this);
+		this.notinStorageCheckBoxChangeHandler = this.notinStorageCheckBoxChangeHandler.bind(this);
+		this.expiredChangeHandler = this.expiredChangeHandler.bind(this);
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 	}
 
@@ -154,7 +154,7 @@ class Items extends Component{
 	}
 
 
-	inStorageCheckBoxChange(evt){
+	inStorageCheckBoxChangeHandler(evt){
 		if (this.state.inStorage === true){
 			this.setState({inStorage: false})
 		}
@@ -165,7 +165,7 @@ class Items extends Component{
 	}
 
 
-	notInStorageCheckBoxChange(evt){
+	notinStorageCheckBoxChangeHandler(evt){
 		if (this.state.notInStorage === true){
 			this.setState({notInStorage: false})
 		}
@@ -175,7 +175,7 @@ class Items extends Component{
 		}
 	}
 
-	expiredChange(evt){
+	expiredChangeHandler(evt){
 		if (this.state.showExpired === true){
 			this.setState({showExpired: false})
 		}
@@ -203,19 +203,19 @@ class Items extends Component{
 				<input placeholder="sarjanumero" onChange={this.setSerialSearch} value={this.state.setSerialSearch}></input>
 
 				<div>
-					<input type="checkbox" name="inStorage" onChange={this.inStorageCheckBoxChange} defaultChecked={this.state.inStorage} />
+					<input type="checkbox" name="inStorage" onChange={this.inStorageCheckBoxChangeHandler} defaultChecked={this.state.inStorage} />
 					<label htmlFor='inStorage'>Varastossa</label>
 
-					<input type="checkbox" name="notInStorage" onChange={this.notInStorageCheckBoxChange} defaultChecked={this.state.notInStorage} />
+					<input type="checkbox" name="notInStorage" onChange={this.notinStorageCheckBoxChangeHandler} defaultChecked={this.state.notInStorage} />
 					<label htmlFor='notInStorage'>Asiakkaalla</label>
 
-					<input type="checkbox" name="expired" onChange={this.expiredChange} defaultChecked={this.state.expired} />
+					<input type="checkbox" name="expired" onChange={this.expiredChangeHandler} defaultChecked={this.state.expired} />
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
 				</div>
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem key={index} item={item}/> )}
+					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteButtonClickHanlder}/> )}
 
 				</ul>
 
