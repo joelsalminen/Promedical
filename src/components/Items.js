@@ -196,7 +196,11 @@ class Items extends Component{
 			method: 'delete',
 			success: (res)=>{
 				/* Delete item from storage list */
-
+				let items = this.state.items;
+				items = items.filter((item)=>{
+					return item._id !== res._id;
+				});
+				console.log(items);
 			}
 		});
 	}
