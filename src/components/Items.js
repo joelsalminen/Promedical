@@ -30,7 +30,7 @@ class Items extends Component{
 		
 	}
 
-	// parses the lendings data in a way that it can be used in the item list
+	/* parses the lendings data in a way that it can be used in the item list */
 	parseLendings(lendings){
 		let lentItems = [];
 
@@ -190,8 +190,15 @@ class Items extends Component{
 	}
 
 	deleteButtonClickHandler(item){
-		console.log("delete");
-		console.log(item);
+		/* Delete item from database */
+		$.ajax({
+			url: '/api/items/' + item._id,
+			method: 'delete',
+			success: (res)=>{
+				/* Delete item from storage list */
+
+			}
+		});
 	}
 
 	editButtonClickHandler(item){
