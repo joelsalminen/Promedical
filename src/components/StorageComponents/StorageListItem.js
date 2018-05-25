@@ -14,7 +14,7 @@ class StorageListItem extends Component{
 		if (this.props.item.inStorage === true){
 			return(
 
-				<li onClick={this.deleteHandler} key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button>Muokkaa</button></li>
+				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button>Muokkaa</button><button onClick={this.deleteHandler}>Poista</button></li>
 			);
 		}
 
