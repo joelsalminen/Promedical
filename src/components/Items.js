@@ -15,15 +15,18 @@ class Items extends Component{
 			lendings: [],
 		}
 
+		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 		this.parseLendings = this.parseLendings.bind(this);
 		this.parseItems = this.parseItems.bind(this);
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
 		this.filterItems = this.filterItems.bind(this);
+
 		this.inStorageCheckBoxChangeHandler = this.inStorageCheckBoxChangeHandler.bind(this);
 		this.notinStorageCheckBoxChangeHandler = this.notinStorageCheckBoxChangeHandler.bind(this);
 		this.expiredChangeHandler = this.expiredChangeHandler.bind(this);
-		this.checkExpirationDate = this.checkExpirationDate.bind(this);
+		this.deleteButtonClickHandler = this.deleteButtonClickHandler.bind(this);
+		
 	}
 
 	// parses the lendings data in a way that it can be used in the item list
@@ -185,6 +188,10 @@ class Items extends Component{
 		}
 	}
 
+	deleteButtonClickHandler(item){
+		console.log(item);
+	}
+
 
 	render(){
 
@@ -215,7 +222,7 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteButtonClickHanlder}/> )}
+					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteButtonClickHandler}/> )}
 
 				</ul>
 
