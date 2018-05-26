@@ -27,6 +27,9 @@ class StorageListItem extends Component{
 		this.setState({isEditing: false})
 	}
 
+	
+	
+
 	renderItems(){
 
 		/* Editing state */
@@ -65,7 +68,7 @@ class StorageListItem extends Component{
 		/* items that are with customers */
 		else {
 			return(
-				<td>{this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></td>
+				<td className="ReservationListItem">{this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></td>
 			);
 		}
 
