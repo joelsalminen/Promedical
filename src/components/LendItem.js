@@ -17,7 +17,7 @@ class LendItem extends Component{
 			itemName: "",
 			customer: "",
 			contactInfo: "",
-			lendType: "",
+			lendType: "Valitse",
 			price: "",
 
 			startDate: moment(),
@@ -38,7 +38,7 @@ class LendItem extends Component{
 		this.customerChangeHandler = this.customerChangeHandler.bind(this);
 		this.contactInfoChangeHandler = this.contactInfoChangeHandler.bind(this);
 		this.userChangeHandler = this.userChangeHandler.bind(this);
-		this.lendTypeChangeHandler = this.lendTypeChangeHandler.bind(this);
+		this.onLendTypeChange = this.onLendTypeChange.bind(this);
 		this.priceChangeHandler = this.priceChangeHandler.bind(this);
 		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
 		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
@@ -147,8 +147,12 @@ class LendItem extends Component{
 	}
 
 	/* Fired whenever Customer field data changes */
-	lendTypeChangeHandler(evt){
-		this.setState({lendType: evt.value });
+	// lendTypeChangeHandler(evt){
+	// 	this.setState({lendType: evt.value });
+	// }
+
+	onLendTypeChange(evt){
+		this.setState({lendType: evt.value});
 	}
 
 	/* Fired whenever Price field data changes */
@@ -267,8 +271,8 @@ class LendItem extends Component{
 			<div className="Dropdown">
 			<Dropdown
         options={options}
-        placeholder={"Lainauksen luonne"}
-        onChange={this.lendTypeChangeHandler} />
+        placeholder={this.state.lendType}
+        onChange={this.onLendTypeChange} />
       </div>
       {this.renderPrice()}
 
