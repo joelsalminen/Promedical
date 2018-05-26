@@ -31,6 +31,18 @@ class StorageListItem extends Component{
 
 		/* Editing state */
 		if (this.state.isEditing === true){
+			if (this.props.item.inStorage === true){
+				return(
+					<li key={this.props.item._id}> 
+						<form>
+							<input defaultValue={this.props.item.name}></input>
+							<button onClick={this.onSaveClick}>Tallenna</button>
+							<button onClick={this.onCancelClick}>Peruuta</button>
+						</form>
+					</li>
+				);
+			}
+
 			return (
 				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button onClick={this.onSaveClick}>Tallenna</button><button onClick={this.onCancelClick}>Peruuta</button></li>
 			);
