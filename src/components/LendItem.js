@@ -34,15 +34,15 @@ class LendItem extends Component{
 		this.scanItem = this.scanItem.bind(this);
 		this.filterItems = this.filterItems.bind(this);
 
-		this.itemNameChangeHandler = this.itemNameChangeHandler.bind(this);
-		this.customerChangeHandler = this.customerChangeHandler.bind(this);
-		this.contactInfoChangeHandler = this.contactInfoChangeHandler.bind(this);
-		this.userChangeHandler = this.userChangeHandler.bind(this);
+		this.onItemNameChange = this.onItemNameChange.bind(this);
+		this.onCustomerNameChange = this.onCustomerNameChange.bind(this);
+		this.onContactInfoChange = this.onContactInfoChange.bind(this);
+		this.onUserChange = this.onUserChange.bind(this);
 		this.onLendTypeChange = this.onLendTypeChange.bind(this);
-		this.priceChangeHandler = this.priceChangeHandler.bind(this);
-		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
-		this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
-    this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
+		this.onPriceChange = this.onPriceChange.bind(this);
+		this.onSuggestionClick = this.onSuggestionClick.bind(this);
+		this.onStartDateChange = this.onStartDateChange.bind(this);
+    this.onReturnDateChange = this.onReturnDateChange.bind(this);
 	}
 
 	/* Filters items on a list based input data of Lend Item Name */
@@ -127,22 +127,22 @@ class LendItem extends Component{
 	}
 
 	/* Fired whenever Customer field data changes */
-	customerChangeHandler(evt){
+	onCustomerNameChange(evt){
 		this.setState({customer: evt.target.value });
 	}
 
 	/* Fired whenever Item Name field data changes */
-	itemNameChangeHandler(evt){
+	onItemNameChange(evt){
 		this.setState({itemName: evt.target.value });
 	}
 
 	/* Fired whenever Contact Info field data changes */
-	contactInfoChangeHandler(evt){
+	onContactInfoChange(evt){
 		this.setState({contactInfo: evt.target.value });
 	}
 
 	/* Fired whenever Username field data changes */
-	userChangeHandler(evt){
+	onUserChange(evt){
 		this.setState({user: evt.target.value });
 	}
 
@@ -156,12 +156,12 @@ class LendItem extends Component{
 	}
 
 	/* Fired whenever Price field data changes */
-	priceChangeHandler(evt){
+	onPriceChange(evt){
 		this.setState({price: evt.target.value });
 	}
 
 	/* Fired whenever suggested items on a list are clicked */
-	suggestionClickHandler(item){
+	onSuggestionClick(item){
 		let list = this.state.toLend;
 		list.push(item);
 		/* Add items to toLend state */
@@ -170,7 +170,7 @@ class LendItem extends Component{
 	}
 
 	/* Fired whenever Start date field data changes */
-  startDateChangeHandler(date){
+  onStartDateChange(date){
     this.setState({
       startDate: date
     });
@@ -182,7 +182,7 @@ class LendItem extends Component{
     
   }
 	/* Fired whenever Return date field data changes */
-  returnDateChangeHandler(date){
+  onReturnDateChange(date){
     this.setState({
       return: date.format().substring(0,10),
       returnDate: date
@@ -212,7 +212,7 @@ class LendItem extends Component{
 			return(
 				<div>
 				<p>Lainauksen hinta:</p>
-				<input name="price" placeholder="Hinta" onChange={this.priceChangeHandler}/>
+				<input name="price" placeholder="Hinta" onChange={this.onPriceChange}/>
 				</div>
 			);
 		}
@@ -235,7 +235,7 @@ class LendItem extends Component{
 			<button onClick={this.scanItem} className="ScanButton">Skannaa</button>
 
 			<p>Tuotteen varastosta hakija:</p>
-			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.userChangeHandler}/>
+			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.onUserChange}/>
 			<br/>
 
 			<p>Lainattava tuote:</p>
@@ -243,28 +243,28 @@ class LendItem extends Component{
 				{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
 			</ul>
 
-			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.itemNameChangeHandler} value={this.state.itemName}/>
+			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.onItemNameChange} value={this.state.itemName}/>
 			<ul>
-				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.suggestionClickHandler} />)}
+				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
 			</ul>
 
 			<p>Asiakas</p>
-			<input name="customer_name" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
+			<input name="customer_name" placeholder="Asiakas" onChange={this.onCustomerNameChange}/>
 			<br/>
 
 			<p>Asiakkaan yhteystiedot:</p>
-			<input name="customer_info" placeholder="Asiakkaan yhteystiedot" onChange={this.contactInfoChangeHandler}/>
+			<input name="customer_info" placeholder="Asiakkaan yhteystiedot" onChange={this.onContactInfoChange}/>
 			<br/>
 			
 			<p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
-	      onChange={this.startDateChangeHandler} />
+	      onChange={this.onStartDateChange} />
 
 	    <p>Palautuspäivä:</p>
 	    <DatePicker
 	     	selected={this.state.returnDate}
-	     	onChange={this.returnDateChangeHandler} />
+	     	onChange={this.onReturnDateChange} />
 
 			<br/>
 			<p>Lainauksen luonne:</p>
