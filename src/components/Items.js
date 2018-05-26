@@ -180,16 +180,14 @@ class Items extends Component{
 		/* Change properties */
 		foundItem.name = newItem.name;
 
-		/* Update items state */
-		this.setState({items});
-
 		/* make ajax call to also store changes at backend */
 		$.ajax({
 			url: '/api/items/' + foundItem._id,
 			method: 'put',
 			data: foundItem,
 			success: (res)=>{
-				console.log(res);
+				/* Update items state */
+				this.setState({items});
 			}
 		});
 	}
