@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
 import StorageListItem from './StorageComponents/StorageListItem';
+import ItemsListHeader from './StorageComponents/ItemsListHeader';
 
 class Items extends Component{
 	constructor(props){
@@ -242,7 +243,8 @@ class Items extends Component{
 				</div>
 
 				<table id="StorageList">
-					<thead><tr><th>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</th></tr></thead>
+					<ItemsListHeader />
+					
 					<tbody>
 						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} editItem={this.editItem}/> )}
 					</tbody>
