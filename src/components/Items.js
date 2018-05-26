@@ -18,15 +18,16 @@ class Items extends Component{
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
 		this.parseLendings = this.parseLendings.bind(this);
 		this.parseItems = this.parseItems.bind(this);
+		this.filterItems = this.filterItems.bind(this);
+		this.deleteItem = this.deleteItem.bind(this);
+		this.editItem = this.editItem.bind(this);
+
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
-		this.filterItems = this.filterItems.bind(this);
-
 		this.inStorageCheckBoxChangeHandler = this.inStorageCheckBoxChangeHandler.bind(this);
 		this.notinStorageCheckBoxChangeHandler = this.notinStorageCheckBoxChangeHandler.bind(this);
 		this.expiredChangeHandler = this.expiredChangeHandler.bind(this);
-		this.deleteItem = this.deleteItem.bind(this);
-		this.editItem = this.editItem.bind(this);
+
 		
 	}
 
@@ -149,6 +150,29 @@ class Items extends Component{
 	}
 
 
+	deleteItem(item){
+		/* Delete item from database */
+		$.ajax({
+			url: '/api/items/' + item._id,
+			method: 'delete',
+			success: (res)=>{
+				
+				/* Delete item from storage list */
+				let items = this.state.items.map((item)=>Object.assign({}, item));
+				items = items.filter((item)=>{
+					return item._id !== res._id;
+				});
+				this.setState({items});
+			}
+		});
+	}
+
+	editItem(item){
+		console.log("edit");
+		console.log(item);
+	}
+
+
 	setNameSearch(evt){
 		this.setState({nameSearch: evt.target.value})
 	}
@@ -189,28 +213,6 @@ class Items extends Component{
 		}
 	}
 
-	deleteItem(item){
-		/* Delete item from database */
-		$.ajax({
-			url: '/api/items/' + item._id,
-			method: 'delete',
-			success: (res)=>{
-				
-				/* Delete item from storage list */
-				let items = this.state.items.map((item)=>Object.assign({}, item));
-				items = items.filter((item)=>{
-					return item._id !== res._id;
-				});
-				this.setState({items});
-			}
-		});
-	}
-
-	editItem(item){
-		console.log("edit");
-		console.log(item);
-	}
-
 
 	render(){
 
@@ -241,7 +243,7 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteItem} editHandler={this.editItem}/> )}
+					{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} editItem={this.editItem}/> )}
 
 				</ul>
 

@@ -5,13 +5,13 @@ class StorageListItem extends Component{
 	// constructor(props){
 	// 	super(props)
 	// }
-	
-	deleteHandler = ()=>{
-		this.props.deleteHandler(this.props.item);
+
+	onDeleteClick = ()=>{
+		this.props.deleteItem(this.props.item);
 	}
 
-	editHandler = ()=>{
-		this.props.editHandler(this.props.item);
+	onEditClick = ()=>{
+		this.props.editItem(this.props.item);
 	}
 
 
@@ -20,14 +20,14 @@ class StorageListItem extends Component{
 		if (this.props.item.inStorage === true){
 			return(
 
-				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button onClick={this.editHandler}>Muokkaa</button><button onClick={this.deleteHandler}>Poista</button></li>
+				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button onClick={this.onEditClick}>Muokkaa</button><button onClick={this.onDeleteClick}>Poista</button></li>
 			);
 		}
 
 		// items that are with customers
 		else {
 			return(
-				<li className="NotInStorage" key={this.props.item._id}> {this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.editHandler}>Muokkaa</button></li>
+				<li className="NotInStorage" key={this.props.item._id}> {this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></li>
 			);
 			}
 		}
