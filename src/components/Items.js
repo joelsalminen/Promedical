@@ -241,11 +241,13 @@ class Items extends Component{
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
 				</div>
 
-				<ul id="StorageList">
-					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} editItem={this.editItem}/> )}
+				<table id="StorageList">
+					<thead><tr><th>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</th></tr></thead>
+					<tbody>
+						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} editItem={this.editItem}/> )}
+					</tbody>
 
-				</ul>
+				</table>
 
 
 

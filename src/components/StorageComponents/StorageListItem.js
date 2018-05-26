@@ -33,18 +33,21 @@ class StorageListItem extends Component{
 		if (this.state.isEditing === true){
 			if (this.props.item.inStorage === true){
 				return(
-					<li key={this.props.item._id}> 
+					<td>
 						<form>
 							<input defaultValue={this.props.item.name}></input>
 							<button onClick={this.onSaveClick}>Tallenna</button>
 							<button onClick={this.onCancelClick}>Peruuta</button>
 						</form>
-					</li>
+					</td>
 				);
 			}
 
 			return (
-				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button onClick={this.onSaveClick}>Tallenna</button><button onClick={this.onCancelClick}>Peruuta</button></li>
+					<td>key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial}
+						<button onClick={this.onSaveClick}>Tallenna</button>
+						<button onClick={this.onCancelClick}>Peruuta</button>
+					</td>
 			);
 		}
 
@@ -52,14 +55,17 @@ class StorageListItem extends Component{
 		/* items that are in storage */
 		if (this.props.item.inStorage === true){
 			return(
-				<li key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial} <button onClick={this.onEditClick}>Muokkaa</button><button onClick={this.onDeleteClick}>Poista</button></li>
+					<td>{this.props.item.name} - {this.props.item.serial}
+						<button onClick={this.onEditClick}>Muokkaa</button>
+						<button onClick={this.onDeleteClick}>Poista</button>
+					</td>
 			);
 		}
 
 		/* items that are with customers */
 		else {
 			return(
-				<li className="NotInStorage" key={this.props.item._id}> {this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></li>
+				<td>{this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></td>
 			);
 		}
 
@@ -70,9 +76,10 @@ class StorageListItem extends Component{
 
 	render(){
 		return(
-			<div>
+			<tr>
 				{this.renderItems()}
-			</div>
+			</tr>
+
 		);
 		}
 
