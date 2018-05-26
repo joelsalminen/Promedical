@@ -203,7 +203,16 @@ class LendItem extends Component{
 		
 	}
 
-
+	renderPrice(){
+		if (this.state.lendType === "Sijaislaite (maksullinen)"){
+			return(
+				<div>
+				<p>Lainauksen hinta:</p>
+				<input name="price" placeholder="Hinta" onChange={this.priceChangeHandler}/>
+				</div>
+			);
+		}
+	}
 	
 	render(){
 		const options = [
@@ -261,10 +270,9 @@ class LendItem extends Component{
         placeholder={"Lainauksen luonne"}
         onChange={this.lendTypeChangeHandler} />
       </div>
+      {this.renderPrice()}
 
 
-      <p>Lainauksen hinta:</p>
-			<input name="price" placeholder="Hinta" onChange={this.priceChangeHandler}/>
 			<br/>
 			<br/>
 
