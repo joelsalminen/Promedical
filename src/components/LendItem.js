@@ -162,10 +162,12 @@ class LendItem extends Component{
 
 	/* Fired whenever suggested items on a list are clicked */
 	onSuggestionClick(item){
-		let list = this.state.toLend;
+		let list = this.state.toLend.map(item => Object.assign({}, item));
 		list.push(item);
 		/* Add items to toLend state */
-		this.setState({toLend: list, itemName:""});
+		this.setState({toLend: list});
+
+		/* Remove item from items */
 
 	}
 
