@@ -27,29 +27,49 @@ class StorageListItem extends Component{
 		this.setState({isEditing: false})
 	}
 
-	
-	
+	/* Render buttons in items table */
+	renderActionSection(){
+		/* Editing buttons */
+		if (this.state.isEditing){
+			return (
+				<td>
+					<button onClick={this.onSaveClick}>Tallenna</button>
+					<button onClick={this.onCancelClick}>Peruuta</button>
+				</td>
+			);
+		}
+
+		/* Default buttons */
+		return (
+			<td>
+				<button onClick={this.onEditClick}>Muokkaa</button>
+				<button onClick={this.onDeleteClick}>Poista</button>
+			</td>
+
+		);
+	}
 
 	renderItems(){
 
 		/* Editing state */
 		if (this.state.isEditing === true){
+
+			/* Items in storage */
 			if (this.props.item.inStorage === true){
 				return(
 					<td>
 						<form>
 							<input defaultValue={this.props.item.name}></input>
-							<button onClick={this.onSaveClick}>Tallenna</button>
-							<button onClick={this.onCancelClick}>Peruuta</button>
+							
 						</form>
 					</td>
 				);
 			}
-
+			/* Items not in storage */
 			return (
-					<td>key={this.props.item._id}>{this.props.item.name} - {this.props.item.serial}
-						<button onClick={this.onSaveClick}>Tallenna</button>
-						<button onClick={this.onCancelClick}>Peruuta</button>
+					<td className="ReservationListItem" key={this.props.item._id}>
+						{this.props.item.name} - 
+						{this.props.item.serial}
 					</td>
 			);
 		}
@@ -59,8 +79,7 @@ class StorageListItem extends Component{
 		if (this.props.item.inStorage === true){
 			return(
 					<td>{this.props.item.name} - {this.props.item.serial}
-						<button onClick={this.onEditClick}>Muokkaa</button>
-						<button onClick={this.onDeleteClick}>Poista</button>
+
 					</td>
 			);
 		}
@@ -68,7 +87,11 @@ class StorageListItem extends Component{
 		/* items that are with customers */
 		else {
 			return(
-				<td className="ReservationListItem">{this.props.item.name} - {this.props.item.serial} - {this.props.item.customer} <button onClick={this.onEditClick}>Muokkaa</button></td>
+				<td className="ReservationListItem">
+					{this.props.item.name} - 
+					{this.props.item.serial} - 
+					{this.props.item.customer}
+				</td>
 			);
 		}
 
@@ -81,6 +104,7 @@ class StorageListItem extends Component{
 		return(
 			<tr>
 				{this.renderItems()}
+				{this.renderActionSection()}
 			</tr>
 
 		);
