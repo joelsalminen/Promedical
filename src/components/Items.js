@@ -25,8 +25,8 @@ class Items extends Component{
 		this.inStorageCheckBoxChangeHandler = this.inStorageCheckBoxChangeHandler.bind(this);
 		this.notinStorageCheckBoxChangeHandler = this.notinStorageCheckBoxChangeHandler.bind(this);
 		this.expiredChangeHandler = this.expiredChangeHandler.bind(this);
-		this.deleteButtonClickHandler = this.deleteButtonClickHandler.bind(this);
-		this.editButtonClickHandler = this.editButtonClickHandler.bind(this);
+		this.deleteItem = this.deleteItem.bind(this);
+		this.editItem = this.editItem.bind(this);
 		
 	}
 
@@ -189,7 +189,7 @@ class Items extends Component{
 		}
 	}
 
-	deleteButtonClickHandler(item){
+	deleteItem(item){
 		/* Delete item from database */
 		$.ajax({
 			url: '/api/items/' + item._id,
@@ -206,7 +206,7 @@ class Items extends Component{
 		});
 	}
 
-	editButtonClickHandler(item){
+	editItem(item){
 		console.log("edit");
 		console.log(item);
 	}
@@ -241,7 +241,7 @@ class Items extends Component{
 
 				<ul id="StorageList">
 					<li>NIMI - SARJANUMERO - SIJAINTI - ERÄPÄIVÄ</li>
-					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteButtonClickHandler} editHandler={this.editButtonClickHandler}/> )}
+					{items.map((item, index) => <StorageListItem key={index} item={item} deleteHandler={this.deleteItem} editHandler={this.editItem}/> )}
 
 				</ul>
 
