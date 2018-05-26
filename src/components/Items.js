@@ -21,7 +21,7 @@ class Items extends Component{
 		this.parseItems = this.parseItems.bind(this);
 		this.filterItems = this.filterItems.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
-		this.editItem = this.editItem.bind(this);
+		this.saveItem = this.saveItem.bind(this);
 
 		this.setNameSearch = this.setNameSearch.bind(this);
 		this.setSerialSearch = this.setSerialSearch.bind(this);
@@ -168,10 +168,15 @@ class Items extends Component{
 		});
 	}
 
-	editItem(item){
-		console.log("edit");
-		console.log(item);
+	saveItem(oldItem, newItem){
+		const items = this.state.items.map(item => Object.assign({}, item));
+		let foundItem = items.find(item=>{
+			return item.name === oldItem.name;
+		});
+		foundItem.name = newItem.name;
+		this.setState({items});
 	}
+
 
 
 	setNameSearch(evt){
@@ -246,7 +251,7 @@ class Items extends Component{
 					<ItemsListHeader />
 					
 					<tbody>
-						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} editItem={this.editItem}/> )}
+						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} />)}
 					</tbody>
 
 				</table>

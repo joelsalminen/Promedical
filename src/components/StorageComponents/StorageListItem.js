@@ -5,9 +5,11 @@ class StorageListItem extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			isEditing: false
+			isEditing: false,
+			name: ""
 		}
 
+		this.onNameChange = this.onNameChange.bind(this);
 
 	}
 
@@ -19,12 +21,23 @@ class StorageListItem extends Component{
 		this.setState({isEditing: true});
 	}
 
-	onSaveClick = ()=>{
-		this.setState({isEditing: false})
+	onSaveClick = (evt)=>{
+		evt.preventDefault();
+		const oldItem = this.props.item;
+		const newItem = {
+			name: this.state.name,
+			serial: this.state.serial
+		};
+		this.props.saveItem(oldItem, newItem);
+		this.setState({isEditing: false});
 	}
 
 	onCancelClick = ()=>{
 		this.setState({isEditing: false})
+	}
+
+	onNameChange(evt){
+		this.setState({name: evt.target.value});
 	}
 
 	/* Render buttons in items table */
@@ -59,7 +72,7 @@ class StorageListItem extends Component{
 				return(
 					<td>
 						<form>
-							<input defaultValue={this.props.item.name}></input>
+							<input onChange={this.onNameChange} defaultValue={this.props.item.name}></input>
 							
 						</form>
 					</td>
