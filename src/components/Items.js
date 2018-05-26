@@ -195,12 +195,13 @@ class Items extends Component{
 			url: '/api/items/' + item._id,
 			method: 'delete',
 			success: (res)=>{
+				
 				/* Delete item from storage list */
-				let items = this.state.items;
+				let items = this.state.items.map((item)=>Object.assign({}, item));
 				items = items.filter((item)=>{
 					return item._id !== res._id;
 				});
-				console.log(items);
+				this.setState({items});
 			}
 		});
 	}

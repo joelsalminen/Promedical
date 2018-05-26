@@ -5,6 +5,7 @@ class StorageListItem extends Component{
 	// constructor(props){
 	// 	super(props)
 	// }
+	
 	deleteHandler = ()=>{
 		this.props.deleteHandler(this.props.item);
 	}
