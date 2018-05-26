@@ -169,12 +169,29 @@ class Items extends Component{
 	}
 
 	saveItem(oldItem, newItem){
+		/* Create copy of items list*/
 		const items = this.state.items.map(item => Object.assign({}, item));
+
+		/* Find the correct item on the copies list */
 		let foundItem = items.find(item=>{
 			return item.name === oldItem.name;
 		});
+
+		/* Change properties */
 		foundItem.name = newItem.name;
+
+		/* Update items state */
 		this.setState({items});
+
+		/* make ajax call to also store changes at backend */
+		$.ajax({
+			url: '/api/items/' + foundItem._id,
+			method: 'put',
+			data: foundItem,
+			success: (res)=>{
+				console.log(res);
+			}
+		});
 	}
 
 
