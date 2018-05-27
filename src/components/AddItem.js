@@ -30,7 +30,12 @@ class AddItem extends Component{
 			url: '/api/items',
 			method: 'post',
 			data: itemData,
-			success: ((res)=>{console.log(res)})
+			success: ((res)=>{
+				this.setState({
+					itemName: "",
+					serial: ""
+				});
+			})
 		});
 		
 	}
@@ -56,10 +61,10 @@ class AddItem extends Component{
 				{/* <button className="ScanButton">Skannaa</button>*/}
 
 				<p>Tuotteen nimi:</p>
-				<input name="name" placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>
+				<input name="name" value={this.state.itemName} placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>
 				
 				<p>Sarjanumero:</p>
-				<input name="serial_number" placeholder="Sarjanumero" onChange={this.serialChangeHandler}/>
+				<input name="serial_number" value={this.state.serial} placeholder="Sarjanumero" onChange={this.serialChangeHandler}/>
 				
 				{/*
 				<p>Lukumäärä:</p>
