@@ -73,19 +73,8 @@ class Items extends Component{
 
 		lendings.forEach((lending)=>{
 
-			let item = {};
-			item.inStorage = false;
-			item.serial = lending.item.serial;
-			item._id = lending.item._id;
-			item.name = lending.item.name;
-			item.lender = lendings.lender;
-			item.customer = lending.customer;
-			item.startDate = lending.startDate;
-			item.returnDate = lending.returnDate;
-			item.lendType = lending.lendType;
-			item.price = lending.price;
-
-			lentItems.push(item);
+			lending.inStorage = false;
+			lentItems.push(lending);
 		});
 		return lentItems;
 	}
@@ -149,7 +138,9 @@ class Items extends Component{
 		iItems = iItems.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 		/* Filtering items by serial number */
 		iItems = iItems.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
-		console.log(iItems);
+		
+		console.log(nItems);
+		//nItems = nItems.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
 
 		
 
