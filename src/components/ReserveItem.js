@@ -199,6 +199,12 @@ class ReserveItem extends Component{
         {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick}/>)}
       </ul>
 
+
+      <ul>
+        {this.state.toReserve.map((item, index) => <li key={index}>{item.name}</li>)}
+
+      </ul>
+
       <p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
