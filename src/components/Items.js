@@ -60,12 +60,13 @@ class Items extends Component{
 	}
 
 
+	/* Helps filtering items */
 	filterItemsInStorage(items){
-		/* Filtering items by name */
-		items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
-
-		/* Filtering items by serial number */
-		items = items.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
+		/* Filtering items by name and serial number */
+		items = items.filter(item => {
+			let information = item.name + item.serial.toString();
+			return information.indexOf(this.state.nameSearch)!== -1
+		});
 
 		/* Filtering items by location */
 		if (this.state.notInStorage === false){
@@ -74,9 +75,14 @@ class Items extends Component{
 		return items;
 	}
 
+
+	/* Helps with filtering lendings */
 	filterLendings(lendings){
 		/* Filtering lending items by name */
-		lendings = lendings.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
+		lendings = lendings.filter(lending => {
+			let information = lending.item.name + lending.item.serial;
+			return information.indexOf(this.state.nameSearch)!== -1;
+		});
 
 		/* Filtering lending items by serial number */
 		lendings = lendings.filter(lending => lending.item.serial.toString().indexOf(this.state.serialSearch) !== -1);
@@ -174,7 +180,6 @@ class Items extends Component{
 		let filteredItems = [];
 		filteredItems.push(...iItems);
 		filteredItems.push(...lendings);
-		console.log(filteredItems);
 		
 		return filteredItems;
 	}
