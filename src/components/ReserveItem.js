@@ -25,16 +25,16 @@ class ReserveItem extends Component{
 
     this.filterItems = this.filterItems.bind(this);
 
-    this.addReservationButtonHandler = this.addReservationButtonHandler.bind(this);
-    this.startDateChangeHandler = this.startDateChangeHandler.bind(this);
-    this.returnDateChangeHandler = this.returnDateChangeHandler.bind(this);
-    this.customerChangeHandler = this.customerChangeHandler.bind(this);
-    this.itemChangeHandler = this.itemChangeHandler.bind(this);
-    this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
+    this.onAddReservationClick = this.onAddReservationClick.bind(this);
+    this.onStartDateChange = this.onStartDateChange.bind(this);
+    this.onReturnDateChange = this.onReturnDateChange.bind(this);
+    this.onCustomerChange = this.onCustomerChange.bind(this);
+    this.onItemChange = this.onItemChange.bind(this);
+    this.onSuggestionClick = this.onSuggestionClick.bind(this);
 	}
 
 
-  addReservationButtonHandler(){
+  onAddReservationClick(){
     /* collect reservation data */
     this.state.toReserve.forEach(item =>{
       let reservationData = {
@@ -133,7 +133,7 @@ class ReserveItem extends Component{
   }
 
   /* Fired whenever Start Date field data changes */
-	startDateChangeHandler(date){
+	onStartDateChange(date){
     this.setState({
       startDate: date
     });
@@ -144,7 +144,7 @@ class ReserveItem extends Component{
   }
 
   /* Fired whenever Return date field data changes */
-  returnDateChangeHandler(date){
+  onReturnDateChange(date){
     this.setState({
     	returnDate: date
     });
@@ -156,12 +156,12 @@ class ReserveItem extends Component{
   }
 
   /* Fired whenever Customer field data changes */
-  customerChangeHandler(evt){
+  onCustomerChange(evt){
   	this.setState({customer: evt.target.value });
   }
 
   /* Fired whenever Item Name field data changes */
-  itemChangeHandler(evt){
+  onItemChange(evt){
     this.setState({
       item: evt.target.value
     });
@@ -169,7 +169,7 @@ class ReserveItem extends Component{
 
 
   /* Fired whenever suggested items on a list are clicked */
-  suggestionClickHandler(item){
+  onSuggestionClick(item){
     let list = this.state.toReserve;
     list.push(item);
     /* Add items to toLend state */
@@ -189,24 +189,24 @@ class ReserveItem extends Component{
       <h1>Varaus</h1>
 
       <p>Asiakas:</p>
-			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.customerChangeHandler}/>
+			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.onCustomerChange}/>
 
       <p>Varattava tuote</p>
-			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.itemChangeHandler}/>
+			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.onItemChange}/>
       <ul>
-        {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.suggestionClickHandler}/>)}
+        {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick}/>)}
       </ul>
 
       <p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
-	      onChange={this.startDateChangeHandler} />
+	      onChange={this.onStartDateChange} />
 
       <p>Palautuspäivä:</p>
 	    <DatePicker
 	      selected={this.state.returnDate}
-	      onChange={this.returnDateChangeHandler} />
-	    <button className="SubmitButton" onClick={this.addReservationButtonHandler}>Lisää varaus</button>
+	      onChange={this.onReturnDateChange} />
+	    <button className="SubmitButton" onClick={this.onAddReservationClick}>Lisää varaus</button>
 
     {/* Move this to a new component */ }
 	    <ul id="ReservationList">
