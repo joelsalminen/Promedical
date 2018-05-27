@@ -18,7 +18,7 @@ class LendItem extends Component{
 			customer: "",
 			contactInfo: "",
 			lendType: "Valitse",
-			price: "",
+			price: "0",
 
 			startDate: moment(),
       returnDate: moment(),
@@ -30,10 +30,9 @@ class LendItem extends Component{
 
 
 		this.setDate = this.setDate.bind(this);
-		this.lendItemButtonHandler = this.lendItemButtonHandler.bind(this);
-		this.scanItem = this.scanItem.bind(this);
 		this.filterItems = this.filterItems.bind(this);
 
+		this.onLendItemClick = this.onLendItemClick.bind(this);
 		this.onItemNameChange = this.onItemNameChange.bind(this);
 		this.onCustomerNameChange = this.onCustomerNameChange.bind(this);
 		this.onContactInfoChange = this.onContactInfoChange.bind(this);
@@ -44,6 +43,36 @@ class LendItem extends Component{
 		this.onStartDateChange = this.onStartDateChange.bind(this);
     this.onReturnDateChange = this.onReturnDateChange.bind(this);
 	}
+
+
+	componentDidMount(){
+		/* Initialize date data */
+		this.setDate();
+		this.setState({
+      start: moment().format().substring(0,10)
+    });
+
+		/* Fetch item data from backend*/
+		$.ajax({
+			url: '/api/items',
+			post: 'get',
+			success: (res)=>{this.setState({items: res})}
+		});
+		
+	}
+
+	
+	/* Set initial date according to current time */ 
+	setDate(){
+		const current = new Date();
+		const currentYear = current.getUTCFullYear();
+		const currentMonth = current.getUTCMonth() + 1;
+		const currentDay = current.getUTCDate();
+
+		const datex = "".concat(currentDay, ".", currentMonth, ".", currentYear);
+		this.setState({date: datex});
+	}
+
 
 	/* Filters items on a list based input data of Lend Item Name */
 	filterItems(items) {
@@ -59,21 +88,9 @@ class LendItem extends Component{
 	}
 
 
-	/* Set initial date according to current time */ 
-	setDate(){
-		const current = new Date();
-		const currentYear = current.getUTCFullYear();
-		const currentMonth = current.getUTCMonth() + 1;
-		const currentDay = current.getUTCDate();
-
-		const datex = "".concat(currentDay, ".", currentMonth, ".", currentYear);
-		this.setState({date: datex});
-	}
-
-
 	/* Send data to backend to be stored in a database*/
 	/* Fired whenever Lend Item button is clicked */
-	lendItemButtonHandler(){
+	onLendItemClick(){
 
 		// get required data
 		this.state.toLend.forEach((item)=>{
@@ -121,11 +138,6 @@ class LendItem extends Component{
 
 	}
 
-	/* Fired when Scan item button is clicked */
-	scanItem(){
-		console.log("Scanned");
-	}
-
 	/* Fired whenever Customer field data changes */
 	onCustomerNameChange(evt){
 		this.setState({customer: evt.target.value });
@@ -168,7 +180,7 @@ class LendItem extends Component{
 		items = items.filter(item => {
 			return item._id !== itemToLend._id;
 		});
-		console.log(items);
+
 		this.setState({items});
 	}
 
@@ -194,22 +206,6 @@ class LendItem extends Component{
   }
 
 
-	componentDidMount(){
-		/* Initialize date data */
-		this.setDate();
-		this.setState({
-      start: moment().format().substring(0,10)
-    });
-
-		/* Fetch item data from backend*/
-		$.ajax({
-			url: '/api/items',
-			post: 'get',
-			success: (res)=>{this.setState({items: res})}
-		});
-		
-	}
-
 	renderPrice(){
 		if (this.state.lendType === "Sijaislaite (maksullinen)"){
 			return(
@@ -221,6 +217,7 @@ class LendItem extends Component{
 		}
 	}
 	
+
 	render(){
 		const options = [
 			"Koekäyttö", "Sijaislaite (maksullinen)", "Sijaislaite (maksuton)"
@@ -234,8 +231,6 @@ class LendItem extends Component{
 			<Menu />
 
 			<h1>Lainaus</h1>
-
-			<button onClick={this.scanItem} className="ScanButton">Skannaa</button>
 
 			<p>Tuotteen varastosta hakija:</p>
 			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.onUserChange}/>
@@ -283,7 +278,7 @@ class LendItem extends Component{
 			<br/>
 			<br/>
 
-			<button className="SubmitButton" onClick={this.lendItemButtonHandler}>Kirjaa lainaus</button>
+			<button className="SubmitButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
 
 
 
