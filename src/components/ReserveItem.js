@@ -171,13 +171,15 @@ class ReserveItem extends Component{
 
 
   /* Fired whenever suggested items on a list are clicked */
-  onSuggestionClick(item){
-    let list = this.state.toReserve;
-    list.push(item);
-    /* Add items to toLend state */
-    this.setState({
-      toReserve: list
-    });
+  onSuggestionClick(toReserveItem){
+    /* Add items to toReserve state */
+    let toReserve = this.state.toReserve.map(item=>Object.assign({}, item));
+    toReserve.push(toReserveItem);
+
+    /* Remove item from items*/
+    let items = this.state.items.map(item=>Object.assign({}, item));
+    items = items.filter(item=>{return item._id !== toReserveItem._id});
+    this.setState({items, toReserve});
 
   }
 
