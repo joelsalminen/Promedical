@@ -34,6 +34,55 @@ class ReserveItem extends Component{
 	}
 
 
+  componentDidMount(){
+    /* Initialize date data */
+    this.setState({
+      start: moment().format().substring(0,10)
+    });
+
+    /* Fetch item data from backend*/
+    $.ajax({
+      url: 'api/items',
+      method: 'get',
+      success: (res)=>{this.setState({items: res})}
+    });
+
+
+    /* Fetch reservation data from backend */
+    $.ajax({
+      url: 'api/reservations/',
+      method: 'get',
+      success: (reservations)=>{
+        // place items into a list 
+        reservations.forEach((reservation)=>{
+          let r = reservation;
+          r.items = [];
+          r.items.push(reservation.item);
+          delete r['item'];
+        });
+        
+        
+        this.setState({
+          reservations: reservations
+        });
+      }
+    });
+
+  }
+
+
+  /* Filters items on a list based input data of Lend Item Name */
+  filterItems(items){
+    //items = items.item.slice();
+    items = items.filter((item)=> item.name.indexOf(this.state.item) !== -1);
+    //items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
+    if (this.state.item === ""){
+      return [];
+    }
+    return items;
+  }
+
+
   onAddReservationClick(){
     /* collect reservation data */
     this.state.toReserve.forEach(item =>{
@@ -84,53 +133,6 @@ class ReserveItem extends Component{
           
   }
 
-  /* Filters items on a list based input data of Lend Item Name */
-  filterItems(items){
-    //items = items.item.slice();
-    items = items.filter((item)=> item.name.indexOf(this.state.item) !== -1);
-    //items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
-    if (this.state.item === ""){
-      return [];
-    }
-    return items;
-  }
-
-
-  componentDidMount(){
-    /* Initialize date data */
-    this.setState({
-      start: moment().format().substring(0,10)
-    });
-
-    /* Fetch item data from backend*/
-    $.ajax({
-      url: 'api/items',
-      method: 'get',
-      success: (res)=>{this.setState({items: res})}
-    });
-
-
-    /* Fetch reservation data from backend */
-    $.ajax({
-      url: 'api/reservations/',
-      method: 'get',
-      success: (reservations)=>{
-        // place items into a list 
-        reservations.forEach((reservation)=>{
-          let r = reservation;
-          r.items = [];
-          r.items.push(reservation.item);
-          delete r['item'];
-        });
-        
-        
-        this.setState({
-          reservations: reservations
-        });
-      }
-    });
-
-  }
 
   /* Fired whenever Start Date field data changes */
 	onStartDateChange(date){
