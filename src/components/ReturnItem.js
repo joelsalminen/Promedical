@@ -14,20 +14,47 @@ class Return extends Component{
 			toReturn: []
 		}
 
-		this.serialChangeHandler = this.serialChangeHandler.bind(this);	
-		this.suggestionClickHandler = this.suggestionClickHandler.bind(this);
-
-		this.returnItemButtonHandler = this.returnItemButtonHandler.bind(this);
 		this.filterItems = this.filterItems.bind(this);
+
+		this.onSerialChange = this.onSerialChange.bind(this);	
+		this.onSuggestionClick = this.onSuggestionClick.bind(this);
+		this.onReturnItemClick = this.onReturnItemClick.bind(this);
+		
 	}
 
+	componentDidMount(){
+		/* Fetch lending data from database */
+		$.ajax({
+			url: '/api/lendings',
+			method: 'get',
+			success: (lendings)=>{
+				this.setState({items: lendings});
+			}
+		});
+		
+	}
+
+
+	/* Filters items on a list based input data of Lend Item Name */
+	filterItems(items) {
+		/* filter out serial numbers that don't include the same data as this.state.serial */
+		items = items.filter((item) => item.item.serial.toString().indexOf(this.state.serial) !== -1);
+
+		/* The list of items is only shown when some input typed into Lend Item Name field*/
+		if (this.state.serial === ""){
+			return [];	
+		}
+		return items;
+	}
+
+
 	/* Fired whenever Serial field data changes */
-	serialChangeHandler (evt){
+	onSerialChange (evt){
 		this.setState({serial: evt.target.value });
 	}
 
 	/* Fired whenever Suggestion button is clicked */
-	suggestionClickHandler(item){
+	onSuggestionClick(item){
 		let list = this.state.toReturn;
 		list.push(item);
 		this.setState({
@@ -36,7 +63,7 @@ class Return extends Component{
 	}
 
 	/* Documents that a item was returned to storage */
-	returnItemButtonHandler(){
+	onReturnItemClick(){
 		/* Goes through the list of all items in toReturn state*/
 		this.state.toReturn.forEach((item) => {
 			//console.log(item);
@@ -70,30 +97,6 @@ class Return extends Component{
 	}
 
 
-	componentDidMount(){
-		/* Fetch lending data from database */
-		$.ajax({
-			url: '/api/lendings',
-			method: 'get',
-			success: (lendings)=>{
-				this.setState({items: lendings});
-			}
-		});
-		
-	}
-
-	/* Filters items on a list based input data of Lend Item Name */
-	filterItems(items) {
-		/* filter out serial numbers that don't include the same data as this.state.serial */
-		items = items.filter((item) => item.item.serial.toString().indexOf(this.state.serial) !== -1);
-
-		/* The list of items is only shown when some input typed into Lend Item Name field*/
-		if (this.state.serial === ""){
-			return [];	
-		}
-		return items;
-	}
-
 	render(){
 		/* Filter items based on Lend Item Name field input */
 		let itemsList = this.filterItems(this.state.items);
@@ -105,9 +108,9 @@ class Return extends Component{
 
 			
 			<p>Sarjanumero:</p>
-			<input name="serial_number" type="text" placeholder="serial number" onChange={this.serialChangeHandler}/>
+			<input name="serial_number" type="text" placeholder="serial number" onChange={this.onSerialChange}/>
 			<ul>
-				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.suggestionClickHandler}/> )}
+				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
 			</ul>
 
 			<p>---------------------------------------------</p>
@@ -116,7 +119,7 @@ class Return extends Component{
 			</ul>
 			<br/>
 			<br/>
-			<button className="SubmitButton" onClick={this.returnItemButtonHandler}>Palauta</button>
+			<button className="SubmitButton" onClick={this.onReturnItemClick}>Palauta</button>
 
 			
 		</div>);
