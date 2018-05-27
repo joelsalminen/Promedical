@@ -107,13 +107,21 @@ class StorageListItem extends Component{
 			/* Items not in storage */
 			return (
 					<td className="ReservationListItem" key={this.props.item._id}>
-						{this.props.item.name} - 
-						{this.props.item.serial}
+						<form onSubmit={this.onSaveClick}>
+							<input 
+								autoFocus 
+								onChange={this.onNameChange} 
+								defaultValue={this.props.item.item.name}
+								onFocus={this.onInputFocus}
+							/>
+
+							
+						</form>
 					</td>
 			);
 		}
 
-		/* DEefault state */
+		/* Default state */
 		/* items in storage */
 		if (this.props.item.inStorage === true){
 			return(
@@ -127,8 +135,8 @@ class StorageListItem extends Component{
 		else {
 			return(
 				<td className="ReservationListItem">
-					{this.props.item.name} - 
-					{this.props.item.serial} - 
+					{this.props.item.item.name} - 
+					{this.props.item.item.serial} - 
 					{this.props.item.customer}
 				</td>
 			);

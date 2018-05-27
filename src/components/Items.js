@@ -261,8 +261,6 @@ class Items extends Component{
 		/* Filtering of items list */
 		let items = this.filterItems();
 
-		
-		
 		return (
 			<div>
 				<h1>Varasto</h1>
