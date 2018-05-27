@@ -220,7 +220,7 @@ class LendItem extends Component{
 			return(
 				<div>
 				<p>Lainauksen hinta:</p>
-				<input name="price" placeholder="Hinta" onChange={this.onPriceChange}/>
+				<input name="price" value={this.state.price} placeholder="Hinta" onChange={this.onPriceChange}/>
 				</div>
 			);
 		}
@@ -250,17 +250,17 @@ class LendItem extends Component{
 				{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
 			</ul>
 
-			<input name="item_name" placeholder="Tuotteen nimi" onChange={this.onItemNameChange} value={this.state.itemName}/>
+			<input name="item_name" value={this.state.user} placeholder="Tuotteen nimi" onChange={this.onItemNameChange} value={this.state.itemName}/>
 			<ul>
 				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
 			</ul>
 
 			<p>Asiakas</p>
-			<input name="customer_name" placeholder="Asiakas" onChange={this.onCustomerNameChange}/>
+			<input name="customer_name" value={ this.state.customer} placeholder="Asiakas" onChange={this.onCustomerNameChange}/>
 			<br/>
 
 			<p>Asiakkaan yhteystiedot:</p>
-			<input name="customer_info" placeholder="Asiakkaan yhteystiedot" onChange={this.onContactInfoChange}/>
+			<input name="customer_info" value={this.state.contactInfo} placeholder="Asiakkaan yhteystiedot" onChange={this.onContactInfoChange}/>
 			<br/>
 			
 			<p>Lainauspäivä:</p>
@@ -278,8 +278,8 @@ class LendItem extends Component{
 			<div className="Dropdown">
 			<Dropdown
         options={options}
-        placeholder={this.state.lendType}
-        onChange={this.onLendTypeChange} />
+        onChange={this.onLendTypeChange}
+        value={this.state.lendType} />
       </div>
       {this.renderPrice()}
 
