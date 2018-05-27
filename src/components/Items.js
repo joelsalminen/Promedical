@@ -60,7 +60,34 @@ class Items extends Component{
 	}
 
 
+	filterItemsInStorage(items){
+		/* Filtering items by name */
+		items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 
+		/* Filtering items by serial number */
+		items = items.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
+
+		/* Filtering items by location */
+		if (this.state.notInStorage === false){
+			items = [];
+		}
+		return items;
+	}
+
+	filterLendings(lendings){
+		/* Filtering lending items by name */
+		lendings = lendings.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
+
+		/* Filtering lending items by serial number */
+		lendings = lendings.filter(lending => lending.item.serial.toString().indexOf(this.state.serialSearch) !== -1);
+
+		/* Filtering items by location */
+		if (this.state.inStorage === false){
+			lendings = [];
+		}
+
+		return lendings;
+	}
 
 
 
@@ -121,7 +148,8 @@ class Items extends Component{
 
 	}
 
-	filterItems(items) {
+	filterItems() {
+		let items = this.state.items.map(item=>Object.assign({}, item));
 		let iItems = [];
 		let lendings = [];
 
@@ -134,35 +162,21 @@ class Items extends Component{
 			}
 		});
 
-		/* Filtering items by name */
-		iItems = iItems.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
-		/* Filtering items by serial number */
-		iItems = iItems.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
+		iItems = this.filterItemsInStorage(iItems);
+		lendings = this.filterLendings(lendings);
 		
-		/* Filtering lending items by name */
-		lendings = lendings.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
-		/* Filtering lending items by serial number */
-		lendings = lendings.filter(lending => lending.item.serial.toString().indexOf(this.state.serialSearch) !== -1);
-
-
-
-		/* Filtering items by location */
-		if (this.state.inStorage === false){
-			lendings = [];
-		}
-		
-		if (this.state.notInStorage === false){
-			iItems = [];
-		}
-
-		
-
 		/* Filtering items by expiration */
-		if (this.state.showExpired === false){
-			lendings = lendings.filter(lending => this.checkExpirationDate(lending.returnDate) !== -1);
-		}
+		// if (this.state.showExpired === false){
+		// 	lendings = lendings.filter(lending => this.checkExpirationDate(lending.returnDate) !== -1);
+		// }
+
+		/* Combine lists */
+		let filteredItems = [];
+		filteredItems.push(...iItems);
+		filteredItems.push(...lendings);
+		console.log(filteredItems);
 		
-		return items;
+		return filteredItems;
 	}
 
 
@@ -252,11 +266,8 @@ class Items extends Component{
 
 	render(){
 		/* Filtering of items list */
-		let items = this.state.items;
-		if (items !== {}){
+		let items = this.filterItems();
 
-			items = this.filterItems(items);
-		}
 		
 		
 		return (
