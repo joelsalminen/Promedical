@@ -123,14 +123,14 @@ class Items extends Component{
 
 	filterItems(items) {
 		let iItems = [];
-		let nItems = [];
+		let lendings = [];
 
 		items.forEach(item => {
 			if (item.inStorage === true){
 				iItems.push(item);
 			} 
 			else {
-				nItems.push(item);
+				lendings.push(item);
 			}
 		});
 
@@ -139,26 +139,29 @@ class Items extends Component{
 		/* Filtering items by serial number */
 		iItems = iItems.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
 		
-		console.log(nItems);
-		//nItems = nItems.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
+		/* Filtering lending items by name */
+		lendings = lendings.filter(lending => lending.item.name.indexOf(this.state.nameSearch)!== -1);
+		/* Filtering lending items by serial number */
+		lendings = lendings.filter(lending => lending.item.serial.toString().indexOf(this.state.serialSearch) !== -1);
 
-		
 
 
 		/* Filtering items by location */
 		if (this.state.inStorage === false){
-			items = items.filter(item => item.location.indexOf("varasto")=== -1);
+			lendings = [];
 		}
+		
 		if (this.state.notInStorage === false){
-			items = items.filter(item => item.location.indexOf("varasto")!== -1);
+			iItems = [];
 		}
+
+		
 
 		/* Filtering items by expiration */
 		if (this.state.showExpired === false){
-			//items = items.filter(item => this.checkExpirationDate(item.expiration) !== -1);
+			lendings = lendings.filter(lending => this.checkExpirationDate(lending.returnDate) !== -1);
 		}
-
-
+		
 		return items;
 	}
 
