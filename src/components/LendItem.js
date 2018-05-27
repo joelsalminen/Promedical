@@ -121,7 +121,16 @@ class LendItem extends Component{
 						url: '/api/items/' + lending.item._id,
 						method: 'delete',
 						success: (res)=>{
-							console.log(res);
+							/* Reset input fields */
+							this.setState({
+								lendItem: "Valitse",
+								itemName: "", 
+								customer: "",
+								contactInfo: "", 
+								price: "0",
+								toLend: []
+
+							});
 						}
 					});
 			
