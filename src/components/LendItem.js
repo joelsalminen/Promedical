@@ -28,7 +28,6 @@ class LendItem extends Component{
       toLend: []
 		}
 
-
 		this.setDate = this.setDate.bind(this);
 		this.filterSuggestions = this.filterSuggestions.bind(this);
 
@@ -62,6 +61,26 @@ class LendItem extends Component{
 	}
 
 
+	/* Check whether all required fields are filled */
+	validateInput(){
+		if (this.state.user === ""){
+			return "Please type in the name of the person who fethced these items";
+		}
+		else if(this.state.toLend.length === 0){
+			return "Please select items to lend";
+		}
+		else if(this.state.customer === ""){
+			return "Please type in customer name";
+		}
+		else if(this.state.contactInfo === ""){
+			return "Please type in customer contact info";
+		}
+		else if(this.state.lendType === "Valitse"){
+			return "Please select lend type";
+		}
+		return null;
+	}
+
 	/* Set initial date according to current time */ 
 	setDate(){
 		const current = new Date();
@@ -91,6 +110,10 @@ class LendItem extends Component{
 	/* Send data to backend to be stored in a database*/
 	/* Fired whenever Lend Item button is clicked */
 	onLendItemClick(){
+		if (this.validateInput()){
+			console.log(this.validateInput());
+			return;
+		}
 
 		// get required data
 		this.state.toLend.forEach((item)=>{
@@ -242,7 +265,7 @@ class LendItem extends Component{
 			<h1>Lainaus</h1>
 
 			<p>Tuotteen varastosta hakija:</p>
-			<input name="employee_name" placeholder="Tuotteen varastosta hakija" defaultValue={this.state.user} onChange={this.onUserChange}/>
+			<input name="employee_name" value={this.state.user} placeholder="Tuotteen varastosta hakija" onChange={this.onUserChange}/>
 			<br/>
 
 			<p>Lainattava tuote:</p>
@@ -250,7 +273,7 @@ class LendItem extends Component{
 				{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
 			</ul>
 
-			<input name="item_name" value={this.state.user} placeholder="Tuotteen nimi" onChange={this.onItemNameChange} value={this.state.itemName}/>
+			<input name="item_name" value={this.state.itemName} placeholder="Tuotteen nimi" onChange={this.onItemNameChange}/>
 			<ul>
 				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
 			</ul>
