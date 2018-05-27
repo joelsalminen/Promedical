@@ -22,6 +22,7 @@ class Return extends Component{
 		
 	}
 
+
 	componentDidMount(){
 		/* Fetch lending data from database */
 		$.ajax({
@@ -54,13 +55,12 @@ class Return extends Component{
 	}
 
 	/* Fired whenever Suggestion button is clicked */
-	onSuggestionClick(item){
-		let list = this.state.toReturn;
-		list.push(item);
-		this.setState({
-			toReturn: list
-		});
+	onSuggestionClick(itemToReturn){
+		let toReturn = this.state.toReturn.map(item => Object.assign({}, item));
+		toReturn.push(itemToReturn);
+		this.setState({toReturn});
 	}
+
 
 	/* Documents that a item was returned to storage */
 	onReturnItemClick(){
@@ -93,7 +93,6 @@ class Return extends Component{
 			});
 
 		});
-
 	}
 
 
