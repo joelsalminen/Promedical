@@ -30,7 +30,7 @@ class LendItem extends Component{
 
 
 		this.setDate = this.setDate.bind(this);
-		this.filterItems = this.filterItems.bind(this);
+		this.filterSuggestions = this.filterSuggestions.bind(this);
 
 		this.onLendItemClick = this.onLendItemClick.bind(this);
 		this.onItemNameChange = this.onItemNameChange.bind(this);
@@ -61,7 +61,7 @@ class LendItem extends Component{
 		
 	}
 
-	
+
 	/* Set initial date according to current time */ 
 	setDate(){
 		const current = new Date();
@@ -75,7 +75,7 @@ class LendItem extends Component{
 
 
 	/* Filters items on a list based input data of Lend Item Name */
-	filterItems(items) {
+	filterSuggestions(items) {
 		/* filter out items that don't include the same data that is in this.state.itemName */
 		items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
 		
@@ -173,7 +173,6 @@ class LendItem extends Component{
 		/* Add items to toLend state */
 		let toLend = this.state.toLend.map(item => Object.assign({}, item));
 		toLend.push(itemToLend);
-		this.setState({toLend});
 
 		/* Remove item from items */
 		let items = this.state.items.map(item => Object.assign({}, item));
@@ -181,7 +180,8 @@ class LendItem extends Component{
 			return item._id !== itemToLend._id;
 		});
 
-		this.setState({items});
+		/* Update states */
+		this.setState({items, toLend});
 	}
 
 	/* Fired whenever Start date field data changes */
@@ -224,7 +224,7 @@ class LendItem extends Component{
 		];
 
 		/* Filter items based on Lend Item Name field input */
-		let itemsList = this.filterItems(this.state.items);
+		let itemsList = this.filterSuggestions(this.state.items);
 
 		return(
 		<div id="LendItemMenu">

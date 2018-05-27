@@ -6,7 +6,7 @@ class StorageListItem extends Component{
 		super(props)
 		this.state = {
 			isEditing: false,
-			name: ""
+			name: this.props.item.name
 		}
 
 		this.onNameChange = this.onNameChange.bind(this);
@@ -69,6 +69,7 @@ class StorageListItem extends Component{
 
 			/* Items in storage */
 			if (this.props.item.inStorage === true){
+
 				return(
 					<td>
 						<form>
