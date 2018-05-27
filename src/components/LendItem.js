@@ -146,11 +146,7 @@ class LendItem extends Component{
 		this.setState({user: evt.target.value });
 	}
 
-	/* Fired whenever Customer field data changes */
-	// lendTypeChangeHandler(evt){
-	// 	this.setState({lendType: evt.value });
-	// }
-
+	/* Fired when lendItem state is changed */
 	onLendTypeChange(evt){
 		this.setState({lendType: evt.value});
 	}
@@ -161,14 +157,19 @@ class LendItem extends Component{
 	}
 
 	/* Fired whenever suggested items on a list are clicked */
-	onSuggestionClick(item){
-		let list = this.state.toLend.map(item => Object.assign({}, item));
-		list.push(item);
+	onSuggestionClick(itemToLend){
 		/* Add items to toLend state */
-		this.setState({toLend: list});
+		let toLend = this.state.toLend.map(item => Object.assign({}, item));
+		toLend.push(itemToLend);
+		this.setState({toLend});
 
 		/* Remove item from items */
-
+		let items = this.state.items.map(item => Object.assign({}, item));
+		items = items.filter(item => {
+			return item._id !== itemToLend._id;
+		});
+		console.log(items);
+		this.setState({items});
 	}
 
 	/* Fired whenever Start date field data changes */
