@@ -56,9 +56,17 @@ class Return extends Component{
 
 	/* Fired whenever Suggestion button is clicked */
 	onSuggestionClick(itemToReturn){
+		/* Add item to toReturn state */
 		let toReturn = this.state.toReturn.map(item => Object.assign({}, item));
 		toReturn.push(itemToReturn);
 		this.setState({toReturn});
+
+		let items = this.state.items.map(item => Object.assign({}, item));
+		items = items.filter(item => {
+			return item._id !== itemToReturn._id;
+		});
+
+		this.setState({items});
 	}
 
 
