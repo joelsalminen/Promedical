@@ -13,15 +13,25 @@ class StorageListItem extends Component{
 
 	}
 
-	onDeleteClick = ()=>{
+
+	/* Sets the cursor to the end of the input field when edit
+	button is clicked */
+	onInputFocus (evt){
+		const value = evt.target.value;
+		evt.target.value = '';
+		evt.target.value = value;
+	}
+
+
+	onDeleteClick(){
 		this.props.deleteItem(this.props.item);
 	}
 
-	onEditClick = ()=>{
+	onEditClick(){
 		this.setState({isEditing: true});
 	}
 
-	onSaveClick = (evt)=>{
+	onSaveClick(evt){
 		evt.preventDefault();
 		const oldItem = this.props.item;
 		const newItem = {
@@ -32,7 +42,7 @@ class StorageListItem extends Component{
 		this.setState({isEditing: false});
 	}
 
-	onCancelClick = ()=>{
+	onCancelClick(){
 		this.setState({isEditing: false})
 	}
 
@@ -72,8 +82,14 @@ class StorageListItem extends Component{
 
 				return(
 					<td>
-						<form>
-							<input onChange={this.onNameChange} defaultValue={this.props.item.name}></input>
+						<form onSubmit={this.onSaveClick}>
+							<input 
+								autoFocus 
+								onChange={this.onNameChange} 
+								defaultValue={this.props.item.name}
+								onFocus={this.onInputFocus}
+							/>
+
 							
 						</form>
 					</td>
