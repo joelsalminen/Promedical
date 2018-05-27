@@ -10,6 +10,10 @@ class StorageListItem extends Component{
 		}
 
 		this.onNameChange = this.onNameChange.bind(this);
+		this.onEditClick = this.onEditClick.bind(this);
+		this.onCancelClick = this.onCancelClick.bind(this);
+		this.onSaveClick = this.onSaveClick.bind(this);
+		this.onDeleteClick = this.onDeleteClick.bind(this);
 
 	}
 
@@ -27,9 +31,11 @@ class StorageListItem extends Component{
 		this.props.deleteItem(this.props.item);
 	}
 
+
 	onEditClick(){
 		this.setState({isEditing: true});
 	}
+
 
 	onSaveClick(evt){
 		evt.preventDefault();
@@ -42,15 +48,18 @@ class StorageListItem extends Component{
 		this.setState({isEditing: false});
 	}
 
+
 	onCancelClick(){
 		this.setState({isEditing: false})
 	}
+
 
 	onNameChange(evt){
 		this.setState({name: evt.target.value});
 	}
 
-	/* Render buttons in items table */
+
+	/* Render buttons */
 	renderActionSection(){
 		/* Editing buttons */
 		if (this.state.isEditing){
@@ -104,8 +113,8 @@ class StorageListItem extends Component{
 			);
 		}
 
-		/* Regular state */
-		/* items that are in storage */
+		/* DEefault state */
+		/* items in storage */
 		if (this.props.item.inStorage === true){
 			return(
 					<td>{this.props.item.name} - {this.props.item.serial}
@@ -114,7 +123,7 @@ class StorageListItem extends Component{
 			);
 		}
 
-		/* items that are with customers */
+		/* items not in storage */
 		else {
 			return(
 				<td className="ReservationListItem">
