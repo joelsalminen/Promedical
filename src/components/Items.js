@@ -24,7 +24,6 @@ class Items extends Component{
 		this.saveItem = this.saveItem.bind(this);
 
 		this.onNameChange = this.onNameChange.bind(this);
-		this.onSerialChange = this.onSerialChange.bind(this);
 		this.onInStorageChange = this.onInStorageChange.bind(this);
 		this.onNotInStorageChange = this.onNotInStorageChange.bind(this);
 		this.onExpiredChange = this.onExpiredChange.bind(this);
@@ -62,7 +61,7 @@ class Items extends Component{
 
 	/* Helps filtering items */
 	filterItemsInStorage(items){
-		/* Filtering items by name and serial number */
+		/* Filtering items by search bar info */
 		items = items.filter(item => {
 			let information = item.name + item.serial.toString();
 			return information.indexOf(this.state.nameSearch)!== -1
@@ -78,14 +77,11 @@ class Items extends Component{
 
 	/* Helps with filtering lendings */
 	filterLendings(lendings){
-		/* Filtering lending items by name */
+		/* Filtering lending items by search bar info */
 		lendings = lendings.filter(lending => {
 			let information = lending.item.name + lending.item.serial;
 			return information.indexOf(this.state.nameSearch)!== -1;
 		});
-
-		/* Filtering lending items by serial number */
-		lendings = lendings.filter(lending => lending.item.serial.toString().indexOf(this.state.serialSearch) !== -1);
 
 		/* Filtering items by location */
 		if (this.state.inStorage === false){
@@ -96,11 +92,7 @@ class Items extends Component{
 	}
 
 
-
-
-
-
-	/* parses the lendings data in a way that it can be used in the item list */
+	/* Parses the lendings data in a way that it can be used in the item list */
 	parseLendings(lendings){
 		let lentItems = [];
 
@@ -112,7 +104,7 @@ class Items extends Component{
 		return lentItems;
 	}
 
-	// parses item data for later usage
+	/* Parses item data for later usage */
 	parseItems(items){
 		items.forEach((item)=>{
 			item.inStorage = true;
@@ -232,10 +224,6 @@ class Items extends Component{
 		this.setState({nameSearch: evt.target.value})
 	}
 
-	onSerialChange(evt){
-		this.setState({serialSearch: evt.target.value})
-	}
-
 
 	onInStorageChange(evt){
 		if (this.state.inStorage === true){
@@ -278,8 +266,7 @@ class Items extends Component{
 		return (
 			<div>
 				<h1>Varasto</h1>
-				<input placeholder="tuotteen nimi" onChange={this.onNameChange} value={this.state.nameSearch}></input>
-				<input placeholder="sarjanumero" onChange={this.onSerialChange} value={this.state.onSerialChange}></input>
+				<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 
 				<div>
 					<input type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
