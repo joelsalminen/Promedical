@@ -61,6 +61,7 @@ class Return extends Component{
 		toReturn.push(itemToReturn);
 		this.setState({toReturn});
 
+		/* Remove item from items state */
 		let items = this.state.items.map(item => Object.assign({}, item));
 		items = items.filter(item => {
 			return item._id !== itemToReturn._id;
