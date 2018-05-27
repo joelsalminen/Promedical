@@ -23,14 +23,49 @@ class Items extends Component{
 		this.deleteItem = this.deleteItem.bind(this);
 		this.saveItem = this.saveItem.bind(this);
 
-		this.setNameSearch = this.setNameSearch.bind(this);
-		this.setSerialSearch = this.setSerialSearch.bind(this);
-		this.inStorageCheckBoxChangeHandler = this.inStorageCheckBoxChangeHandler.bind(this);
-		this.notinStorageCheckBoxChangeHandler = this.notinStorageCheckBoxChangeHandler.bind(this);
-		this.expiredChangeHandler = this.expiredChangeHandler.bind(this);
+		this.onNameChange = this.onNameChange.bind(this);
+		this.onSerialChange = this.onSerialChange.bind(this);
+		this.onInStorageChange = this.onInStorageChange.bind(this);
+		this.onNotInStorageChange = this.onNotInStorageChange.bind(this);
+		this.onExpiredChange = this.onExpiredChange.bind(this);
 
 		
 	}
+
+
+	componentDidMount(){
+		// get items data
+		$.ajax({
+			url: 'api/items',
+			method: 'get',
+			success: (res)=>{
+				this.setState({items: this.parseItems(res)});
+			}
+		});
+
+	 // get lendings data
+	 $.ajax({
+	 	url: 'api/lendings',
+	 	method: 'get', 
+	 	success: (res)=>{
+	 		//this.setState({lendings: res});
+	 		let items = this.state.items;
+	 		let lentItems = this.parseLendings(res);
+	 		items.push(...lentItems);
+	 		this.setState({items: items});
+	 		
+	 	}
+	 });
+
+	}
+
+
+
+
+
+
+
+
 
 	/* parses the lendings data in a way that it can be used in the item list */
 	parseLendings(lendings){
@@ -60,35 +95,7 @@ class Items extends Component{
 		items.forEach((item)=>{
 			item.inStorage = true;
 		});
-	}
-
-
-
-	componentDidMount(){
-		// get items data
-		$.ajax({
-			url: 'api/items',
-			method: 'get',
-			success: (res)=>{
-				this.setState({items: res});
-				this.parseItems(res);
-			}
-		});
-
-	 // get lendings data
-	 $.ajax({
-	 	url: 'api/lendings',
-	 	method: 'get', 
-	 	success: (res)=>{
-	 		//this.setState({lendings: res});
-	 		let items = this.state.items;
-	 		let lentItems = this.parseLendings(res);
-	 		
-	 		items.push(...lentItems);
-	 		this.setState({items: items});
-	 	}
-	 });
-
+		return items;
 	}
 
 
@@ -107,7 +114,7 @@ class Items extends Component{
 		const currentDate = new Date(currentYear, currentMonth, currentDay, 0, 0, 0);
 
 		/* parsing the expiration date data*/
-		console.log(date);
+		//console.log(date);
 		let exp = date.split("-");
 		exp[0] = parseInt(exp[0], 10);
 		exp[1] = parseInt(exp[1], 10);
@@ -126,12 +133,26 @@ class Items extends Component{
 	}
 
 	filterItems(items) {
+		let iItems = [];
+		let nItems = [];
+
+		items.forEach(item => {
+			if (item.inStorage === true){
+				iItems.push(item);
+			} 
+			else {
+				nItems.push(item);
+			}
+		});
 
 		/* Filtering items by name */
-		items = items.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
-
+		iItems = iItems.filter(item => item.name.indexOf(this.state.nameSearch)!== -1);
 		/* Filtering items by serial number */
-		//items = items.filter(item => item.serial.indexOf(this.state.serialSearch)!== -1);
+		iItems = iItems.filter(item => item.serial.toString().indexOf(this.state.serialSearch) !== -1);
+		console.log(iItems);
+
+		
+
 
 		/* Filtering items by location */
 		if (this.state.inStorage === false){
@@ -194,16 +215,16 @@ class Items extends Component{
 
 
 
-	setNameSearch(evt){
+	onNameChange(evt){
 		this.setState({nameSearch: evt.target.value})
 	}
 
-	setSerialSearch(evt){
+	onSerialChange(evt){
 		this.setState({serialSearch: evt.target.value})
 	}
 
 
-	inStorageCheckBoxChangeHandler(evt){
+	onInStorageChange(evt){
 		if (this.state.inStorage === true){
 			this.setState({inStorage: false})
 		}
@@ -214,7 +235,7 @@ class Items extends Component{
 	}
 
 
-	notinStorageCheckBoxChangeHandler(evt){
+	onNotInStorageChange(evt){
 		if (this.state.notInStorage === true){
 			this.setState({notInStorage: false})
 		}
@@ -224,7 +245,7 @@ class Items extends Component{
 		}
 	}
 
-	expiredChangeHandler(evt){
+	onExpiredChange(evt){
 		if (this.state.showExpired === true){
 			this.setState({showExpired: false})
 		}
@@ -236,29 +257,28 @@ class Items extends Component{
 
 
 	render(){
-
+		/* Filtering of items list */
 		let items = this.state.items;
 		if (items !== {}){
-			//items = items.item.slice();
 
-			//items = this.filterItems(items);
+			items = this.filterItems(items);
 		}
 		
 		
 		return (
 			<div>
 				<h1>Varasto</h1>
-				<input placeholder="tuotteen nimi" onChange={this.setNameSearch} value={this.state.nameSearch}></input>
-				<input placeholder="sarjanumero" onChange={this.setSerialSearch} value={this.state.setSerialSearch}></input>
+				<input placeholder="tuotteen nimi" onChange={this.onNameChange} value={this.state.nameSearch}></input>
+				<input placeholder="sarjanumero" onChange={this.onSerialChange} value={this.state.onSerialChange}></input>
 
 				<div>
-					<input type="checkbox" name="inStorage" onChange={this.inStorageCheckBoxChangeHandler} defaultChecked={this.state.inStorage} />
+					<input type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
 					<label htmlFor='inStorage'>Varastossa</label>
 
-					<input type="checkbox" name="notInStorage" onChange={this.notinStorageCheckBoxChangeHandler} defaultChecked={this.state.notInStorage} />
+					<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
 					<label htmlFor='notInStorage'>Asiakkaalla</label>
 
-					<input type="checkbox" name="expired" onChange={this.expiredChangeHandler} defaultChecked={this.state.expired} />
+					<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.expired} />
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
 				</div>
 

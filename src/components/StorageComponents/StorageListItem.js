@@ -133,8 +133,6 @@ class StorageListItem extends Component{
 				</td>
 			);
 		}
-
-
 	}
 
 
