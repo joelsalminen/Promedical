@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
+
 import NavBar from "./MainComponents/NavBar";
-import '../App.css';
 import LoginForm from "./MainComponents/LoginForm";
 import RegistrationForm from "./MainComponents/RegistrationForm";
 import $ from 'jquery';
 import LogoutButton from "./MainComponents/LogoutButton";
+import '../App.css';
 
 class Main extends Component{
 	constructor(props){
@@ -17,7 +18,6 @@ class Main extends Component{
 		this.registerUser = this.registerUser.bind(this);
 		this.loginUser = this.loginUser.bind(this);
 		this.onLogoutClick = this.onLogoutClick.bind(this);
-
 	}
 
 
