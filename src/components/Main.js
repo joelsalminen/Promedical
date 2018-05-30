@@ -4,12 +4,14 @@ import '../App.css';
 import LoginForm from "./MainComponents/LoginForm";
 import RegistrationForm from "./MainComponents/RegistrationForm";
 import $ from 'jquery';
+import LogoutButton from "./MainComponents/LogoutButton";
 
 class Main extends Component{
 	constructor(props){
 		super(props)
 
 		this.registerUser = this.registerUser.bind(this);
+		this.onLogoutClick = this.onLogoutClick.bind(this);
 	}
 
 	registerUser(email, password){
@@ -25,6 +27,12 @@ class Main extends Component{
 				console.log(err);
 			}
 		})
+	}
+
+
+	onLogoutClick(){
+		localStorage.clear();
+		this.forceUpdate();
 	}
 
 
@@ -50,7 +58,8 @@ class Main extends Component{
 		return(
 		<div>
 			{this.renderApp()}
-			
+
+			<LogoutButton onLogoutClick={this.onLogoutClick}/>
 		</div>);
 	}
 }
