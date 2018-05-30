@@ -14,6 +14,8 @@ class Main extends Component{
 		this.onLogoutClick = this.onLogoutClick.bind(this);
 	}
 
+
+	/* Register user to the app */
 	registerUser(email, password){
 		$.ajax({
 			url: 'api/signup',
@@ -29,7 +31,7 @@ class Main extends Component{
 		})
 	}
 
-
+	/* Clear localstorage to get rid of the authetication token */
 	onLogoutClick(){
 		localStorage.clear();
 		this.forceUpdate();
