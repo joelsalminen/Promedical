@@ -28,6 +28,9 @@ class Return extends Component{
 		$.ajax({
 			url: '/api/lendings',
 			method: 'get',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			success: (lendings)=>{
 				this.setState({items: lendings});
 			}
@@ -82,6 +85,9 @@ class Return extends Component{
 			$.ajax({
 				url: '/api/items/',
 				method: 'post',
+	      headers: {
+	        'Authorization': localStorage.getItem('token')
+	      },
 				data: itemData,
 
 				success: ((res)=>{
@@ -89,6 +95,9 @@ class Return extends Component{
 					$.ajax({
 						url: '/api/lendings/' + item._id,
 						method: 'delete',
+			      headers: {
+			        'Authorization': localStorage.getItem('token')
+			      },
 						success: ((res)=>{
 							console.log(res);
 							/* Reset toReturn state to an empty array */

@@ -20,4 +20,4 @@ const NavBar = (props) =>
 
 export default NavBar;
 
-/* Joel Salminen - joel.salminen@student.lut.fi */;
+/* Joel Salminen - joel.salminen@student.lut.fi */

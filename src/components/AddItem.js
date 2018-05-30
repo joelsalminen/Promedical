@@ -29,6 +29,9 @@ class AddItem extends Component{
 		$.ajax({
 			url: '/api/items',
 			method: 'post',
+			headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			data: itemData,
 			success: ((res)=>{
 				this.setState({

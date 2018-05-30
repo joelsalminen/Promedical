@@ -10,3 +10,5 @@ class LogoutButton extends Component{
 }
 
 export default LogoutButton;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */

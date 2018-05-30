@@ -37,6 +37,9 @@ class Items extends Component{
 		$.ajax({
 			url: 'api/items',
 			method: 'get',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			success: (res)=>{
 				this.setState({items: this.parseItems(res)});
 			}
@@ -46,6 +49,9 @@ class Items extends Component{
 	 $.ajax({
 	 	url: 'api/lendings',
 	 	method: 'get', 
+    headers: {
+      'Authorization': localStorage.getItem('token')
+    },
 	 	success: (res)=>{
 	 		//this.setState({lendings: res});
 	 		let items = this.state.items;
@@ -182,6 +188,9 @@ class Items extends Component{
 		$.ajax({
 			url: '/api/items/' + item._id,
 			method: 'delete',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			success: (res)=>{
 				
 				/* Delete item from storage list */
@@ -210,6 +219,9 @@ class Items extends Component{
 		$.ajax({
 			url: '/api/items/' + foundItem._id,
 			method: 'put',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			data: foundItem,
 			success: (res)=>{
 				/* Update items state */

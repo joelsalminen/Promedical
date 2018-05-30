@@ -53,6 +53,9 @@ class LendItem extends Component{
 
 		/* Fetch item data from backend*/
 		$.ajax({
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
 			url: '/api/items',
 			post: 'get',
 			success: (res)=>{this.setState({items: res})}
@@ -136,6 +139,9 @@ class LendItem extends Component{
 			$.ajax({
 				url: '/api/lendings',
 				method: 'post',
+	      headers: {
+	        'Authorization': localStorage.getItem('token')
+	      },
 				data: data,
 				success: (lending)=>{
 
@@ -143,6 +149,9 @@ class LendItem extends Component{
 					$.ajax({
 						url: '/api/items/' + lending.item._id,
 						method: 'delete',
+			      headers: {
+			        'Authorization': localStorage.getItem('token')
+			      },
 						success: (res)=>{
 							/* Reset input fields */
 							this.setState({

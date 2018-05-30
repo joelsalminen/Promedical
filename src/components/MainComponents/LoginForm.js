@@ -8,9 +8,9 @@ class LoginForm extends Component{
 		this.changeHandler = this.changeHandler.bind(this);
 	}
 
+
 	onLoginFormSubmit(evt){
 		evt.preventDefault();
-
 		this.props.loginUser(this.state.email, this.state.password);
 	}
 
@@ -34,3 +34,5 @@ class LoginForm extends Component{
 }
 
 export default LoginForm;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */

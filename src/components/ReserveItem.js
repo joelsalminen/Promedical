@@ -43,6 +43,9 @@ class ReserveItem extends Component{
     /* Fetch item data from backend*/
     $.ajax({
       url: 'api/items',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
       method: 'get',
       success: (res)=>{this.setState({items: res})}
     });
@@ -52,6 +55,9 @@ class ReserveItem extends Component{
     $.ajax({
       url: 'api/reservations/',
       method: 'get',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
       success: (reservations)=>{
         // place items into a list 
         reservations.forEach((reservation)=>{
@@ -99,6 +105,9 @@ class ReserveItem extends Component{
       $.ajax({
         url: 'api/reservations/',
         method: 'post',
+        headers: {
+          'Authorization': localStorage.getItem('token')
+        },
         data: reservationData,
         success: ((res)=>{
           /* Adding reservation to the webpage */
