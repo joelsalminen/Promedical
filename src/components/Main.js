@@ -3,8 +3,30 @@ import NavBar from "./MainComponents/NavBar";
 import '../App.css';
 import LoginForm from "./MainComponents/LoginForm";
 import RegistrationForm from "./MainComponents/RegistrationForm";
+import $ from 'jquery';
 
 class Main extends Component{
+	constructor(props){
+		super(props)
+
+		this.registerUser = this.registerUser.bind(this);
+	}
+
+	registerUser(email, password){
+		$.ajax({
+			url: 'api/signup',
+			method: 'post', 
+			data: {email, password},
+			success: (token)=>{
+				localStorage.setItem('token', token.token);
+				this.forceUpdate();
+			},
+			error: (err)=>{
+				console.log(err);
+			}
+		})
+	}
+
 
 	/* Login/registration or the main content */
 	renderApp(){
