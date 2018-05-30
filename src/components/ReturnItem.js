@@ -77,9 +77,10 @@ class Return extends Component{
 	/* Documents that a item was returned to storage */
 	onReturnItemClick(){
 		/* Goes through the list of all items in toReturn state*/
-		this.state.toReturn.forEach((item) => {
-			//console.log(item);
-			let itemData = item.item;
+		this.state.toReturn.forEach((lending) => {
+
+			let itemData = lending.item;
+			console.log(itemData);
 
 			/* Ajax call that adds an item back to Items */
 			$.ajax({
@@ -88,12 +89,15 @@ class Return extends Component{
 	      headers: {
 	        'Authorization': localStorage.getItem('token')
 	      },
-				data: itemData,
+				data: {
+					name: itemData.name,
+					serial: itemData.serial
+				},
 
 				success: ((res)=>{
 					/* Ajax call that removes a lending */
 					$.ajax({
-						url: '/api/lendings/' + item._id,
+						url: '/api/lendings/' + lending._id,
 						method: 'delete',
 			      headers: {
 			        'Authorization': localStorage.getItem('token')
@@ -106,7 +110,10 @@ class Return extends Component{
 							});
 						})
 					});
-				})
+				}),
+				error: (err)=>{
+					console.log(err);
+				}
 
 			});
 
