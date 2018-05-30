@@ -10,8 +10,14 @@ class Main extends Component{
 	constructor(props){
 		super(props)
 
+		this.state = {
+			errorMessage: ""
+		}
+
 		this.registerUser = this.registerUser.bind(this);
+		this.loginUser = this.loginUser.bind(this);
 		this.onLogoutClick = this.onLogoutClick.bind(this);
+
 	}
 
 
@@ -31,6 +37,21 @@ class Main extends Component{
 		})
 	}
 
+	loginUser(email, password){
+		$.ajax({
+			url: 'api/login',
+			method: 'post',
+			data: {email, password},
+			success: (token)=>{
+				localStorage.setItem('token', token.token);
+				this.forceUpdate();
+			},
+			error: (err)=>{
+				this.setState({errorMessage: 'Incorrect credentials'});
+			}
+		})
+	}
+
 	/* Clear localstorage to get rid of the authetication token */
 	onLogoutClick(){
 		localStorage.clear();
@@ -46,9 +67,11 @@ class Main extends Component{
         <div>
           <RegistrationForm registerUser={this.registerUser} />
           <LoginForm loginUser={this.loginUser} />
+          <p>{this.state.errorMessage}</p>
         </div>
       );
     }
+
     /* The rest of the page */
     return (
     	<NavBar/>
