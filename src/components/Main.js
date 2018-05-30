@@ -5,12 +5,30 @@ import LoginForm from "./MainComponents/LoginForm";
 import RegistrationForm from "./MainComponents/RegistrationForm";
 
 class Main extends Component{
+
+	/* Login/registration or the main content */
+	renderApp(){
+		/* Login and registration */
+    if (!localStorage.getItem('token')){
+      return(
+        <div>
+          <RegistrationForm registerUser={this.registerUser} />
+          <LoginForm loginUser={this.loginUser} />
+        </div>
+      );
+    }
+    /* The rest of the page */
+    return (
+    	<NavBar/>
+    );
+
+	}
+
 	render(){
 		return(
 		<div>
-			<LoginForm />
-			<RegistrationForm/>
-			<NavBar/>
+			{this.renderApp()}
+			
 		</div>);
 	}
 }
