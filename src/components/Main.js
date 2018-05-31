@@ -29,6 +29,7 @@ class Main extends Component{
 			data: {email, username, password},
 			success: (token)=>{
 				localStorage.setItem('token', token.token);
+				localStorage.setItem('username', username);
 				this.forceUpdate();
 			},
 			error: (err)=>{
@@ -37,6 +38,7 @@ class Main extends Component{
 		})
 	}
 
+	/* login functionality */
 	loginUser(email, password){
 		$.ajax({
 			url: 'api/login',

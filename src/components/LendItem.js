@@ -46,6 +46,7 @@ class LendItem extends Component{
 
 	componentDidMount(){
 		/* Initialize date data */
+		console.log(localStorage.getItem('username'));
 		this.setDate();
 		this.setState({
       start: moment().format().substring(0,10)
