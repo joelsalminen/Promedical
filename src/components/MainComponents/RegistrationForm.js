@@ -11,7 +11,8 @@ class RegistrationForm extends Component{
 	/*  */
 	onRegisterFormSubmit(evt){
 		evt.preventDefault();
-		this.props.registerUser(this.state.email, this.state.password);
+		if (this.state && this.state.email && this.state.username && this.state.password)
+			this.props.registerUser(this.state.email, this.state.username, this.state.password);
 	}
 
 	/* */
@@ -23,7 +24,8 @@ class RegistrationForm extends Component{
 		return(
 			<div>
 				<form onSubmit={this.onRegisterFormSubmit}>
-          <input onChange={this.changeHandler} name="email" type="text" placeholder="username"/>
+          <input onChange={this.changeHandler} name="email" type="text" placeholder="email"/>
+          <input onChange={this.changeHandler} name="username" type="text" placeholder="username"/>
           <input onChange={this.changeHandler} name="password" type="password" placeholder="Password"/>
           <input type="submit" value="Register"/>
         </form>

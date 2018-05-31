@@ -22,11 +22,11 @@ class Main extends Component{
 
 
 	/* Register user to the app */
-	registerUser(email, password){
+	registerUser(email, username, password){
 		$.ajax({
 			url: 'api/signup',
 			method: 'post', 
-			data: {email, password},
+			data: {email, username, password},
 			success: (token)=>{
 				localStorage.setItem('token', token.token);
 				this.forceUpdate();
