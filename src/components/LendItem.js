@@ -8,6 +8,7 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
+
 /* Sends data to backend when lending is written down */
 class LendItem extends Component{
 	constructor(props){
@@ -21,7 +22,7 @@ class LendItem extends Component{
 			price: "0",
 
 			startDate: moment(),
-      returnDate: moment(),
+      returnDate: moment().add('d', 7),
       start: "",
       return: "",
       items: [],
@@ -161,7 +162,9 @@ class LendItem extends Component{
 								customer: "",
 								contactInfo: "", 
 								price: "0",
-								toLend: []
+								toLend: [],
+								startDate: moment(),
+								returnDate: moment().add('d', 7)
 
 							});
 						}
