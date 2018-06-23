@@ -88,6 +88,23 @@ class ReserveItem extends Component{
     return items;
   }
 
+  onDeleteReservation(reservation){
+    /* Fetch item data from backend*/
+    $.ajax({
+      url: 'api/reservations/' + reservation._id,
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
+      method: 'delete',
+      success: (res)=>{
+        const { reservations } = this.state;
+        let newReservations = reservations.map(reservation => Object.assign({}, reservation));
+        newReservations = newReservations.filter(reservation => reservation._id !== res._id);
+        this.setState({ reservations: newReservations });
+      }
+    });
+  }
+
 
   onAddReservationClick(){
     /* collect reservation data */
@@ -231,7 +248,9 @@ class ReserveItem extends Component{
 	    <ul id="ReservationList">
 	      {this.state.reservations.map((reservation, index)=>
         	<li key={index}>
-           
+           <button onClick={() => this.onDeleteReservation(reservation)}>
+            x
+           </button>
             <p>Customer: {reservation.customer}</p>
 
             <ul>
