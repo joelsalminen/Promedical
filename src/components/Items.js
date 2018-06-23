@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 import $ from 'jquery';
+import moment from 'moment';
+
 import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
 
@@ -92,6 +94,14 @@ class Items extends Component{
 		/* Filtering items by location */
 		if (this.state.inStorage === false){
 			lendings = [];
+		}
+
+		/* Filtering items by expiration */
+		if (!this.state.showExpired){
+			lendings = lendings.filter(lending => 
+				moment(lending.returnDate).diff(moment()) > 0
+			);
+
 		}
 
 		return lendings;
@@ -285,7 +295,7 @@ class Items extends Component{
 					<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
 					<label htmlFor='notInStorage'>Asiakkaalla</label>
 
-					<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.expired} />
+					<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.showExpired} />
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
 				</div>
 
