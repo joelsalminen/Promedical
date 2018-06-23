@@ -31,6 +31,7 @@ class LendItem extends Component{
 
 		this.setDate = this.setDate.bind(this);
 		this.filterSuggestions = this.filterSuggestions.bind(this);
+		this.resetFields = this.resetFields.bind(this);
 
 		this.onLendItemClick = this.onLendItemClick.bind(this);
 		this.onItemNameChange = this.onItemNameChange.bind(this);
@@ -116,7 +117,7 @@ class LendItem extends Component{
 	/* Fired whenever Lend Item button is clicked */
 	onLendItemClick(){
 		if (this.validateInput()){
-			console.log(this.validateInput());
+
 			return;
 		}
 
@@ -178,9 +179,20 @@ class LendItem extends Component{
 			
 		});
 
+	}
 
+	resetFields(){
+		this.setState({
+			lendItem: "Valitse",
+			itemName: "", 
+			customer: "",
+			contactInfo: "", 
+			price: "0",
+			toLend: [],
+			startDate: moment(),
+			returnDate: moment().add('d', 7)
 
-
+		});
 	}
 
 	/* Fired whenever Customer field data changes */
@@ -322,9 +334,14 @@ class LendItem extends Component{
 
 			<br/>
 			<br/>
-
-			<button className="SubmitButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
-
+			<div>
+				<button className="SubmitButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
+			</div>
+			<div>
+				<button className="SubmitButton" onClick={this.resetFields}>Tyhjennä</button>
+			</div>
+			
+			
 
 
 		</div>);
