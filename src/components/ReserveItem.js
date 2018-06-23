@@ -80,7 +80,7 @@ class ReserveItem extends Component{
   /* Filters items on a list based input data of Lend Item Name */
   filterItems(items){
     //items = items.item.slice();
-    items = items.filter((item)=> item.name.indexOf(this.state.item) !== -1);
+    items = items.filter((item)=> item.name.toLowerCase().indexOf(this.state.item.toLowerCase()) !== -1);
     //items = items.filter((item)=> item.location.indexOf("varasto") !== -1);
     if (this.state.item === ""){
       return [];

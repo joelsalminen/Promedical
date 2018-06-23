@@ -100,7 +100,7 @@ class LendItem extends Component{
 	/* Filters items on a list based input data of Lend Item Name */
 	filterSuggestions(items) {
 		/* filter out items that don't include the same data that is in this.state.itemName */
-		items = items.filter((item) => item.name.indexOf(this.state.itemName) !== -1);
+		items = items.filter((item) => item.name.toLowerCase().indexOf(this.state.itemName.toLowerCase()) !== -1);
 		
 		/* The list of items is only shown when some input typed into Lend Item Name field*/
 		if (this.state.itemName === ""){
