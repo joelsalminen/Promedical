@@ -117,7 +117,7 @@ class LendItem extends Component{
 	/* Fired whenever Lend Item button is clicked */
 	onLendItemClick(){
 		if (this.validateInput()){
-
+			this.setState({ error: this.validateInput() });
 			return;
 		}
 
@@ -197,32 +197,50 @@ class LendItem extends Component{
 
 	/* Fired whenever Customer field data changes */
 	onCustomerNameChange(evt){
-		this.setState({customer: evt.target.value });
+		this.setState({ 
+			customer: evt.target.value,
+			error: ''
+		 });
 	}
 
 	/* Fired whenever Item Name field data changes */
 	onItemNameChange(evt){
-		this.setState({itemName: evt.target.value });
+		this.setState({
+			itemName: evt.target.value,
+			error: ''
+		});
 	}
 
 	/* Fired whenever Contact Info field data changes */
 	onContactInfoChange(evt){
-		this.setState({contactInfo: evt.target.value });
+		this.setState({ 
+			contactInfo: evt.target.value,
+			error: ''
+		});
 	}
 
 	/* Fired whenever Username field data changes */
 	onUserChange(evt){
-		this.setState({user: evt.target.value });
+		this.setState({
+			user: evt.target.value,
+			error: ''
+		});
 	}
 
 	/* Fired when lendItem state is changed */
 	onLendTypeChange(evt){
-		this.setState({lendType: evt.value});
+		this.setState({
+			lendType: evt.value,
+			error: ''
+		});
 	}
 
 	/* Fired whenever Price field data changes */
 	onPriceChange(evt){
-		this.setState({price: evt.target.value });
+		this.setState({
+			price: evt.target.value,
+			error: '' 
+		});
 	}
 
 	/* Fired whenever suggested items on a list are clicked */
@@ -334,6 +352,7 @@ class LendItem extends Component{
 
 			<br/>
 			<br/>
+			<p>{this.state.error}</p>
 			<div>
 				<button className="SubmitButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
 			</div>
