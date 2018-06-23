@@ -69,8 +69,8 @@ class Items extends Component{
 	filterItemsInStorage(items){
 		/* Filtering items by search bar info */
 		items = items.filter(item => {
-			let information = item.name + item.serial.toString();
-			return information.indexOf(this.state.nameSearch)!== -1
+			let information = item.name.toLowerCase() + item.serial.toString();
+			return information.indexOf(this.state.nameSearch.toLowerCase())!== -1
 		});
 
 		/* Filtering items by location */
@@ -85,8 +85,8 @@ class Items extends Component{
 	filterLendings(lendings){
 		/* Filtering lending items by search bar info */
 		lendings = lendings.filter(lending => {
-			let information = lending.item.name + lending.item.serial;
-			return information.indexOf(this.state.nameSearch)!== -1;
+			let information = lending.item.name.toLowerCase() + lending.item.serial;
+			return information.indexOf(this.state.nameSearch.toLowerCase())!== -1;
 		});
 
 		/* Filtering items by location */
