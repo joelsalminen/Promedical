@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import $ from 'jquery';
 
 class LendingEdit extends Component {
 	state = {
@@ -11,6 +12,46 @@ class LendingEdit extends Component {
 		itemSerial: ''
 
 	}
+
+	onSaveChangesClick = () => {
+		const { lending } = this.props;
+
+		const { 
+			customer,
+			contactInfo,
+			startDate,
+			returnDate,
+			lendType,
+			itemName,
+			itemSerial
+		} = this.state;
+
+		const data = {
+			_id: lending._id,
+			lender: lending.lender,
+			customer,
+			contactInfo,
+			startDate,
+			returnDate,
+			lendType,
+			itemName,
+			itemSerial
+		};
+
+		$.ajax({
+			url: "api/lendings/" + lending._id,
+			method: "put",
+			headers: {
+				"Authorization": localStorage.getItem("token")
+			},
+			data,
+			success: (res => {
+				
+			})
+		});
+		this.props.closeEdit();
+	}
+
 
 	onCustomerChange = (evt) => {
 		this.setState({ customer: evt.target.value });
@@ -50,7 +91,6 @@ class LendingEdit extends Component {
 	}
 
 	render(){
-		const { lending } = this.props;
 		const { 
 			customer,
 			contactInfo,
@@ -109,8 +149,8 @@ class LendingEdit extends Component {
 				/>
 
 
-				<button>Tallenna</button>
-				<button onClick={this.props.cancelEdit}>Peruuta</button>
+				<button onClick={this.onSaveChangesClick}>Tallenna</button>
+				<button onClick={this.props.closeEdit}>Peruuta</button>
 			</div>
 		);
 	}

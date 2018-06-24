@@ -328,7 +328,6 @@ class Items extends Component{
 		/* Filtering of items list */
 		let items = this.filterItems();
 		const { lendingToEdit } = this.state;
-		console.log(items);
 
 		return (
 			<div>
@@ -343,7 +342,7 @@ class Items extends Component{
 					{lendingToEdit && 
 						<LendingEdit 
 							lending={lendingToEdit}
-							cancelEdit={this.onLendingEditHide}
+							closeEdit={this.onLendingEditHide}
 						/>
 
 					}
