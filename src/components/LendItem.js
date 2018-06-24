@@ -22,14 +22,13 @@ class LendItem extends Component{
 			price: "0",
 
 			startDate: moment(),
-      returnDate: moment().add(7, 'd'),
+      returnDate: moment(),
       start: "",
       return: "",
       items: [],
       toLend: []
 		}
 
-		this.setDate = this.setDate.bind(this);
 		this.filterSuggestions = this.filterSuggestions.bind(this);
 		this.resetFields = this.resetFields.bind(this);
 
@@ -48,7 +47,6 @@ class LendItem extends Component{
 
 	componentDidMount(){
 		/* Initialize date data */
-		this.setDate();
 		this.setState({
       start: moment().format().substring(0,10)
     });
@@ -88,17 +86,6 @@ class LendItem extends Component{
 			return "Please select lend type";
 		}
 		return null;
-	}
-
-	/* Set initial date according to current time */ 
-	setDate(){
-		const current = new Date();
-		const currentYear = current.getUTCFullYear();
-		const currentMonth = current.getUTCMonth() + 1;
-		const currentDay = current.getUTCDate();
-
-		const datex = "".concat(currentDay, ".", currentMonth, ".", currentYear);
-		this.setState({date: datex});
 	}
 
 
@@ -168,7 +155,7 @@ class LendItem extends Component{
 								price: "0",
 								toLend: [],
 								startDate: moment(),
-								returnDate: moment().add(7, 'd')
+								returnDate: moment()
 
 							});
 						}
@@ -193,7 +180,7 @@ class LendItem extends Component{
 			price: "0",
 			toLend: [],
 			startDate: moment(),
-			returnDate: moment().add(7, 'd')
+			returnDate: moment()
 
 		});
 	}
