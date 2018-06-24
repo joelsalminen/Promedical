@@ -14,7 +14,7 @@ class LendItem extends Component{
 	constructor(props){
 		super(props)
 		this.state = {
-			user: "Test_user1",
+			user: localStorage.getItem('username'),
 			itemName: "",
 			customer: "",
 			contactInfo: "",
@@ -48,21 +48,25 @@ class LendItem extends Component{
 
 	componentDidMount(){
 		/* Initialize date data */
-		console.log(localStorage.getItem('username'));
 		this.setDate();
 		this.setState({
       start: moment().format().substring(0,10)
     });
 
-		/* Fetch item data from backend*/
+		/* Fetch item data from backend */
+		console.log('fetched');
 		$.ajax({
       headers: {
         'Authorization': localStorage.getItem('token')
       },
 			url: '/api/items',
 			post: 'get',
-			success: (res)=>{this.setState({items: res})}
+			success: (res)=>{
+				this.setState({items: res})
+			}
 		});
+
+
 		
 	}
 
