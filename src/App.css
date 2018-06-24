@@ -204,4 +204,11 @@ td{
 	background: orange;
 }
 
+
+
+.Items__dialog__inputContainer input{
+	margin: 0 auto;
+	display: block;
+}
+
 /* Joel Salminen - joel.salminen@student.lut.fi */

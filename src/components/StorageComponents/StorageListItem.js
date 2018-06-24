@@ -14,6 +14,7 @@ class StorageListItem extends Component{
 		this.onCancelClick = this.onCancelClick.bind(this);
 		this.onSaveClick = this.onSaveClick.bind(this);
 		this.onDeleteClick = this.onDeleteClick.bind(this);
+		this.onEditLendingClick = this.onEditLendingClick.bind(this);
 
 	}
 
@@ -34,6 +35,10 @@ class StorageListItem extends Component{
 
 	onEditClick(){
 		this.setState({isEditing: true});
+	}
+
+	onEditLendingClick(){
+		this.props.editLending(this.props.item);
 	}
 
 
@@ -63,22 +68,42 @@ class StorageListItem extends Component{
 	renderActionSection(){
 		/* Editing buttons */
 		if (this.state.isEditing){
-			return (
+			if (this.props.item.inStorage){
+				return (
+					<td>
+						<button onClick={this.onSaveClick}>Tallenna</button>
+						<button onClick={this.onCancelClick}>Peruuta</button>
+					</td>
+				);
+			}
+			return(
 				<td>
-					<button onClick={this.onSaveClick}>Tallenna</button>
 					<button onClick={this.onCancelClick}>Peruuta</button>
 				</td>
+				
 			);
+
 		}
 
-		/* Default buttons */
-		return (
-			<td>
-				<button onClick={this.onEditClick}>Muokkaa</button>
-				<button onClick={this.onDeleteClick}>Poista</button>
-			</td>
 
+		/* Default buttons */
+		/* items in storage */
+		if(this.props.item.inStorage){
+			return(
+				<td>
+					<button onClick={this.onEditClick}>Muokkaa</button>
+					<button onClick={this.onDeleteClick}>Poista</button>
+				</td>
+
+			);
+		}
+		/* items not in storage */
+		return(
+			<td>
+				<button onClick={this.onEditLendingClick}>Muokkaa</button>
+			</td>
 		);
+
 	}
 
 	renderItems(){

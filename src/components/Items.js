@@ -1,9 +1,11 @@
 import React, { Component } from 'react';
+import { DialogContainer } from 'react-md';
 import $ from 'jquery';
 import moment from 'moment';
 
 import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
+import LendingEdit from './StorageComponents/LendingEdit';
 
 class Items extends Component{
 	constructor(props){
@@ -17,6 +19,8 @@ class Items extends Component{
 			showNotExpired: true,
 			items: [],
 			lendings: [],
+			lendingEditVisible: false,
+			lendingToEdit: null
 		}
 
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
@@ -25,12 +29,16 @@ class Items extends Component{
 		this.filterItems = this.filterItems.bind(this);
 		this.deleteItem = this.deleteItem.bind(this);
 		this.saveItem = this.saveItem.bind(this);
+		this.editLending = this.editLending.bind(this);
+		this.onLendingEditHide = this.onLendingEditHide.bind(this);
 
 		this.onNameChange = this.onNameChange.bind(this);
 		this.onInStorageChange = this.onInStorageChange.bind(this);
 		this.onNotInStorageChange = this.onNotInStorageChange.bind(this);
 		this.onExpiredChange = this.onExpiredChange.bind(this);
 		this.onNotExpiredChange = this.onNotExpiredChange.bind(this);
+
+		this.onCustomerChange = this.onCustomerChange.bind(this);
 		
 	}
 
@@ -244,7 +252,17 @@ class Items extends Component{
 		});
 	}
 
+	onLendingEditHide(){
+		this.setState({ lendingEditVisible: false });
+	}
 
+	editLending(item){
+
+		this.setState({ 
+			lendingEditVisible: true,
+			lendingToEdit: item
+		});
+	}
 
 	onNameChange(evt){
 		this.setState({nameSearch: evt.target.value})
@@ -289,12 +307,47 @@ class Items extends Component{
 
 	}
 
+	onCustomerChange(evt){
+		this.setState({ customer: evt.tagget.value });
+	}
+
+	// onCustomerChange(evt){
+	// 	this.setState({ customer: evt.tagget.value });
+	// }
+	// onCustomerChange(evt){
+	// 	this.setState({ customer: evt.tagget.value });
+	// }
+	// onCustomerChange(evt){
+	// 	this.setState({ customer: evt.tagget.value });
+	// }
+	// onCustomerChange(evt){
+	// 	this.setState({ customer: evt.tagget.value });
+	// }
+
 	render(){
 		/* Filtering of items list */
 		let items = this.filterItems();
+		const { lendingToEdit } = this.state;
 
 		return (
 			<div>
+				<DialogContainer 
+					id="editLending"
+					aria-labelledby="Edit lending"
+					visible={this.state.lendingEditVisible}
+					onHide={this.onLendingEditHide}
+					focusOnMount={false}
+					height={500}
+				>
+					{lendingToEdit && 
+						<LendingEdit 
+							lending={lendingToEdit}
+							cancelEdit={this.onLendingEditHide}
+						/>
+
+					}
+
+				</DialogContainer>
 				<h1>Varasto</h1>
 				<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 
@@ -316,7 +369,7 @@ class Items extends Component{
 					<ItemsListHeader />
 					
 					<tbody>
-						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} />)}
+						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} editLending={this.editLending}/>)}
 					</tbody>
 
 				</table>
