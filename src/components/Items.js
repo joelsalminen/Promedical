@@ -76,7 +76,7 @@ class Items extends Component{
 		});
 
 		/* Filtering items by location */
-		if (this.state.notInStorage === false){
+		if (!this.state.inStorage){
 			items = [];
 		}
 		return items;
@@ -92,7 +92,7 @@ class Items extends Component{
 		});
 
 		/* Filtering items by location */
-		if (this.state.inStorage === false){
+		if (!this.state.notInStorage){
 			lendings = [];
 		}
 
