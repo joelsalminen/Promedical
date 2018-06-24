@@ -46,7 +46,7 @@ class LendingEdit extends Component {
 			},
 			data,
 			success: (res => {
-				
+				this.props.updateItems(res);
 			})
 		});
 		this.props.closeEdit();

@@ -18,7 +18,7 @@ class Items extends Component{
 			showExpired: true,
 			showNotExpired: true,
 			items: [],
-			lendings: [],
+			// lendings: [],
 			lendingEditVisible: false,
 			lendingToEdit: null
 		}
@@ -31,6 +31,7 @@ class Items extends Component{
 		this.saveItem = this.saveItem.bind(this);
 		this.editLending = this.editLending.bind(this);
 		this.onLendingEditHide = this.onLendingEditHide.bind(this);
+		this.updateItems = this.updateItems.bind(this);
 
 		this.onNameChange = this.onNameChange.bind(this);
 		this.onInStorageChange = this.onInStorageChange.bind(this);
@@ -252,6 +253,15 @@ class Items extends Component{
 		});
 	}
 
+	updateItems(newItem){
+		const { items } = this.state;
+		let updatedItems = items.map(object => Object.assign({}, object));
+		const index = updatedItems.findIndex(item => item._id === newItem._id);
+
+		updatedItems[index] = newItem;
+		this.setState({ items: updatedItems });
+	}
+
 	onLendingEditHide(){
 		this.setState({ lendingEditVisible: false });
 	}
@@ -343,6 +353,7 @@ class Items extends Component{
 						<LendingEdit 
 							lending={lendingToEdit}
 							closeEdit={this.onLendingEditHide}
+							updateItems={this.updateItems}
 						/>
 
 					}
