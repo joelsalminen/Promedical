@@ -11,6 +11,30 @@ class LendingEdit extends Component {
 		itemSerial: ''
 
 	}
+
+	onCustomerChange = (evt) => {
+		this.setState({ customer: evt.target.value });
+	}
+	onCustomerInfoChange = (evt) => {
+		this.setState({ customerInfo: evt.target.value });
+	}
+	onStartDateChange = (evt) => {
+		this.setState({ startDate: evt.target.value });
+	}
+	onReturnDateChange = (evt) => {
+		this.setState({ returnDate: evt.target.value });
+	}
+	onLendTypeChange = (evt) => {
+		this.setState({ lendType: evt.target.value });
+	}
+	onItemNameChange = (evt) => {
+		this.setState({ itemName: evt.target.value });
+	}
+	onItemSerialChange = (evt) => {
+		this.setState({ itemSerial: evt.target.value });
+	}
+
+
 	componentDidMount(){
 		const { lending } = this.props;
 
@@ -39,13 +63,22 @@ class LendingEdit extends Component {
 
 		return (
 			<div className="Items__dialog__inputContainer">
+				<p>			{customer}
+			{customerInfo}
+			{startDate}
+			{returnDate}
+			{lendType}
+			{itemName}
+			{itemSerial}</p>
+
 				<label htmlFor='customer'>Asiakas</label>
-				<input 
+				<input
 					value={customer} 
 					onChange={this.onCustomerChange}
 				/>
 				<label htmlFor='customerInfo'>Asiakkaan yhteystiedot</label>
-				<input 
+				<input
+					type="text"
 					value={customerInfo}
 					onChange={this.onCustomerInfoChange}
 				/>
@@ -57,7 +90,7 @@ class LendingEdit extends Component {
 				<label htmlFor='returnDate'>Palautuspäivä</label>
 				<input 
 					value={returnDate}
-					onChange={this.onEndDateChange}
+					onChange={this.onReturnDateChange}
 				/>
 				<label htmlFor='lendType'>Lainauksen luonne</label>
 				<input 
@@ -74,6 +107,7 @@ class LendingEdit extends Component {
 					value={itemSerial}
 					onChange={this.onItemSerialChange}
 				/>
+
 
 				<button>Tallenna</button>
 				<button onClick={this.props.cancelEdit}>Peruuta</button>
