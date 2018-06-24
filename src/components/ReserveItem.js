@@ -14,7 +14,7 @@ class ReserveItem extends Component{
 		this.state ={
 			customer: "",
 			startDate: moment(),
-      returnDate: moment(),
+      returnDate: moment().add(7, 'days'),
       start: "",
       return: "",
       item: "",
@@ -37,7 +37,8 @@ class ReserveItem extends Component{
   componentDidMount(){
     /* Initialize date data */
     this.setState({
-      start: moment().format().substring(0,10)
+      start: moment().format().substring(0,10),
+      return: moment().add(7, 'days').format().substring(0,10)
     });
 
     /* Fetch item data from backend*/
@@ -138,11 +139,11 @@ class ReserveItem extends Component{
     // reset input fields
     this.setState({
       start: moment().format().substring(0,10),
-      return: moment().format().substring(0,10),
+      return: moment().add(7, 'days').format().substring(0,10),
       item: "",
       customer: "",
       startDate: moment(),
-      returnDate: moment(),
+      returnDate: moment().add(7, 'days'),
       toReserve: []
     });
 

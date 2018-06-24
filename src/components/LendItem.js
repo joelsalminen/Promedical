@@ -22,7 +22,7 @@ class LendItem extends Component{
 			price: "0",
 
 			startDate: moment(),
-      returnDate: moment(),
+      returnDate: moment().add(7, 'days'),
       start: "",
       return: "",
       items: [],
@@ -48,7 +48,8 @@ class LendItem extends Component{
 	componentDidMount(){
 		/* Initialize date data */
 		this.setState({
-      start: moment().format().substring(0,10)
+      start: moment().format().substring(0,10),
+      return: moment().add(7, 'days').format().substring(0,10)
     });
 
 		/* Fetch item data from backend */
@@ -155,7 +156,7 @@ class LendItem extends Component{
 								price: "0",
 								toLend: [],
 								startDate: moment(),
-								returnDate: moment()
+								returnDate: moment().add(7, 'days')
 
 							});
 						}
@@ -180,7 +181,7 @@ class LendItem extends Component{
 			price: "0",
 			toLend: [],
 			startDate: moment(),
-			returnDate: moment()
+			returnDate: moment().add(7, 'days')
 
 		});
 	}
