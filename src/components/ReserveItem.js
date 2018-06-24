@@ -14,7 +14,7 @@ class ReserveItem extends Component{
 		this.state ={
 			customer: "",
 			startDate: moment(),
-      returnDate: moment(),
+      returnDate: moment().add(7, 'd'),
       start: "",
       return: "",
       item: "",
@@ -147,6 +147,8 @@ class ReserveItem extends Component{
             return: moment().format().substring(0,10),
             item: "",
             customer: "",
+            startDate: moment(),
+            returnDate: moment().add(7, 'd')
           });
         })
       });
