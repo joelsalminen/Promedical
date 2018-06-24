@@ -25,6 +25,7 @@ class LendingEdit extends Component {
 			startDate,
 			returnDate,
 			lendType,
+			price,
 			itemName,
 			itemSerial
 		} = this.state;
@@ -37,6 +38,7 @@ class LendingEdit extends Component {
 			startDate,
 			returnDate,
 			lendType,
+			price,
 			itemName,
 			itemSerial
 		};
