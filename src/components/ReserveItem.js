@@ -14,7 +14,7 @@ class ReserveItem extends Component{
 		this.state ={
 			customer: "",
 			startDate: moment(),
-      returnDate: moment().add(7, 'd'),
+      returnDate: moment(),
       start: "",
       return: "",
       item: "",
@@ -59,15 +59,6 @@ class ReserveItem extends Component{
         'Authorization': localStorage.getItem('token')
       },
       success: (reservations)=>{
-        // place items into a list 
-        reservations.forEach((reservation)=>{
-          let r = reservation;
-          r.items = [];
-          r.items.push(reservation.item);
-          delete r['item'];
-        });
-        
-        
         this.setState({
           reservations: reservations
         });
@@ -129,32 +120,31 @@ class ReserveItem extends Component{
           let list = this.state.reservations;
 
           list.push({
-            items: this.state.toReserve,
-            startDate: this.state.start,
-            returnDate: this.state.return,
-            customer: this.state.customer,
+            item: res.item,
+            startDate: res.startDate,
+            returnDate: res.returnDate,
+            customer: res.customer,
           });
 
           // update reservation list, reset toReserve list
           this.setState({
-            reservations: list,
-            toReserve: []
+            reservations: list
           });
 
-          // reset input fields
-          this.setState({
-            start: moment().format().substring(0,10),
-            return: moment().format().substring(0,10),
-            item: "",
-            customer: "",
-            startDate: moment(),
-            returnDate: moment().add(7, 'd')
-          });
         })
       });
 
     });
-
+    // reset input fields
+    this.setState({
+      start: moment().format().substring(0,10),
+      return: moment().format().substring(0,10),
+      item: "",
+      customer: "",
+      startDate: moment(),
+      returnDate: moment(),
+      toReserve: []
+    });
 
           
   }
@@ -210,8 +200,8 @@ class ReserveItem extends Component{
   }
 
 	render(){
-
-    let itemsList = this.filterItems(this.state.items);
+    const itemsList = this.filterItems(this.state.items);
+    // console.log(this.state.reservations);
 
 		return(
 		<div id="ReserveItemMenu">
@@ -254,7 +244,7 @@ class ReserveItem extends Component{
             <p>Customer: {reservation.customer}</p>
 
             <ul>
-              {reservation.items.map((item, index)=> <li className="ReservationListItem" key={index}>{item.name}</li>)}
+              <li className="ReservationListItem" key={index}>{reservation.item.name}</li>
             </ul>
 
             <p>{reservation.startDate} - {reservation.returnDate}</p>

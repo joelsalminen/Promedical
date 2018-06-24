@@ -116,15 +116,6 @@ class LendingEdit extends Component {
 
 		return (
 			<div className="Items__dialog__inputContainer">
-				<p>			{customer}
-			{contactInfo}
-			{startDate}
-			{returnDate}
-			{lendType}
-			{itemName}
-			{price}
-			{lender}
-			{itemSerial}</p>
 
 				<label htmlFor='lender'>Lainaaja</label>
 				<input
@@ -183,3 +174,5 @@ class LendingEdit extends Component {
 }
 
 export default LendingEdit;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */
