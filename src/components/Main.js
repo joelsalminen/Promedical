@@ -6,6 +6,7 @@ import RegistrationForm from "./MainComponents/RegistrationForm";
 import $ from 'jquery';
 import LogoutButton from "./MainComponents/LogoutButton";
 import '../App.css';
+import './Main.css';
 
 class Main extends Component{
 	constructor(props){
@@ -76,18 +77,23 @@ class Main extends Component{
 
     /* The rest of the page */
     return (
-    	<NavBar/>
+    	<div>
+    		<LogoutButton onLogoutClick={this.onLogoutClick} />
+    		<NavBar/>
+    	</div>
+
+
     );
 
 	}
 
 	render(){
 		return(
-		<div>
-			{this.renderApp()}
+			<div className="Main__container">
 
-			<LogoutButton onLogoutClick={this.onLogoutClick}/>
-		</div>);
+				{this.renderApp()}
+			</div>
+		);
 	}
 }
 

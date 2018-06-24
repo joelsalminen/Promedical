@@ -1,10 +1,18 @@
 import React, {Component} from 'react';
+import './LogoutButton.css'
 
 class LogoutButton extends Component{
 
 	render(){
 		return (
-			<button onClick={this.props.onLogoutClick}>Logout</button>
+			<div className="LogoutButton__container">
+				<button 
+					className="LogoutButton__button"
+					onClick={this.props.onLogoutClick}
+				>
+					Logout
+				</button>
+			</div>
 		)
 	}
 }

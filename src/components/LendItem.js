@@ -1,13 +1,14 @@
-import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
 import Dropdown from "react-dropdown";
-import SuggestionList from "./MainComponents/SuggestionList";
 import $ from 'jquery';
-
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 import 'react-datepicker/dist/react-datepicker.css';
 
+import Menu from './MainComponents/MainMenuButton';
+import SuggestionList from "./MainComponents/SuggestionList";
+
+import './LendItem.css'
 
 /* Sends data to backend when lending is written down */
 class LendItem extends Component{
@@ -276,8 +277,8 @@ class LendItem extends Component{
 		if (this.state.lendType === "Sijaislaite (maksullinen)"){
 			return(
 				<div>
-				<p>Lainauksen hinta:</p>
-				<input name="price" value={this.state.price} placeholder="Hinta" onChange={this.onPriceChange}/>
+					<p>Lainauksen hinta:</p>
+					<input name="price" value={this.state.price} placeholder="Hinta" onChange={this.onPriceChange}/>
 				</div>
 			);
 		}
@@ -293,33 +294,49 @@ class LendItem extends Component{
 		let itemsList = this.filterSuggestions(this.state.items);
 
 		return(
-		<div id="LendItemMenu">
+		<div className="LendItemMenu__container">
 			<Menu />
 
-			<h1>Lainaus</h1>
+			<h1 className="LendItemMenu__header">Lainaus</h1>
 
 			<p>Tuotteen varastosta hakija:</p>
-			<input name="employee_name" value={this.state.user} placeholder="Tuotteen varastosta hakija" onChange={this.onUserChange}/>
-			<br/>
+			<input name="employee_name" value={this.state.user} onChange={this.onUserChange}/>
 
 			<p>Lainattava tuote:</p>
 			<ul>
 				{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
 			</ul>
 
-			<input name="item_name" value={this.state.itemName} placeholder="Tuotteen nimi" onChange={this.onItemNameChange}/>
+			<input name="item_name" value={this.state.itemName} onChange={this.onItemNameChange}/>
 			<ul>
 				{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
 			</ul>
 
 			<p>Asiakas</p>
-			<input name="customer_name" value={ this.state.customer} placeholder="Asiakas" onChange={this.onCustomerNameChange}/>
-			<br/>
+			<input name="customer_name" value={this.state.customer} onChange={this.onCustomerNameChange}/>
+			
 
 			<p>Asiakkaan yhteystiedot:</p>
-			<input name="customer_info" value={this.state.contactInfo} placeholder="Asiakkaan yhteystiedot" onChange={this.onContactInfoChange}/>
-			<br/>
+			<input name="customer_info" value={this.state.contactInfo} onChange={this.onContactInfoChange}/>
 			
+			<p>Lainauksen luonne:</p>
+			<div className="Dropdown">
+				<Dropdown
+	        options={options}
+	        onChange={this.onLendTypeChange}
+	        value={this.state.lendType} 
+	      />
+      </div>
+     	<div>
+				<p>Lainauksen hinta:</p>
+				<input 
+					disabled={this.state.lendType !== "Sijaislaite (maksullinen)"}
+					name="price"
+					value={this.state.price}
+					placeholder="Hinta"
+					onChange={this.onPriceChange}/>
+			</div>
+
 			<p>Lainauspäivä:</p>
 			<DatePicker
 	      selected={this.state.startDate}
@@ -329,26 +346,11 @@ class LendItem extends Component{
 	    <DatePicker
 	     	selected={this.state.returnDate}
 	     	onChange={this.onReturnDateChange} />
-
-			<br/>
-			<p>Lainauksen luonne:</p>
-			<div className="Dropdown">
-			<Dropdown
-        options={options}
-        onChange={this.onLendTypeChange}
-        value={this.state.lendType} />
-      </div>
-      {this.renderPrice()}
-
-
-			<br/>
-			<br/>
+			
 			<p>{this.state.error}</p>
 			<div>
-				<button className="SubmitButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
-			</div>
-			<div>
-				<button className="SubmitButton" onClick={this.resetFields}>Tyhjennä</button>
+				<button className="LendItem__button--lending LendItem__button" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
+				<button className="LendItem__button--reset LendItem__button" onClick={this.resetFields}>Tyhjennä</button>
 			</div>
 			
 			
