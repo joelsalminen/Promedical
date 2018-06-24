@@ -22,7 +22,7 @@ class LendItem extends Component{
 			price: "0",
 
 			startDate: moment(),
-      returnDate: moment().add('d', 7),
+      returnDate: moment().add(7, 'd'),
       start: "",
       return: "",
       items: [],
@@ -54,7 +54,6 @@ class LendItem extends Component{
     });
 
 		/* Fetch item data from backend */
-		console.log('fetched');
 		$.ajax({
       headers: {
         'Authorization': localStorage.getItem('token')
@@ -169,7 +168,7 @@ class LendItem extends Component{
 								price: "0",
 								toLend: [],
 								startDate: moment(),
-								returnDate: moment().add('d', 7)
+								returnDate: moment().add(7, 'd')
 
 							});
 						}
@@ -194,7 +193,7 @@ class LendItem extends Component{
 			price: "0",
 			toLend: [],
 			startDate: moment(),
-			returnDate: moment().add('d', 7)
+			returnDate: moment().add(7, 'd')
 
 		});
 	}
