@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 class LendingEdit extends Component {
 	state = {
 		customer: '',
-		customerInfo: '',
+		contactInfo: '',
 		startDate: '',
 		returnDate: '',
 		lendType: '',
@@ -15,8 +15,8 @@ class LendingEdit extends Component {
 	onCustomerChange = (evt) => {
 		this.setState({ customer: evt.target.value });
 	}
-	onCustomerInfoChange = (evt) => {
-		this.setState({ customerInfo: evt.target.value });
+	onContactInfoChange = (evt) => {
+		this.setState({ contactInfo: evt.target.value });
 	}
 	onStartDateChange = (evt) => {
 		this.setState({ startDate: evt.target.value });
@@ -40,7 +40,7 @@ class LendingEdit extends Component {
 
 		this.setState({
 			customer: lending.customer,
-			customerInfo: lending.customerInfo,
+			contactInfo: lending.contactInfo,
 			startDate: lending.startDate,
 			returnDate: lending.returnDate,
 			lendType: lending.lendType,
@@ -53,7 +53,7 @@ class LendingEdit extends Component {
 		const { lending } = this.props;
 		const { 
 			customer,
-			customerInfo,
+			contactInfo,
 			startDate,
 			returnDate,
 			lendType,
@@ -64,7 +64,7 @@ class LendingEdit extends Component {
 		return (
 			<div className="Items__dialog__inputContainer">
 				<p>			{customer}
-			{customerInfo}
+			{contactInfo}
 			{startDate}
 			{returnDate}
 			{lendType}
@@ -79,8 +79,8 @@ class LendingEdit extends Component {
 				<label htmlFor='customerInfo'>Asiakkaan yhteystiedot</label>
 				<input
 					type="text"
-					value={customerInfo}
-					onChange={this.onCustomerInfoChange}
+					value={contactInfo}
+					onChange={this.onContactInfoChange}
 				/>
 				<label htmlFor='startDate'>Lainauspäivä</label>
 				<input 
