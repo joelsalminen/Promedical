@@ -3,11 +3,13 @@ import $ from 'jquery';
 
 class LendingEdit extends Component {
 	state = {
+		lender: '',
 		customer: '',
 		contactInfo: '',
 		startDate: '',
 		returnDate: '',
 		lendType: '',
+		price: '',
 		itemName: '',
 		itemSerial: ''
 
@@ -17,6 +19,7 @@ class LendingEdit extends Component {
 		const { lending } = this.props;
 
 		const { 
+			lender,
 			customer,
 			contactInfo,
 			startDate,
@@ -28,7 +31,7 @@ class LendingEdit extends Component {
 
 		const data = {
 			_id: lending._id,
-			lender: lending.lender,
+			lender,
 			customer,
 			contactInfo,
 			startDate,
@@ -52,7 +55,9 @@ class LendingEdit extends Component {
 		this.props.closeEdit();
 	}
 
-
+	onLenderChange = (evt) => {
+		this.setState({ lender: evt.target.value });
+	}
 	onCustomerChange = (evt) => {
 		this.setState({ customer: evt.target.value });
 	}
@@ -68,6 +73,9 @@ class LendingEdit extends Component {
 	onLendTypeChange = (evt) => {
 		this.setState({ lendType: evt.target.value });
 	}
+	onPriceChange = (evt) => {
+		this.setState({ price: evt.target.value });
+	}
 	onItemNameChange = (evt) => {
 		this.setState({ itemName: evt.target.value });
 	}
@@ -78,13 +86,14 @@ class LendingEdit extends Component {
 
 	componentDidMount(){
 		const { lending } = this.props;
-
 		this.setState({
+			lender: lending.lender,
 			customer: lending.customer,
 			contactInfo: lending.contactInfo,
 			startDate: lending.startDate,
 			returnDate: lending.returnDate,
 			lendType: lending.lendType,
+			price: lending.price,
 			itemName: lending.item.name,
 			itemSerial: lending.item.serial
 		});
@@ -98,6 +107,8 @@ class LendingEdit extends Component {
 			returnDate,
 			lendType,
 			itemName,
+			price,
+			lender,
 			itemSerial
 		} = this.state;
 
@@ -109,8 +120,15 @@ class LendingEdit extends Component {
 			{returnDate}
 			{lendType}
 			{itemName}
+			{price}
+			{lender}
 			{itemSerial}</p>
 
+				<label htmlFor='lender'>Lainaaja</label>
+				<input
+					value={lender} 
+					onChange={this.onLenderChange}
+				/>				
 				<label htmlFor='customer'>Asiakas</label>
 				<input
 					value={customer} 
@@ -136,6 +154,12 @@ class LendingEdit extends Component {
 				<input 
 					value={lendType}
 					onChange={this.onLendTypeChange}
+				/>
+				<label htmlFor='price'>Lainauksen hinta</label>
+				<input 
+					value={price}
+					onChange={this.onPriceChange}
+					disabled={lendType !== 'Sijaislaite (maksullinen)'}
 				/>
 				<label htmlFor='itemName'>Tuotteen nimi</label>
 				<input 
