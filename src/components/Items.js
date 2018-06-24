@@ -14,6 +14,7 @@ class Items extends Component{
 			inStorage: true,
 			notInStorage: true,
 			showExpired: true,
+			showNotExpired: true,
 			items: [],
 			lendings: [],
 		}
@@ -29,7 +30,7 @@ class Items extends Component{
 		this.onInStorageChange = this.onInStorageChange.bind(this);
 		this.onNotInStorageChange = this.onNotInStorageChange.bind(this);
 		this.onExpiredChange = this.onExpiredChange.bind(this);
-
+		this.onNotExpiredChange = this.onNotExpiredChange.bind(this);
 		
 	}
 
@@ -101,9 +102,12 @@ class Items extends Component{
 			lendings = lendings.filter(lending => 
 				moment(lending.returnDate).diff(moment()) > 0
 			);
-
 		}
-
+		if(!this.state.showNotExpired){
+			lendings = lendings.filter(lending => 
+				moment(lending.returnDate).diff(moment()) < 0
+			);
+		}
 		return lendings;
 	}
 
@@ -278,6 +282,12 @@ class Items extends Component{
 		}
 	}
 
+	onNotExpiredChange(evt){
+		this.setState(prevState => ({
+			showNotExpired: !prevState.showNotExpired
+		}));
+
+	}
 
 	render(){
 		/* Filtering of items list */
@@ -297,6 +307,9 @@ class Items extends Component{
 
 					<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.showExpired} />
 					<label htmlFor='expired'>Erääntyneet tuotteet</label>
+
+					<input type="checkbox" name="notExpired" onChange={this.onNotExpiredChange} defaultChecked={this.state.showNotExpired} />
+					<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
 				</div>
 
 				<table id="StorageList">
