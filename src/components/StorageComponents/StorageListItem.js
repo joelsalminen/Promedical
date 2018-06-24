@@ -10,11 +10,13 @@ class StorageListItem extends Component{
 		}
 
 		this.onNameChange = this.onNameChange.bind(this);
+		this.onSerialChange = this.onSerialChange.bind(this);
 		this.onEditClick = this.onEditClick.bind(this);
 		this.onCancelClick = this.onCancelClick.bind(this);
 		this.onSaveClick = this.onSaveClick.bind(this);
 		this.onDeleteClick = this.onDeleteClick.bind(this);
 		this.onEditLendingClick = this.onEditLendingClick.bind(this);
+
 
 	}
 
@@ -63,6 +65,9 @@ class StorageListItem extends Component{
 		this.setState({name: evt.target.value});
 	}
 
+	onSerialChange(evt){
+		this.setState({ serial: evt.target.value });
+	}
 
 	/* Render buttons */
 	renderActionSection(){
@@ -122,6 +127,10 @@ class StorageListItem extends Component{
 								onChange={this.onNameChange} 
 								defaultValue={this.props.item.name}
 								onFocus={this.onInputFocus}
+							/>
+							<input 
+								onChange={this.onSerialChange}
+								defaultValue={this.props.item.serial}
 							/>
 
 							

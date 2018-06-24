@@ -191,11 +191,7 @@ class Items extends Component{
 
 		iItems = this.filterItemsInStorage(iItems);
 		lendings = this.filterLendings(lendings);
-		
-		/* Filtering items by expiration */
-		// if (this.state.showExpired === false){
-		// 	lendings = lendings.filter(lending => this.checkExpirationDate(lending.returnDate) !== -1);
-		// }
+	
 
 		/* Combine lists */
 		let filteredItems = [];
@@ -237,6 +233,7 @@ class Items extends Component{
 
 		/* Change properties */
 		foundItem.name = newItem.name;
+		foundItem.serial = newItem.serial;
 
 		/* make ajax call to also store changes at backend */
 		$.ajax({
