@@ -77,16 +77,16 @@ class StorageListItem extends Component{
 		if (this.state.isEditing){
 			if (this.props.item.inStorage){
 				return (
-					<td>
+					<div>
 						<button onClick={this.onSaveClick}>Tallenna</button>
 						<button onClick={this.onCancelClick}>Peruuta</button>
-					</td>
+					</div>
 				);
 			}
 			return(
-				<td>
+				<div>
 					<button onClick={this.onCancelClick}>Peruuta</button>
-				</td>
+				</div>
 				
 			);
 
@@ -97,18 +97,18 @@ class StorageListItem extends Component{
 		/* items in storage */
 		if(this.props.item.inStorage){
 			return(
-				<td>
+				<div className="StorageListItem__list__item__box--right">
 					<button onClick={this.onEditClick}>Muokkaa</button>
 					<button onClick={this.onDeleteClick}>Poista</button>
-				</td>
+				</div>
 
 			);
 		}
 		/* items not in storage */
 		return(
-			<td>
+			<div className="List__lending--right">
 				<button onClick={this.onEditLendingClick}>Muokkaa</button>
-			</td>
+			</div>
 		);
 
 	}
@@ -122,7 +122,7 @@ class StorageListItem extends Component{
 			if (this.props.item.inStorage === true){
 
 				return(
-					<td>
+					<div className="StorageListItem__list__item__box--left__edit">
 						<form onSubmit={this.onSaveClick}>
 							<input 
 								autoFocus 
@@ -137,12 +137,12 @@ class StorageListItem extends Component{
 
 							
 						</form>
-					</td>
+					</div>
 				);
 			}
 			/* Items not in storage */
 			return (
-					<td className="StorageListItem__container" key={this.props.item._id}>
+					<div className="StorageListItem__list__item__box--right__edit">
 						<form onSubmit={this.onSaveClick}>
 							<input 
 								autoFocus 
@@ -153,7 +153,7 @@ class StorageListItem extends Component{
 
 							
 						</form>
-					</td>
+					</div>
 			);
 		}
 
@@ -161,20 +161,23 @@ class StorageListItem extends Component{
 		/* items in storage */
 		if (this.props.item.inStorage === true){
 			return(
-					<td>
-						<p>{this.props.item.name} - {this.props.item.serial}</p>
-					</td>
+					<div className="StorageListItem__list__item__box--left">
+						<p>Nimi: {this.props.item.name}</p>
+						<p>Sarjanumero: {this.props.item.serial}</p>
+					</div>
 			);
 		}
 
 		/* items not in storage */
 		else {
 			return(
-				<td className="StorageListItem__container">
-					{this.props.item.item.name} - 
-					{this.props.item.item.serial} - 
-					{this.props.item.customer}
-				</td>
+				<div className="List__lending--left">
+					<p>Nimi: {this.props.item.item.name}</p>
+					<p>Sarjanumero: {this.props.item.item.serial}</p>
+					<p>Asiakas: {this.props.item.customer}</p>
+					<p>Yhteystiedot: {this.props.item.contactInfo}</p>
+					
+				</div>
 			);
 		}
 	}
@@ -183,10 +186,10 @@ class StorageListItem extends Component{
 
 	render(){
 		return(
-			<tr className="StorageListItem__container">
+			<li key={this.props.item._id} className="StorageListItem__list__item">
 				{this.renderItems()}
 				{this.renderActionSection()}
-			</tr>
+			</li>
 
 		);
 		}

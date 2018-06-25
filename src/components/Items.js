@@ -375,15 +375,19 @@ class Items extends Component{
 					<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
 				</div>
 
-				<table className="Storage__table">
+				{/*<table className="Storage__table">
 					<ItemsListHeader />
-					
+					*/}
+					<ul>
+						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} editLending={this.editLending}/> )}
+					</ul>
+					{/*
 					<tbody>
 						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} editLending={this.editLending}/>)}
 					</tbody>
-
+					
 				</table>
-
+			*/}
 
 
 
