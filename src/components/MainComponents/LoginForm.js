@@ -23,10 +23,10 @@ class LoginForm extends Component{
 		return(
 			<div>
 				<form onSubmit={this.onLoginFormSubmit}>
-		          <input onChange={this.changeHandler} name="email" type="text" placeholder="username"/>
-		          <input onChange={this.changeHandler} name="password" type="password" placeholder="Password"/>
-		          <input type="submit" value="Login"/>
-		        </form>
+          <input onChange={this.changeHandler} name="email" type="text" placeholder="username"/>
+          <input onChange={this.changeHandler} name="password" type="password" placeholder="Password"/>
+          <input type="submit" value="Login"/>
+		    </form>
 
 			</div>
 		);

@@ -126,9 +126,9 @@ class Return extends Component{
 		let itemsList = this.filterItems(this.state.items);
 		
 		return(
-		<div>
+		<div className="container ">
 			<Menu />
-			<h1>Palautus</h1>
+			<h1 className="PageHeader">Palautus</h1>
 
 			
 			<p>Sarjanumero:</p>

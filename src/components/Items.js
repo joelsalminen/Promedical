@@ -337,7 +337,7 @@ class Items extends Component{
 		const { lendingToEdit } = this.state;
 
 		return (
-			<div>
+			<div className="container">
 				<DialogContainer 
 					id="editLending"
 					aria-labelledby="Edit lending"
@@ -356,7 +356,7 @@ class Items extends Component{
 					}
 
 				</DialogContainer>
-				<h1>Varasto</h1>
+				<h1 className="PageHeader">Varasto</h1>
 				<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 
 				<div>

@@ -2,6 +2,8 @@ import React, { Component } from 'react';
 import Menu from "./MainComponents/MainMenuButton";
 import $ from "jquery";
 
+import './AddItem.css';
+
 /* Sends item data to backend to be stored in a database */
 class AddItem extends Component{
 
@@ -57,9 +59,9 @@ class AddItem extends Component{
 	render(){
 		return(
 
-			<div>
+			<div className="AddItem__container container">
 				<Menu />
-				<h1>Lisää tuote</h1>
+				<h1 className="AddItem__header PageHeader">Lisää tuote</h1>
 
 				{/* <button className="ScanButton">Skannaa</button>*/}
 

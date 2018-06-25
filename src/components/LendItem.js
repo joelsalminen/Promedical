@@ -294,10 +294,10 @@ class LendItem extends Component{
 		let itemsList = this.filterSuggestions(this.state.items);
 
 		return(
-		<div className="LendItemMenu__container">
+		<div className="LendItemMenu__container container">
 			<Menu />
 
-			<h1 className="LendItemMenu__header">Lainaus</h1>
+			<h1 className="LendItemMenu__header PageHeader">Lainaus</h1>
 
 			<p>Tuotteen varastosta hakija:</p>
 			<input name="employee_name" value={this.state.user} onChange={this.onUserChange}/>

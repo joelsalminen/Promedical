@@ -2,3 +2,42 @@
 	background: green;
 	height: 40px;
 }
+
+.PageHeader{
+	padding-top: 0.5em;
+	margin-bottom: 1em;
+	font-size: 2em;
+}
+
+.container{
+	text-align: center;
+	font-size: 1.2em;
+	width: 100%;
+	margin: 0 auto;
+	padding-bottom: 2em;
+}
+
+input{
+	border: 1px solid black;
+	padding: 0.8em;
+	margin-bottom: 1.2em;
+	width: 70%;
+	background: lightgray;
+	color: black;
+}
+
+button{
+	border: 1px solid black;
+	padding: 1.2em;
+	background: gray;
+	color: black;
+	display: inline-block;
+	margin-right: 1em;
+	width: 40%;
+}
+
+.LendItem__button:hover{
+	cursor: pointer;
+	background: white;
+
+}

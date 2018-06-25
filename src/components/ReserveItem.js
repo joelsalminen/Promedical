@@ -4,7 +4,9 @@ import SuggestionList from "./MainComponents/SuggestionList";
 import $ from 'jquery';
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+
 import 'react-datepicker/dist/react-datepicker.css';
+import './ReserveItem.css';
 
 /* Documents reservation information */
 class ReserveItem extends Component{
@@ -205,9 +207,9 @@ class ReserveItem extends Component{
     // console.log(this.state.reservations);
 
 		return(
-		<div id="ReserveItemMenu">
+		<div className="ReserveItem__container">
 			<Menu />
-      <h1>Varaus</h1>
+      <h1 className="ReserveItem__header PageHeader">Varaus</h1>
 
       <p>Asiakas:</p>
 			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.onCustomerChange}/>
@@ -233,19 +235,22 @@ class ReserveItem extends Component{
 	    <DatePicker
 	      selected={this.state.returnDate}
 	      onChange={this.onReturnDateChange} />
-	    <button className="SubmitButton" onClick={this.onAddReservationClick}>Lisää varaus</button>
+	    <button className="ReserveItem__button" onClick={this.onAddReservationClick}>Lisää varaus</button>
 
     {/* Move this to a new component */ }
-	    <ul id="ReservationList">
+	    <ul className="Reservation__list">
 	      {this.state.reservations.map((reservation, index)=>
-        	<li key={index}>
-           <button onClick={() => this.onDeleteReservation(reservation)}>
+        	<li className="ReservationItem__list__item" key={index}>
+           <button 
+            className="Reservation__button--delete Reservation__button"
+            onClick={() => this.onDeleteReservation(reservation)}
+          >
             x
            </button>
             <p>Customer: {reservation.customer}</p>
 
             <ul>
-              <li className="ReservationListItem" key={index}>{reservation.item.name}</li>
+              <li  key={index}>{reservation.item.name}</li>
             </ul>
 
             <p>{reservation.startDate} - {reservation.returnDate}</p>
