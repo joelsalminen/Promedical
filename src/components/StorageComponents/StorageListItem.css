@@ -1,0 +1,31 @@
+.StorageListItem__container{
+	border: 1px solid black;
+	text-align: center;
+
+}
+
+.StorageListItem__container button{
+	float: right;
+	width: 50%;
+	height: 4em;
+	margin: 0;
+}
+
+.StorageListItem__container td{
+    display: table;
+    float: left;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.StorageListItem__container td p{
+    background: #f2f2f2;
+    padding: 40px;
+    text-align: center;
+    display: table-cell;
+    vertical-align: middle;
+}
+
+tr{
+	margin-bottom: 5em;
+}

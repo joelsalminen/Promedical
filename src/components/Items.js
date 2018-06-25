@@ -7,6 +7,8 @@ import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
 import LendingEdit from './StorageComponents/LendingEdit';
 
+import './Storage.css';
+
 class Items extends Component{
 	constructor(props){
 		super(props)
@@ -359,8 +361,8 @@ class Items extends Component{
 				<h1 className="PageHeader">Varasto</h1>
 				<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 
-				<div>
-					<input type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
+				<div className="css-checkbox">
+					<input className="Storage__checkbox" type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
 					<label htmlFor='inStorage'>Varastossa</label>
 
 					<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
@@ -373,7 +375,7 @@ class Items extends Component{
 					<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
 				</div>
 
-				<table id="StorageList">
+				<table className="Storage__table">
 					<ItemsListHeader />
 					
 					<tbody>

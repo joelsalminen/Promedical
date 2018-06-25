@@ -1,5 +1,7 @@
 import React, {Component} from 'react';
 
+import './StorageListItem.css';
+
 // used when printing a list of all items (lent and in storage)
 class StorageListItem extends Component{
 	constructor(props){
@@ -140,7 +142,7 @@ class StorageListItem extends Component{
 			}
 			/* Items not in storage */
 			return (
-					<td className="ReservationListItem" key={this.props.item._id}>
+					<td className="StorageListItem__container" key={this.props.item._id}>
 						<form onSubmit={this.onSaveClick}>
 							<input 
 								autoFocus 
@@ -159,8 +161,8 @@ class StorageListItem extends Component{
 		/* items in storage */
 		if (this.props.item.inStorage === true){
 			return(
-					<td>{this.props.item.name} - {this.props.item.serial}
-
+					<td>
+						<p>{this.props.item.name} - {this.props.item.serial}</p>
 					</td>
 			);
 		}
@@ -168,7 +170,7 @@ class StorageListItem extends Component{
 		/* items not in storage */
 		else {
 			return(
-				<td className="ReservationListItem">
+				<td className="StorageListItem__container">
 					{this.props.item.item.name} - 
 					{this.props.item.item.serial} - 
 					{this.props.item.customer}
@@ -181,7 +183,7 @@ class StorageListItem extends Component{
 
 	render(){
 		return(
-			<tr>
+			<tr className="StorageListItem__container">
 				{this.renderItems()}
 				{this.renderActionSection()}
 			</tr>
