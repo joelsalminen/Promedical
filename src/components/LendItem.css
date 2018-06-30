@@ -1,0 +1,61 @@
+.LendItem{
+    font-family: 'Encode Sans Condensed', sans-serif;
+    font-size: 1.4em;
+}
+
+
+.LendItem__inputFields .react-datepicker__input-container input{
+    width: 90%;
+}
+
+.Dropdown-root:hover {
+    cursor: pointer;
+}
+
+.Dropdown-control {
+    width: 80%;
+    border-color: gray;
+    border-radius: 5px;
+    border-style: solid;
+    border-width: 1px;
+    padding: 10px;
+    margin: 0 auto;
+    margin-bottom: 1em;
+
+}
+
+.Dropdown-option {
+    padding: 5px;
+}
+
+.Dropdown-option:hover {
+    background: gray;
+}
+
+.Dropdown-menu {
+    position: relative;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 1px solid lightgray;
+    border-color: gray;
+    width: 80%;
+    position: absolute;
+    max-height: 150px;
+    overflow-y: auto;
+    z-index: 1;
+    background: gray;
+    
+}
+
+.LendItem__button{
+    width: 50%;
+    height: 2.5em;
+    background: orange;
+    border: 1px solid black;
+    font-size: 1em;
+
+}
+
+.LendItem__DatePicker{
+    margin-bottom: 1em;
+}

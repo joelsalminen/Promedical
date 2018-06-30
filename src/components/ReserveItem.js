@@ -207,42 +207,43 @@ class ReserveItem extends Component{
     // console.log(this.state.reservations);
 
 		return(
-		<div className="ReserveItem__container">
+		<div className="ReserveItem">
 			<Menu />
       <h1 className="ReserveItem__header PageHeader">Varaus</h1>
 
-      <p>Asiakas:</p>
-			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.onCustomerChange}/>
+      <div className="inputFields">
+        <p>Asiakas:</p>
+  			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.onCustomerChange}/>
 
-      <p>Varattava tuote</p>
-			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.onItemChange}/>
-      <ul>
-        {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick}/>)}
-      </ul>
+        <p>Varattava tuote</p>
+  			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.onItemChange}/>
+        <ul>
+          {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick}/>)}
+        </ul>
 
 
-      <ul>
-        {this.state.toReserve.map((item, index) => <li key={index}>{item.name}</li>)}
+        <ul>
+          {this.state.toReserve.map((item, index) => <li key={index}>{item.name}</li>)}
 
-      </ul>
+        </ul>
 
-      <p>Lainauspäivä:</p>
-			<DatePicker
-	      selected={this.state.startDate}
-	      onChange={this.onStartDateChange} />
+        <p>Lainauspäivä:</p>
+  			<DatePicker
+  	      selected={this.state.startDate}
+  	      onChange={this.onStartDateChange} />
 
-      <p>Palautuspäivä:</p>
-	    <DatePicker
-	      selected={this.state.returnDate}
-	      onChange={this.onReturnDateChange} />
-	    <button className="ReserveItem__button" onClick={this.onAddReservationClick}>Lisää varaus</button>
+        <p>Palautuspäivä:</p>
+  	    <DatePicker
+  	      selected={this.state.returnDate}
+  	      onChange={this.onReturnDateChange} />
+      </div>
+	    <button className="bottomButton" onClick={this.onAddReservationClick}>Lisää varaus</button>
 
     {/* Move this to a new component */ }
 	    <ul className="Reservation__list">
 	      {this.state.reservations.map((reservation, index)=>
         	<li className="ReservationItem__list__item" key={index}>
            <button 
-            className="Reservation__button--delete Reservation__button"
             onClick={() => this.onDeleteReservation(reservation)}
           >
             x
@@ -250,7 +251,7 @@ class ReserveItem extends Component{
             <p>Customer: {reservation.customer}</p>
 
             <ul>
-              <li  key={index}>{reservation.item.name}</li>
+              <li key={index}>{reservation.item.name}</li>
             </ul>
 
             <p>{reservation.startDate} - {reservation.returnDate}</p>

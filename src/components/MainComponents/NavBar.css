@@ -1,0 +1,30 @@
+.NavBar{
+
+}
+
+.NavBar__title{
+	font-size: 3em;
+	font-family: 'Encode Sans Condensed', sans-serif;
+	margin-bottom: 0.2em;
+}
+
+.NavBar__list{
+	/*width: 100%;*/
+
+}
+
+.NavBar__list li{
+	
+	font-family: 'Encode Sans Condensed', sans-serif;
+	font-size: 2em;
+	border: 0.1em solid black;
+	width: 80%;
+	padding: 0.4em;
+	margin: 0 auto;
+	margin-bottom: 1em;
+	
+}
+
+a{
+	text-decoration: none;
+}

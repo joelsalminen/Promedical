@@ -6,6 +6,7 @@ import moment from 'moment';
 import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
 import LendingEdit from './StorageComponents/LendingEdit';
+import CheckBox from './StorageComponents/CheckBox.js';
 
 import './Storage.css';
 
@@ -339,7 +340,7 @@ class Items extends Component{
 		const { lendingToEdit } = this.state;
 
 		return (
-			<div className="container">
+			<div className="Items">
 				<DialogContainer 
 					id="editLending"
 					aria-labelledby="Edit lending"
@@ -359,20 +360,31 @@ class Items extends Component{
 
 				</DialogContainer>
 				<h1 className="PageHeader">Varasto</h1>
-				<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
+				<div className="inputFields">
+					<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
+				</div>
+				<CheckBox />
+				<div className="Item__checkboxes">
+					<div>
+						<input className="Storage__checkbox" type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
+						<label htmlFor='inStorage'>Varastossa</label>
+					</div>
 
-				<div className="css-checkbox">
-					<input className="Storage__checkbox" type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
-					<label htmlFor='inStorage'>Varastossa</label>
+					<div>
+						<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
+						<label htmlFor='notInStorage'>Asiakkaalla</label>
+					</div>
 
-					<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
-					<label htmlFor='notInStorage'>Asiakkaalla</label>
+					<div>
+						<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.showExpired} />
+						<label htmlFor='expired'>Erääntyneet tuotteet</label>
+					</div>
 
-					<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.showExpired} />
-					<label htmlFor='expired'>Erääntyneet tuotteet</label>
+					<div>
+						<input type="checkbox" name="notExpired" onChange={this.onNotExpiredChange} defaultChecked={this.state.showNotExpired} />
+						<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
+					</div>
 
-					<input type="checkbox" name="notExpired" onChange={this.onNotExpiredChange} defaultChecked={this.state.showNotExpired} />
-					<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
 				</div>
 
 				{/*<table className="Storage__table">

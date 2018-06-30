@@ -1,0 +1,44 @@
+.Items{
+    font-family: 'Encode Sans Condensed', sans-serif;
+    font-size: 1.4em;
+}
+
+
+.StorageListItem{
+	border: 1px solid black;
+	margin-bottom: 1em;
+}
+
+.EditBox--left{
+	background: red;
+}
+
+.EditBox--right{
+	background: green;
+}
+
+.StorageListItem__content{
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+.EditBox{
+	margin-top: 0.5em;
+	/*margin-bottom: 0.5em;*/
+
+}
+.EditBox input{
+	margin-bottom: 0.5em;
+}
+
+.Buttons__Button{
+	width: 50%;
+	height: 1.5em;
+	background: orange;
+    border: 1px solid black;
+    font-size: 1em;
+}
+.Buttons__wideButton{
+	width: 100%;
+}
+
+/* Joel Salminen - joel.salminen@student.lut.fi */

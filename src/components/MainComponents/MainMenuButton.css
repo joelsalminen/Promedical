@@ -1,13 +1,12 @@
 .MainMenuButton__container{
-	
-	
-}
-
-.MainMenuButton__button {
+	background: orange;
+	padding: 0.5em;
+	border: 1px solid black;
 
 }
 
-.MainMenuButton__container a{
-
+.MainMenuButton {
+	color: black;
+	text-align: left;
 }
 

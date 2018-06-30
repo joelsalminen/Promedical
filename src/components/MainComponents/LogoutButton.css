@@ -1,7 +1,11 @@
-.LogoutButton__container{
+.LogoutButton{
 
 }
 
 .LogoutButton__button {
-
+	background: orange;
+	border: 1px solid orange;
+	width: 100%;
+	padding: 1em;
+	margin-bottom: 1em;
 }

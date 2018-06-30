@@ -7,10 +7,10 @@ import './NavBar.css';
 class NavBar extends Component{
 	render(){
 		return(
-			<nav className="NavBar__menu">
+			<nav className="NavBar">
 				<div>
-					<h1 className="NavBar__menu__title">Promedical</h1>
-					<ul>
+					<h1 className="NavBar__title">Promedical</h1>
+					<ul className="NavBar__list">
 
 						<li><Link to="/lainaus"><div><p>Lainaus</p></div> </Link></li>
 						<li><Link to="/palautus"><div><p>Palautus</p></div></Link></li>

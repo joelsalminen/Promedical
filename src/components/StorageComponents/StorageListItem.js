@@ -78,8 +78,18 @@ class StorageListItem extends Component{
 			if (this.props.item.inStorage){
 				return (
 					<div>
-						<button onClick={this.onSaveClick}>Tallenna</button>
-						<button onClick={this.onCancelClick}>Peruuta</button>
+						<button 
+							onClick={this.onSaveClick}
+							className="Buttons__Button"
+						>
+							Tallenna
+						</button>
+						<button 
+							onClick={this.onCancelClick} 
+							className="Buttons__Button"
+						>
+							Peruuta
+						</button>
 					</div>
 				);
 			}
@@ -97,9 +107,19 @@ class StorageListItem extends Component{
 		/* items in storage */
 		if(this.props.item.inStorage){
 			return(
-				<div className="StorageListItem__list__item__box--right">
-					<button onClick={this.onEditClick}>Muokkaa</button>
-					<button onClick={this.onDeleteClick}>Poista</button>
+				<div className="StorageListItem__Buttons">
+					<button 
+						onClick={this.onEditClick}
+						className="Buttons__Button--edit Buttons__Button"
+					>
+						Muokkaa
+					</button>
+					<button 
+						onClick={this.onDeleteClick}
+						className="Buttons__Button--delete Buttons__Button"
+					>
+						Poista
+					</button>
 				</div>
 
 			);
@@ -107,7 +127,12 @@ class StorageListItem extends Component{
 		/* items not in storage */
 		return(
 			<div className="List__lending--right">
-				<button onClick={this.onEditLendingClick}>Muokkaa</button>
+				<button 
+					onClick={this.onEditLendingClick}
+					className="Buttons__Button Buttons__wideButton"
+				>
+					Muokkaa
+				</button>
 			</div>
 		);
 
@@ -122,7 +147,7 @@ class StorageListItem extends Component{
 			if (this.props.item.inStorage === true){
 
 				return(
-					<div className="StorageListItem__list__item__box--left__edit">
+					<div className="EditBox inputFields">
 						<form onSubmit={this.onSaveClick}>
 							<input 
 								autoFocus 
@@ -142,7 +167,7 @@ class StorageListItem extends Component{
 			}
 			/* Items not in storage */
 			return (
-					<div className="StorageListItem__list__item__box--right__edit">
+					<div className="EditBox--right">
 						<form onSubmit={this.onSaveClick}>
 							<input 
 								autoFocus 
@@ -161,7 +186,7 @@ class StorageListItem extends Component{
 		/* items in storage */
 		if (this.props.item.inStorage === true){
 			return(
-					<div className="StorageListItem__list__item__box--left">
+					<div className="StorageListItem__content">
 						<p>Nimi: {this.props.item.name}</p>
 						<p>Sarjanumero: {this.props.item.serial}</p>
 					</div>
@@ -171,7 +196,7 @@ class StorageListItem extends Component{
 		/* items not in storage */
 		else {
 			return(
-				<div className="List__lending--left">
+				<div className="StorageListItem__content">
 					<p>Nimi: {this.props.item.item.name}</p>
 					<p>Sarjanumero: {this.props.item.item.serial}</p>
 					<p>Asiakas: {this.props.item.customer}</p>
@@ -186,7 +211,7 @@ class StorageListItem extends Component{
 
 	render(){
 		return(
-			<li key={this.props.item._id} className="StorageListItem__list__item">
+			<li key={this.props.item._id} className="StorageListItem">
 				{this.renderItems()}
 				{this.renderActionSection()}
 			</li>

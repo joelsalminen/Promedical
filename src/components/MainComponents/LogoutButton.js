@@ -5,7 +5,7 @@ class LogoutButton extends Component{
 
 	render(){
 		return (
-			<div className="LogoutButton__container">
+			<div className="LogoutButton">
 				<button 
 					className="LogoutButton__button"
 					onClick={this.props.onLogoutClick}

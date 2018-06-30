@@ -59,27 +59,22 @@ class AddItem extends Component{
 	render(){
 		return(
 
-			<div className="AddItem__container container">
+			<div className="AddItem container">
 				<Menu />
 				<h1 className="AddItem__header PageHeader">Lisää tuote</h1>
 
 				{/* <button className="ScanButton">Skannaa</button>*/}
 
-				<p>Tuotteen nimi:</p>
-				<input name="name" value={this.state.itemName} placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>
-				
-				<p>Sarjanumero:</p>
-				<input name="serial_number" value={this.state.serial} placeholder="Sarjanumero" onChange={this.serialChangeHandler}/>
-				
-				{/*
-				<p>Lukumäärä:</p>
-				<input name="amount" placeholder="Lukumäärä" />
-				*/}
-				
+				<div className="inputFields">
+					<p>Tuotteen nimi:</p>
+					<input name="name" value={this.state.itemName} placeholder="Tuotteen nimi" onChange={this.nameChangeHandler}/>
+					
+					<p>Sarjanumero:</p>
+					<input name="serial_number" value={this.state.serial} placeholder="Sarjanumero" onChange={this.serialChangeHandler}/>
+				</div>
 
-				<br/>
-				<br/>
-				<button className="SubmitButton" onClick={this.submitClickHandler}>Lisää tuote</button>
+			
+				<button className="bottomButton" onClick={this.submitClickHandler}>Lisää tuote</button>
 				
 				
 			</div>

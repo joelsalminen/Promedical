@@ -6,7 +6,7 @@ import './MainMenuButton.css';
 const MainMenuButton = (props) =>
 	<nav>
 		<div className="MainMenuButton__container">
-				<Link to="/"><div className="MainMenuButton__button">Takaisin</div></Link>
+				<Link to="/"><div className="MainMenuButton">Takaisin</div></Link>
 		</div>
 	</nav>;
 
