@@ -3,6 +3,8 @@ import React, { Component } from 'react';
 import SuggestionList from './ReturnComponents/ReturnSuggestionList'
 import $ from 'jquery';
 
+import './ReturnItem.css'
+
 
 class Return extends Component{
 	constructor(props){
@@ -126,24 +128,26 @@ class Return extends Component{
 		let itemsList = this.filterItems(this.state.items);
 		
 		return(
-		<div className="container ">
+		<div className="ReturnItem">
 			<Menu />
 			<h1 className="PageHeader">Palautus</h1>
 
-			
-			<p>Sarjanumero:</p>
-			<input name="serial_number" type="text" placeholder="serial number" onChange={this.onSerialChange}/>
+			<div className="inputFields">
+				<p>Sarjanumero:</p>
+				<input name="serial_number" type="text" placeholder="serial number" onChange={this.onSerialChange}/>
+			</div>
+
+
+
 			<ul>
 				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
 			</ul>
 
-			<p>---------------------------------------------</p>
+
 			<ul>
 				{this.state.toReturn.map((item, index)=><li key={index}>{item.item.name}</li>)}
 			</ul>
-			<br/>
-			<br/>
-			<button className="SubmitButton" onClick={this.onReturnItemClick}>Palauta</button>
+			<button className="bottomButton" onClick={this.onReturnItemClick}>Palauta</button>
 
 			
 		</div>);

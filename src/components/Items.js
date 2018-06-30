@@ -7,6 +7,7 @@ import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
 import LendingEdit from './StorageComponents/LendingEdit';
 import CheckBox from './StorageComponents/CheckBox/CheckBox.js';
+import Menu from "./MainComponents/MainMenuButton";
 
 import './Storage.css';
 
@@ -358,6 +359,7 @@ class Items extends Component{
 
 		return (
 			<div className="Items">
+				<Menu />
 				<DialogContainer 
 					id="editLending"
 					aria-labelledby="Edit lending"

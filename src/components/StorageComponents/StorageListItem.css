@@ -35,6 +35,7 @@
 	height: 1.5em;
 	background: orange;
     border: 1px solid black;
+    border-top-width: 2px;
     font-size: 1em;
 }
 .Buttons__wideButton{

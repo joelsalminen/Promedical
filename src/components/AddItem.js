@@ -59,11 +59,9 @@ class AddItem extends Component{
 	render(){
 		return(
 
-			<div className="AddItem container">
+			<div className="AddItem">
 				<Menu />
 				<h1 className="AddItem__header PageHeader">Lisää tuote</h1>
-
-				{/* <button className="ScanButton">Skannaa</button>*/}
 
 				<div className="inputFields">
 					<p>Tuotteen nimi:</p>
