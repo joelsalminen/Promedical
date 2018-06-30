@@ -8,6 +8,7 @@ import ReserveItem from './components/ReserveItem';
 import ReturnItem from './components/ReturnItem';
 
 import './App.css';
+import './Reset.css';
 
 import {
   BrowserRouter as Router, 

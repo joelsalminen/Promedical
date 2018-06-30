@@ -1,16 +1,7 @@
 .LogoutButton__container{
-	/*border: 0.1em solid black;*/
-	text-align: center;
-	height: 5em;
-	width: 100%;
+
 }
 
 .LogoutButton__button {
-	/*position: absolute;*/
-	position: absolute;
-	float: right;
-	right: 0em;
-	width: 10em;
-	height: 6em;
-	border: 0.3em solid black;
+
 }
