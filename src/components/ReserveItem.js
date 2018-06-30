@@ -144,6 +144,14 @@ class ReserveItem extends Component{
 
     });
     // reset input fields
+
+    const newItems = this.state.items.map(item => Object.assign({}, item));
+    this.state.toReserve.forEach(object => {
+      newItems.push(object);
+    });
+    
+    this.setState({ items: newItems });
+
     this.setState({
       start: moment().format().substring(0,10),
       return: moment().add(7, 'days').format().substring(0,10),
@@ -212,6 +220,15 @@ class ReserveItem extends Component{
     }));
   }
 
+  onToReserveItemClick = (itemToRemove) => {
+    const newToReserve = this.state.toReserve.filter(item => 
+      {return item._id !== itemToRemove._id;}
+    );
+    const newItems = this.state.items.map(item => Object.assign({}, item));
+    newItems.push(itemToRemove);
+    this.setState({ toReserve: newToReserve, items: newItems });
+  }
+
 	render(){
     const itemsList = this.filterItems(this.state.items);
     // console.log(this.state.reservations);
@@ -265,7 +282,8 @@ class ReserveItem extends Component{
           {toReserve.map(item => 
             <li 
               key={item._id}
-              className="toLendItem" 
+              className="toLendItem"
+              onClick={() => this.onToReserveItemClick(item)}
             >
               <p>{item.name}</p>
               <p>{item.serial}</p>
