@@ -14,7 +14,8 @@ class ToReturnList extends Component{
 				onClick={this.handleClickAction} 
 				className="toReturnItem" 
 		>
-			{lending.item.name}
+			<p>{lending.item.name}</p>
+			<p>{lending.item.serial}</p>
 		</li>
 		);
 	}

@@ -9,7 +9,14 @@ class ReturnSuggestionList extends Component{
 
 	render(){
 		return(
-			<li className="ItemSuggestion ItemSuggestion--return" onClick={this.handleClick} key={this.props.index}>{this.props.item.item.name} ({this.props.item.item.serial})</li>
+			<li 
+				className="ItemSuggestion ItemSuggestion--return" 
+				onClick={this.handleClick} 
+				key={this.props.index}
+			>
+				<p>{this.props.item.item.name}</p> 
+				<p>{this.props.item.item.serial}</p>
+			</li>
 		);
 	}
 }

@@ -144,6 +144,13 @@ class Return extends Component{
 		const { showList, toReturn } = this.state;
 		/* Filter items based on Lend Item Name field input */
 		const itemsList = this.filterItems();
+
+		const emptyParagraph = 
+		<p 
+			style={{fontWeight: 'bold', margin: '0.5em'}}
+		> 
+			---tyhjä--- 
+		</p>
 		
 		return(
 		<div className="ReturnItem">
@@ -155,38 +162,49 @@ class Return extends Component{
 
 			<div className="inputFields">
 				<p>Filtterihaku:</p>
-				<input name="serial_number" type="text" placeholder="serial number" onChange={this.onSerialChange}/>
+				<input name="serial_number" type="text" placeholder="haku" onChange={this.onSerialChange}/>
 			</div>
 
 
+			{/* ---------------- Suggestions items list ----------------*/}
 			<div className="suggestionButton__container">
 				<button 
-					className="SuggestionItem__suggestionButton"
+					className="SuggestionItem__suggestionButton SuggestionItem__suggestionButton--lend"
 					onClick={this.onSuggestionButtonClick}
 				>
 					{showList ? 'Piilota': 'Näytä'}
 				</button>
 			</div>
 
-			{showList && 
-				<ul className="ReturnItem__suggestionItems">
-					{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
-				</ul>
-			}
+				{showList && 
+					<div className="LendItem__suggestionList">
+						<p>Asiakkaalla olevat:</p>
+						{!(itemsList.length > 0) && emptyParagraph}
+						<ul>
+							{itemsList.map(item => <SuggestionList key={item._id} item={item} clickAction={this.onSuggestionClick} />)}
+						</ul>
+					</div>
+				}
 
-			<div className="ReturnItems__toReturnList">
-				<h2>Palautettavat tuotteet:</h2>
+			{/* ---------------- toLend items list ----------------*/}
+			<div className={showList ? "LendItem__toLendItems ret" : "LendItem__toLendItems--wide ret"}>
+				<p>Palautettavat:</p>
+				{!(toReturn.length > 0) && emptyParagraph}
 				<ul>
-					{toReturn.map(item =>
+					{toReturn.map(lending => 
 						<ToReturnList 
 							handleClick={this.onToReturnClick}
-							lending={item}
-							key={item._id}
+							lending={lending}
+							key={lending._id}
 
 						/>
 					)}
+
 				</ul>
 			</div>
+			<div className="ReturnButton__container">
+			</div>
+
 			<button className="bottomButton" onClick={this.onReturnItemClick}>Palauta</button>
 
 			

@@ -23,6 +23,7 @@ class ReserveItem extends Component{
       reservations: [],
       items: [],
       toReserve: [],
+      showList: true,
 		}
 
     this.filterItems = this.filterItems.bind(this);
@@ -73,11 +74,15 @@ class ReserveItem extends Component{
 
   /* Filters items on a list based input data of Lend Item Name */
   filterItems(items){
-    items = items.filter((item)=> item.name.toLowerCase().indexOf(this.state.item.toLowerCase()) !== -1);
-    if (this.state.item === ""){
-      return [];
-    }
-    return items;
+    const { item } = this.state;
+    let itemsList
+    /* filter out items that don't include the same data that is in this.state.itemName */
+    itemsList = items.filter(object => {
+      const data = object.serial.toString() + object.name;
+      return data.indexOf(item) !== -1
+    });
+    return itemsList;
+
   }
 
   onDeleteReservation(reservation){
@@ -201,10 +206,24 @@ class ReserveItem extends Component{
     this.setState({items, toReserve});
 
   }
+  onSuggestionButtonClick = () =>{
+    this.setState(prevState => ({
+      showList: !prevState.showList
+    }));
+  }
 
 	render(){
     const itemsList = this.filterItems(this.state.items);
     // console.log(this.state.reservations);
+
+    const { showList, toReserve } = this.state;
+
+    const emptyParagraph = 
+    <p 
+      style={{fontWeight: 'bold', margin: '0.5em'}}
+    > 
+      ---tyhjä--- 
+    </p>
 
 		return(
 		<div className="ReserveItem">
@@ -216,17 +235,47 @@ class ReserveItem extends Component{
   			<input value={this.state.customer} name="customer" placeholder="Asiakas" onChange={this.onCustomerChange}/>
 
         <p>Varattava tuote</p>
-  			<input value={this.state.item} name="item" placeholder="tuote" onChange={this.onItemChange}/>
+  			<input value={this.state.item} name="item" placeholder="haku" onChange={this.onItemChange}/>
+
+    {/* ---------------- Suggestions items list ----------------*/}
+      <div className="suggestionButton__container">
+        <button 
+          className="SuggestionItem__suggestionButton SuggestionItem__suggestionButton--lend"
+          onClick={this.onSuggestionButtonClick}
+        >
+          {showList ? 'Piilota': 'Näytä'}
+        </button>
+      </div>
+
+        {showList && 
+          <div className="LendItem__suggestionList">
+            <p>Tuotteet:</p>
+            {!(itemsList.length > 0) && emptyParagraph}
+            <ul>
+              {itemsList.map(item => <SuggestionList key={item._id} item={item} clickAction={this.onSuggestionClick} />)}
+            </ul>
+          </div>
+        }
+
+      {/* ---------------- toLend items list ----------------*/}
+      <div className={showList ? "LendItem__toLendItems ret" : "LendItem__toLendItems--wide ret"}>
+        <p>Varattavat:</p>
+        {!(toReserve.length > 0) && emptyParagraph}
         <ul>
-          {itemsList.map((item, index)=> <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick}/>)}
+          {toReserve.map(item => 
+            <li 
+              key={item._id}
+              className="toLendItem" 
+            >
+              <p>{item.name}</p>
+              <p>{item.serial}</p>
+            </li>
+          )}
+
         </ul>
+      </div>
 
-
-        <ul>
-          {this.state.toReserve.map((item, index) => <li key={index}>{item.name}</li>)}
-
-        </ul>
-
+      <div style={{clear: 'both'}}></div>
         <p>Lainauspäivä:</p>
   			<DatePicker
   	      selected={this.state.startDate}

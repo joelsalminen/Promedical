@@ -24,10 +24,9 @@
 
 .toReturnItem{
 	border: 1px solid black;
-	width: 80%;
+	width: 90%;
 	margin: 0 auto;
-	padding-top: 0.2em;
-	padding-bottom: 0.2em;
+	padding: 0.9em;
 }
 
 
@@ -38,17 +37,22 @@
 
 .suggestionButton__container{
 	position: relative;
-	margin-bottom: 1.6em;
+	margin-bottom: 2.7em;
 
 }
 .SuggestionItem__suggestionButton{
 	position: absolute;
 	right: 10%;
 	background: orange;
-	height: 1.5em;
+	height: 2.5em;
+	width: 40%;
 	background: orange;
 	color: black;
     border: 1px solid black;
     font-size: 1em;
 }
 
+.ReturnButton__container{
+	margin-bottom: 1em;
+	clear: both;
+}
