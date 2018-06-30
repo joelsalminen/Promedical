@@ -13,7 +13,8 @@ class Return extends Component{
 		this.state = {
 			serial: "",
 			items: [],
-			toReturn: []
+			toReturn: [],
+			showList: true
 		}
 
 		this.filterItems = this.filterItems.bind(this);
@@ -42,15 +43,16 @@ class Return extends Component{
 
 
 	/* Filters items on a list based input data of Lend Item Name */
-	filterItems(items) {
-		/* filter out serial numbers that don't include the same data as this.state.serial */
-		items = items.filter((item) => item.item.serial.toString().indexOf(this.state.serial) !== -1);
+	filterItems() {
+		const { items, serial } = this.state;
+		let itemsList
+		/* filter out items that don't include the same data as this.state.serial */
+		itemsList = items.filter((item) => {
+			const data = item.item.serial.toString() + item.item.name;
+			return data.indexOf(serial) !== -1
+		});
 
-		/* The list of items is only shown when some input typed into Lend Item Name field*/
-		if (this.state.serial === ""){
-			return [];	
-		}
-		return items;
+		return itemsList;
 	}
 
 
@@ -122,15 +124,26 @@ class Return extends Component{
 		});
 	}
 
+	onSuggestionButtonClick = () => {
+		this.setState(prevState => ({
+			showList: !prevState.showList
+		}));
+	}
+
 
 	render(){
+
+		const { showList } = this.state;
 		/* Filter items based on Lend Item Name field input */
-		let itemsList = this.filterItems(this.state.items);
+		const itemsList = this.filterItems();
 		
 		return(
 		<div className="ReturnItem">
 			<Menu />
 			<h1 className="PageHeader">Palautus</h1>
+
+
+
 
 			<div className="inputFields">
 				<p>Sarjanumero:</p>
@@ -138,10 +151,21 @@ class Return extends Component{
 			</div>
 
 
+			<div className="suggestionButton__container">
+				<button 
+					className="SuggestionItem__suggestionButton"
+					onClick={this.onSuggestionButtonClick}
+				>
+					{showList ? 'Piilota': 'Näytä'}
+				</button>
+			</div>
 
-			<ul>
-				{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
-			</ul>
+			{showList && 
+				<ul className="ReturnItem__list">
+					{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
+				</ul>
+			}
+
 
 
 			<ul>

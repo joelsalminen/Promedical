@@ -2,3 +2,20 @@
 	font-family: 'Encode Sans Condensed', sans-serif;
 	font-size: 1.4em;
 }
+
+.ReturnItem__list{
+	width: 80%;
+	border: 1px solid black;
+	margin: 0 auto;
+	margin-bottom: 1em;
+}
+
+.suggestionButton__container{
+	position: relative;
+	margin-bottom: 1.5em;
+
+}
+.SuggestionItem__suggestionButton{
+	position: absolute;
+	right: 10%;
+}
