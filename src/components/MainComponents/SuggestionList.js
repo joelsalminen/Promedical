@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import './SuggestionList.css';
 
 
 /* Prints suggestion list items */
@@ -9,7 +10,14 @@ class SuggestionList extends Component{
 
 	render(){
 		return(
-			<li className="ItemSuggestion" onClick={this.handleClick} key={this.props.item._id}>{this.props.item.name} {this.props.item.serial}</li>
+			<li 
+				className="ItemSuggestion ItemSuggestion--lend" 
+				onClick={this.handleClick} 
+				key={this.props.item._id}
+			>
+				<p>{this.props.item.name}</p> 
+				<p>{this.props.item.serial}</p>
+			</li>
 		);
 	}
 }

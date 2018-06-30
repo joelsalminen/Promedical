@@ -1,8 +1,9 @@
 import Menu from "./MainComponents/MainMenuButton";
 import React, { Component } from 'react';
-import SuggestionList from './ReturnComponents/ReturnSuggestionList'
 import $ from 'jquery';
 
+import SuggestionList from './ReturnComponents/ReturnSuggestionList'
+import ToReturnList from './ReturnComponents/ToReturnList.js';
 import './ReturnItem.css'
 
 
@@ -84,7 +85,6 @@ class Return extends Component{
 		this.state.toReturn.forEach((lending) => {
 
 			let itemData = lending.item;
-			console.log(itemData);
 
 			/* Ajax call that adds an item back to Items */
 			$.ajax({
@@ -130,10 +130,18 @@ class Return extends Component{
 		}));
 	}
 
+	onToReturnClick = (lendingToRemove) => {
+		const newToReturn = this.state.toReturn.filter(lending => 
+			{return lending.item._id !== lendingToRemove.item._id;}
+		);
+		const newItems = this.state.items.map(item => Object.assign({}, item));
+		newItems.push(lendingToRemove);
+		this.setState({ toReturn: newToReturn, items: newItems });
+	}
 
 	render(){
 
-		const { showList } = this.state;
+		const { showList, toReturn } = this.state;
 		/* Filter items based on Lend Item Name field input */
 		const itemsList = this.filterItems();
 		
@@ -146,7 +154,7 @@ class Return extends Component{
 
 
 			<div className="inputFields">
-				<p>Sarjanumero:</p>
+				<p>Filtterihaku:</p>
 				<input name="serial_number" type="text" placeholder="serial number" onChange={this.onSerialChange}/>
 			</div>
 
@@ -161,16 +169,24 @@ class Return extends Component{
 			</div>
 
 			{showList && 
-				<ul className="ReturnItem__list">
+				<ul className="ReturnItem__suggestionItems">
 					{itemsList.map((item, index)=> <SuggestionList item={item} key={index} clickAction={this.onSuggestionClick}/> )}
 				</ul>
 			}
 
+			<div className="ReturnItems__toReturnList">
+				<h2>Palautettavat tuotteet:</h2>
+				<ul>
+					{toReturn.map(item =>
+						<ToReturnList 
+							handleClick={this.onToReturnClick}
+							lending={item}
+							key={item._id}
 
-
-			<ul>
-				{this.state.toReturn.map((item, index)=><li key={index}>{item.item.name}</li>)}
-			</ul>
+						/>
+					)}
+				</ul>
+			</div>
 			<button className="bottomButton" onClick={this.onReturnItemClick}>Palauta</button>
 
 			

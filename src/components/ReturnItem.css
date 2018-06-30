@@ -3,19 +3,52 @@
 	font-size: 1.4em;
 }
 
-.ReturnItem__list{
+.ReturnItem h2{
+	width: 80%;
+	margin: 0 auto;
+	text-align: left;
+}
+
+.ReturnItem__suggestionItems{
 	width: 80%;
 	border: 1px solid black;
+	border-right-width: 2px;
+	border-left-width: 2px;
 	margin: 0 auto;
 	margin-bottom: 1em;
 }
 
+.ReturnItems__toReturnList{
+	margin-bottom: 2em;
+}
+
+.toReturnItem{
+	border: 1px solid black;
+	width: 80%;
+	margin: 0 auto;
+	padding-top: 0.2em;
+	padding-bottom: 0.2em;
+}
+
+
+.toReturnItem:hover{
+	cursor: pointer;
+	background: yellow;
+}
+
 .suggestionButton__container{
 	position: relative;
-	margin-bottom: 1.5em;
+	margin-bottom: 1.6em;
 
 }
 .SuggestionItem__suggestionButton{
 	position: absolute;
 	right: 10%;
+	background: orange;
+	height: 1.5em;
+	background: orange;
+	color: black;
+    border: 1px solid black;
+    font-size: 1em;
 }
+

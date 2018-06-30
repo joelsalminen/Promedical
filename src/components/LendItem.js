@@ -27,7 +27,8 @@ class LendItem extends Component{
       start: "",
       return: "",
       items: [],
-      toLend: []
+      toLend: [],
+      showList: false
 		}
 
 		this.filterSuggestions = this.filterSuggestions.bind(this);
@@ -96,10 +97,6 @@ class LendItem extends Component{
 		/* filter out items that don't include the same data that is in this.state.itemName */
 		items = items.filter((item) => item.name.toLowerCase().indexOf(this.state.itemName.toLowerCase()) !== -1);
 		
-		/* The list of items is only shown when some input typed into Lend Item Name field*/
-		if (this.state.itemName === ""){
-			return [];	
-		}
 
 		return items;
 	}
@@ -174,12 +171,20 @@ class LendItem extends Component{
 	}
 
 	resetFields(){
+		const { items, toLend } = this.state;
+		const newItems = [];
+		toLend.forEach(item => {
+			newItems.push(item);
+		});
+
 		this.setState({
 			lendItem: "Valitse",
 			itemName: "", 
 			customer: "",
 			contactInfo: "", 
 			price: "0",
+			items: newItems,
+			showList: false,
 			toLend: [],
 			startDate: moment(),
 			returnDate: moment().add(7, 'days')
@@ -199,7 +204,8 @@ class LendItem extends Component{
 	onItemNameChange(evt){
 		this.setState({
 			itemName: evt.target.value,
-			error: ''
+			error: '',
+			showList: true
 		});
 	}
 
@@ -251,6 +257,15 @@ class LendItem extends Component{
 		this.setState({items, toLend});
 	}
 
+	onToLendClick = (itemToRemove) => {
+		const newToLend = this.state.toLend.filter(item => 
+			{return item._id !== itemToRemove._id;}
+		);
+		const newItems = this.state.items.map(item => Object.assign({}, item));
+		newItems.push(itemToRemove);
+		this.setState({ toLend: newToLend, items: newItems });
+	}
+
 	/* Fired whenever Start date field data changes */
   onStartDateChange(date){
     this.setState({
@@ -271,6 +286,12 @@ class LendItem extends Component{
     });
     
   }
+  onSuggestionButtonClick = () => {
+		this.setState(prevState => ({
+			showList: !prevState.showList
+		}));
+  }
+
 
 
 	renderPrice(){
@@ -290,30 +311,80 @@ class LendItem extends Component{
 			"Koekäyttö", "Sijaislaite (maksullinen)", "Sijaislaite (maksuton)"
 		];
 
+		const { 
+			showList,
+			error,
+			items,
+			itemName,
+			toLend
+		} = this.state;
+
 		/* Filter items based on Lend Item Name field input */
-		let itemsList = this.filterSuggestions(this.state.items);
+		let itemsList = this.filterSuggestions(items);
+
+		const emptyParagraph = 
+		<p 
+			style={{fontWeight: 'bold', margin: '0.5em'}}
+		> 
+			---tyhjä--- 
+		</p>
+
 
 		return(
 		<div className="LendItem">
 			<Menu />
 
 			<h1 className="LendItem__header PageHeader">Lainaus</h1>
+			{/* ---------------- Inputs start  ----------------*/}
 			<div className="inputFields">
+
 
 				<p>Tuotteen varastosta hakija:</p>
 				<input name="employee_name" value={this.state.user} onChange={this.onUserChange}/>
 
 				<p>Lainattava tuote:</p>
-				<ul>
-					{this.state.toLend.map((item, index) => <li key={index}>{item.name} </li> )}
-				</ul>
+				<input name="item_name" value={itemName} onChange={this.onItemNameChange}/>
 
-				<input name="item_name" value={this.state.itemName} onChange={this.onItemNameChange}/>
-				<ul>
-					{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
-				</ul>
 
-				<p>Asiakas:</p>
+				{/* ---------------- Suggestions items list ----------------*/}
+				<div className="suggestionButton__container">
+					<button 
+						className="SuggestionItem__suggestionButton SuggestionItem__suggestionButton--lend"
+						onClick={this.onSuggestionButtonClick}
+					>
+						{showList ? 'Piilota': 'Näytä'}
+					</button>
+				</div>
+				{showList && 
+					<div className="LendItem__suggestionList">
+						<p>Varastossa:</p>
+						{!(itemsList.length > 0) && emptyParagraph}
+						<ul>
+							{itemsList.map((item, index) => <SuggestionList key={index} item={item} clickAction={this.onSuggestionClick} />)}
+						</ul>
+					</div>
+				}
+
+				{/* ---------------- toLend items list ----------------*/}
+				<div className={showList ? "LendItem__toLendItems" : "LendItem__toLendItems--wide"}>
+					<p>Lainattavat:</p>
+					{!(toLend.length > 0) && emptyParagraph}
+					<ul>
+						{toLend.map(item => 
+							<li 
+								className="toLendItem" 
+								key={item._id}
+								onClick={() => this.onToLendClick(item)}
+							>
+								<p>{item.name}</p>
+								<p>{item.serial}</p>
+							</li> 
+						)}
+
+					</ul>
+				</div>
+
+				<p style={{clear: 'both'}}>Asiakas:</p>
 				<input name="customer_name" value={this.state.customer} onChange={this.onCustomerNameChange}/>
 				
 
@@ -328,6 +399,8 @@ class LendItem extends Component{
 		        value={this.state.lendType} 
 		      />
 	      </div>
+
+
 	     	<div>
 					<p>Lainauksen hinta:</p>
 					<input 
@@ -353,9 +426,9 @@ class LendItem extends Component{
 		    </div>
 
 			</div>
-
+	    {/* ---------------- Inputs end ----------------*/}
 			
-			<p>{this.state.error}</p>
+			<p>{error}</p>
 			<div>
 				<button className="LendItem__button bottomButton" onClick={this.onLendItemClick}>Kirjaa lainaus</button>
 				<button className="LendItem__button bottomButton" onClick={this.resetFields}>Tyhjennä</button>

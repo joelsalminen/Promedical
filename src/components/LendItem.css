@@ -54,3 +54,42 @@
 .LendItem__button{
     width: 50%;
 }
+
+
+.LendItem__suggestionList{
+    float: left;
+    width: 50%;
+}
+
+.LendItem__toLendItems{
+    float: right;
+    width: 50%;
+}
+
+.LendItem__toLendItems--wide{
+    clear: both;
+    width: 80%;
+    margin: 0 auto;
+}
+
+.toLendItem{
+    /*width: 40%;*/
+    width: 90%;
+    padding: 0.9em;
+    border: 1px solid black;
+    background: red;
+}
+
+.toLendItem:hover{
+    background: white;
+    cursor: pointer;
+}
+
+.LendItem__toLendItems--wide .toLendItem{
+    width: 100%;
+    /*margin: 0 auto;*/
+}
+
+.SuggestionItem__suggestionButton--lend{
+    left: 10%;
+}
