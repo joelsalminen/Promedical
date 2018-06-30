@@ -6,7 +6,7 @@ import moment from 'moment';
 import StorageListItem from './StorageComponents/StorageListItem';
 import ItemsListHeader from './StorageComponents/ItemsListHeader';
 import LendingEdit from './StorageComponents/LendingEdit';
-import CheckBox from './StorageComponents/CheckBox.js';
+import CheckBox from './StorageComponents/CheckBox/CheckBox.js';
 
 import './Storage.css';
 
@@ -18,12 +18,12 @@ class Items extends Component{
 			serialSearch: "",
 			inStorage: true,
 			notInStorage: true,
-			showExpired: true,
-			showNotExpired: true,
+			expired: true,
+			notExpired: true,
 			items: [],
 			// lendings: [],
 			lendingEditVisible: false,
-			lendingToEdit: null
+			lendingToEdit: null,
 		}
 
 		this.checkExpirationDate = this.checkExpirationDate.bind(this);
@@ -110,12 +110,12 @@ class Items extends Component{
 		}
 
 		/* Filtering items by expiration */
-		if (!this.state.showExpired){
+		if (!this.state.expired){
 			lendings = lendings.filter(lending => 
 				moment(lending.returnDate).diff(moment()) > 0
 			);
 		}
-		if(!this.state.showNotExpired){
+		if(!this.state.notExpired){
 			lendings = lendings.filter(lending => 
 				moment(lending.returnDate).diff(moment()) < 0
 			);
@@ -301,18 +301,18 @@ class Items extends Component{
 	}
 
 	onExpiredChange(evt){
-		if (this.state.showExpired === true){
-			this.setState({showExpired: false})
+		if (this.state.expired === true){
+			this.setState({expired: false})
 		}
 
 		else{
-			this.setState({showExpired: true})
+			this.setState({expired: true})
 		}
 	}
 
 	onNotExpiredChange(evt){
 		this.setState(prevState => ({
-			showNotExpired: !prevState.showNotExpired
+			notExpired: !prevState.notExpired
 		}));
 
 	}
@@ -321,23 +321,40 @@ class Items extends Component{
 		this.setState({ customer: evt.tagget.value });
 	}
 
-	// onCustomerChange(evt){
-	// 	this.setState({ customer: evt.tagget.value });
-	// }
-	// onCustomerChange(evt){
-	// 	this.setState({ customer: evt.tagget.value });
-	// }
-	// onCustomerChange(evt){
-	// 	this.setState({ customer: evt.tagget.value });
-	// }
-	// onCustomerChange(evt){
-	// 	this.setState({ customer: evt.tagget.value });
-	// }
+	toggleInStorage = () => {
+		this.setState(prevState => ({
+			inStorage: !prevState.inStorage
+		}));
+	}
+
+	toggleNotInStorage = () => {
+		this.setState(prevState => ({
+			notInStorage: !prevState.notInStorage
+		}));
+	}
+
+	toggleExpired = () => {
+		this.setState(prevState => ({
+			expired: !prevState.expired
+		}));
+	}
+
+	toggleNotExpired = () => {
+		this.setState(prevState => ({
+			notExpired: !prevState.notExpired
+		}));
+	}
 
 	render(){
 		/* Filtering of items list */
 		let items = this.filterItems();
-		const { lendingToEdit } = this.state;
+		const { 
+			lendingToEdit, 
+			inStorage,
+			notInStorage,
+			expired,
+			notExpired,
+		} = this.state;
 
 		return (
 			<div className="Items">
@@ -363,45 +380,42 @@ class Items extends Component{
 				<div className="inputFields">
 					<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 				</div>
-				<CheckBox />
+
 				<div className="Item__checkboxes">
-					<div>
-						<input className="Storage__checkbox" type="checkbox" name="inStorage" onChange={this.onInStorageChange} defaultChecked={this.state.inStorage} />
-						<label htmlFor='inStorage'>Varastossa</label>
-					</div>
 
-					<div>
-						<input type="checkbox" name="notInStorage" onChange={this.onNotInStorageChange} defaultChecked={this.state.notInStorage} />
-						<label htmlFor='notInStorage'>Asiakkaalla</label>
-					</div>
+					<CheckBox 
+						toggleCheckBox={this.toggleInStorage}
+						checked={inStorage}
+						label="Varastossa"
+					/>
 
-					<div>
-						<input type="checkbox" name="expired" onChange={this.onExpiredChange} defaultChecked={this.state.showExpired} />
-						<label htmlFor='expired'>Erääntyneet tuotteet</label>
-					</div>
+					<CheckBox 
+						toggleCheckBox={this.toggleNotInStorage}
+						checked={notInStorage}
+						label="Asiakkaalla"
+					/>
 
-					<div>
-						<input type="checkbox" name="notExpired" onChange={this.onNotExpiredChange} defaultChecked={this.state.showNotExpired} />
-						<label htmlFor='notExpired'>Ei-erääntyneet tuotteet</label>
-					</div>
+
+					<CheckBox 
+						toggleCheckBox={this.toggleExpired}
+						checked={expired}
+						label="Erääntyneet tuotteet"
+					/>
+
+
+
+					<CheckBox 
+						toggleCheckBox={this.toggleNotExpired}
+						checked={notExpired}
+						label="Ei-erääntyneet tuotteet"
+					/>
+
 
 				</div>
 
-				{/*<table className="Storage__table">
-					<ItemsListHeader />
-					*/}
 					<ul>
 						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} editLending={this.editLending}/> )}
 					</ul>
-					{/*
-					<tbody>
-						{items.map((item, index) => <StorageListItem key={index} item={item} deleteItem={this.deleteItem} saveItem={this.saveItem} editLending={this.editLending}/>)}
-					</tbody>
-					
-				</table>
-			*/}
-
-
 
 			</div>
 		);

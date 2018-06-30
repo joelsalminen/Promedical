@@ -1,0 +1,25 @@
+.CheckBox{
+	display: block;
+	margin-bottom: 0.2em;
+}
+
+.CheckBox__button{
+	display: inline-block;
+	width: 25%;
+	font-size: 1.3em;
+	height: 1.3em;
+	width: 1.3em;
+	padding: 0;
+	background: orange;
+	border: 1px solid black;
+
+	
+}
+
+.CheckBox__label{
+	display: inline-block;
+	text-align: left;
+	width: 75%;
+	margin-left: 0.6em;
+	font-size: 0.9em
+}
