@@ -7,8 +7,9 @@ import ReserveItem from './components/ReserveItem';
 //import History from './components/History';
 import ReturnItem from './components/ReturnItem';
 
-import './App.css';
 import './Reset.css';
+import './App.css';
+
 
 import {
   BrowserRouter as Router, 

@@ -1,5 +1,15 @@
 /* import font */
+body { 
+	font-family: 'Encode Sans Condensed', sans-serif;
+	text-align: center;
 
+}
+
+/* Prevent adjustments of font size after orientation changes in IE on Windows Phone and in iOS.  */
+html {-webkit-text-size-adjust: 100%; -ms-text-size-adjust: 100%;}
+
+/*  apply a natural box layout model to all elements  */
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /* Firefox focus outline removal */
 button::-moz-focus-inner{
@@ -11,5 +21,30 @@ button:hover{
 }
 
 
+.PageHeader{
+	font-size: 2em;
+	font-family: Arial, 'Encode Sans Condensed', sans-serif;
+	padding: 0.2em;
+	border: 1px solid black;
+	margin-bottom: 0.5em;
+
+}
+
+
+.inputFields input{
+    border: 1px solid black;
+    width: 80%;
+    font-size: 1em;
+    padding: 0;
+    margin-bottom: 1em;
+}
+
+.bottomButton{
+	width: 100%;
+	height: 2.5em;
+	background: orange;
+    border: 1px solid black;
+    font-size: 1em;
+}
 
 /* Joel Salminen - joel.salminen@student.lut.fi */
