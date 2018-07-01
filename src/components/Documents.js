@@ -3,12 +3,12 @@ import axios from 'axios';
 
 import MainMenuButton from './MainComponents/MainMenuButton.js';
 import DocumentList from './DocumentsComponents/DocumentList.js';
-import DocumentFilter from './DocumentsComponents/DocumentFilter.js';
 import DocumentView from './DocumentsComponents/DocumentView.js';
 
 class Documents extends Component {
 	state = {
 		documents: [],
+		inputValue: '',
 		showDocument: false,
 		doc: {}
 	}
@@ -21,8 +21,17 @@ class Documents extends Component {
 	}
 
 
-	filterDocuments = (value) => {
-		console.log(value)
+	filterDocuments = () => {
+		const { documents, inputValue } = this.state;
+		const filteredDocuments = documents.filter(doc => 
+			doc.customer.indexOf(inputValue) !== -1
+		);
+		return filteredDocuments;
+
+	}
+
+	onInputChange = (evt) => {
+		this.setState({ inputValue: evt.target.value })
 	}
 
 
@@ -47,7 +56,12 @@ class Documents extends Component {
 	}
 
 	render(){
-		const { documents, showDocument, doc } = this.state;
+		const { 
+			showDocument, 
+			doc 
+		} = this.state;
+
+		const filteredDocuments = this.filterDocuments();
 		return(
 			<div>
 				<MainMenuButton />
@@ -62,12 +76,13 @@ class Documents extends Component {
 						</div>
 					):(
 						<div>
-							<DocumentFilter 
-								documents={documents}
-								filterDocuments={this.filterDocuments}
+							<input 
+								onChange={this.onInputChange}
+								value={this.state.inputValue}
+								placeholder="haku"
 							/>
 							<DocumentList 
-								documents={documents}
+								documents={filteredDocuments}
 								toggleShowDocument={this.toggleShowDocument}
 							/>
 						</div>
