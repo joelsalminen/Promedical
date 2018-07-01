@@ -60,7 +60,7 @@ class LendItem extends Component{
         'Authorization': localStorage.getItem('token')
       },
 			url: '/api/items',
-			post: 'get',
+			method: 'get',
 			success: (res)=>{
 				this.setState({items: res})
 			}
