@@ -3,9 +3,14 @@
 }
 
 .LogoutButton__button {
-	background: orange;
-	border: 1px solid orange;
+	background: rgb(17, 189, 191);
+	border: 3px solid black;
+	color: black;
 	width: 100%;
 	padding: 1em;
 	margin-bottom: 1em;
+}
+
+.LogoutButton__button:hover{
+	background: rgb(7, 211, 213);
 }

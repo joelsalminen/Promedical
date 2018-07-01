@@ -26,24 +26,26 @@
 
 .Dropdown-option {
     padding: 5px;
+    border: 1px solid black;
 }
 
 .Dropdown-option:hover {
-    background: gray;
+    background: rgb(7, 211, 213);
 }
 
 .Dropdown-menu {
     position: relative;
     left: 50%;
     transform: translateX(-50%);
-    border: 1px solid lightgray;
-    border-color: gray;
+    /*border: 1px solid black;*/
+    /*border-color: gray;*/
+    
     width: 80%;
     position: absolute;
     max-height: 150px;
     overflow-y: auto;
     z-index: 1;
-    background: gray;
+    background: rgb(17, 189, 191);
     margin-top: 0px;
 }
 
@@ -77,13 +79,13 @@
     width: 90%;
     padding: 0.9em;
     border: 1px solid black;
-    background: red;
+    background: #006E90;
 }
-
 .toLendItem:hover{
-    background: white;
+    background: #ADCAD6;
     cursor: pointer;
 }
+
 
 .LendItem__toLendItems--wide .toLendItem{
     width: 100%;

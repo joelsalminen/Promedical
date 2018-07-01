@@ -22,9 +22,12 @@
 	padding: 0.4em;
 	margin: 0 auto;
 	margin-bottom: 1em;
-	
+}
+.NavBar__list li:hover{
+
+	border-color: rgb(17, 189, 191);
 }
 
-a{
-	text-decoration: none;
+.NavBar__list a:hover{
+	color: rgb(17, 189, 191);
 }

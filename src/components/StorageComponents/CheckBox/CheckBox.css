@@ -10,8 +10,12 @@
 	height: 1.3em;
 	width: 1.3em;
 	padding: 0;
-	background: orange;
+	background: rgb(17, 189, 191);
 	border: 1px solid black;
+	color: black;
+}
+.CheckBox__button:hover{
+	background: rgb(7, 211, 213);
 }
 
 .CheckBox__label{

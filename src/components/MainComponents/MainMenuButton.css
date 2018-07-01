@@ -1,9 +1,13 @@
 .MainMenuButton__container{
-	background: orange;
+	background: rgb(17, 189, 191);
 	padding: 0.5em;
 	border: 1px solid black;
 
 }
+.MainMenuButton__container:hover{
+	background: rgb(7, 211, 213);
+}
+
 
 .MainMenuButton {
 	color: black;
