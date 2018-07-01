@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 
+import MainMenuButton from './MainComponents/MainMenuButton.js';
 import DocumentList from './DocumentsComponents/DocumentList.js';
 
 class Documents extends Component {
@@ -33,7 +34,7 @@ class Documents extends Component {
 		const { documents } = this.state;
 		return(
 			<div>
-				Documents
+				<MainMenuButton />
 				<DocumentList 
 					documents={documents}
 				/>
@@ -43,3 +44,5 @@ class Documents extends Component {
 }
 
 export default Documents;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */ 

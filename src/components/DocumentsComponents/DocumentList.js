@@ -2,13 +2,18 @@ import React from 'react';
 
 import DocumentListItem from './DocumentListItem.js';
 
+import './DocumentList.css';
+
 const DocumentList = (props) => {
 	const { documents } = props;
 	return (
 		<div>
 			<ul className="DocumentList">
 				{documents.map(document => 
-					<DocumentListItem {...document}/>
+					<DocumentListItem 
+						key={document._id}
+						document={document}
+					/>
 				)}
 			</ul>
 		</div>
@@ -16,3 +21,5 @@ const DocumentList = (props) => {
 }
 
 export default DocumentList;
+
+/* Joel Salminen - joel.salminen@student.lut.fi */ 
