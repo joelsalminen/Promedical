@@ -7,6 +7,7 @@ import ReserveItem from './components/ReserveItem';
 //import History from './components/History';
 import ReturnItem from './components/ReturnItem';
 import Documents from './components/Documents.js'
+import DocumentView from './components/DocumentsComponents/DocumentView.js';
 
 import './Reset.css';
 import './App.css';
@@ -34,6 +35,7 @@ class App extends Component {
         <Route exact path="/lisaatuote" component={AddItem}/>
         <Route exact path="/varasto" render={()=> <Storage />}/>
         <Route exact path="/dokumentit" render={()=> <Documents />}/>
+        <Route exact path="/dokumenttinakyma" render={()=> <DocumentView />}/>
         {/* <Route exact path="/historia" component={History}/> */}
 
       </div>
