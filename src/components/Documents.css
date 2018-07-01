@@ -1,0 +1,14 @@
+.Documents{
+	font-family: 'Encode Sans Condensed', sans-serif;
+	font-size: 1.4em;
+}
+
+.Documents__BackButton{
+	background: orange;
+	border: 1px solid black;
+	color: black;
+	padding: 0.5em;
+	margin-top: 1em;
+	font-size: 0.8em;
+}
+

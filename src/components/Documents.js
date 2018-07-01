@@ -5,6 +5,8 @@ import MainMenuButton from './MainComponents/MainMenuButton.js';
 import DocumentList from './DocumentsComponents/DocumentList.js';
 import DocumentView from './DocumentsComponents/DocumentView.js';
 
+import './Documents.css';
+
 class Documents extends Component {
 	state = {
 		documents: [],
@@ -63,11 +65,14 @@ class Documents extends Component {
 
 		const filteredDocuments = this.filterDocuments();
 		return(
-			<div>
+			<div className="Documents">
 				<MainMenuButton />
 				{showDocument ? (
 						<div>
-							<button onClick={this.toggleShowDocument}>
+							<button 
+								onClick={this.toggleShowDocument}
+								className="Documents__BackButton"
+							>
 								Takaisin dokumentteihin
 							</button>
 							<DocumentView 

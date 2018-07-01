@@ -1,8 +1,8 @@
 .DocumentListItem{
 	border: 1px solid black;
-	padding: 1em;
+	padding: 0.4em;
 	background-color: yellow;
 	width: 80%;
 	margin: 0 auto;
-	margin-bottom: 1em;
+	margin-bottom: 0.2em;
 }

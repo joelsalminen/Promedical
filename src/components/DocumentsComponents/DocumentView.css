@@ -1,0 +1,168 @@
+@media print {
+
+	/* Removes the url on top of the page */
+	@page {
+    	size: auto;   /* auto is the initial value */
+    	margin: 0;  /* this affects the margin in the printer settings */
+	}
+	.MainMenuButton__container{
+		visibility: hidden;
+	}
+	.Documents__BackButton{
+		visibility: hidden;
+	}
+	.DocumentView{
+		margin: 5em;
+		font-size: 1.2em;
+		text-align: left;
+	}
+	.DocumentView table{
+		width: 70%;
+
+	}
+	.DocumentView td{
+		width: 50%;
+		padding-bottom: 0.4em;
+		
+	}
+	.DocumentView__responsibility{
+		margin-top: 3em;
+		margin-bottom: 3em;
+	}
+	.DocumentView__signatures{
+		margin-top: 2em;
+	}
+	.DocumentView__signatureTitle{
+		font-weight: bold;
+		padding-bottom: 1em;
+	}
+	.Signature--left{
+		/*float: left;*/
+	}
+	.Signature--right{
+		/*float: right;*/
+	}
+	.Signature{
+		display: inline-block;
+		margin-right: 3em;
+	}
+	.Signature__line{
+		/*border-bottom: 1px solid black;*/
+	}
+
+	.DocumentView p{
+		padding-bottom: 0.4em;
+	}
+	.Signature p{
+		width: 12em;
+		border-top: 1px solid black;
+		padding-top: 0.4em;
+		margin-top: 1em;
+	}
+	.DocumentView__logo{
+		position: relative;
+		bottom: 3em;
+	}
+}
+
+@media screen {
+	.DocumentView{
+		width: 100%;
+		margin: 0 auto;
+		margin-top: 1em;
+		max-width: 900px;
+	}
+	.DocumentView table{
+		width: 100%;
+	}
+	.DocumentView td{
+		
+		width: 50%;
+	}
+
+	.DocumentView__responsibility{
+		margin-top: 1em;
+		margin-bottom: 1em;
+	}
+	.DocumentView__signatures{
+		margin-top: 1em;
+	}
+	.DocumentView__signatureTitle{
+		font-weight: bold;
+		margin-bottom: 0.7em;
+	}
+	.Signature--left{
+		/*float: left;*/
+
+	}
+	.Signature--right{
+		/*float: right;*/
+	}
+	.Signature{
+		display: inline-block;
+		margin-bottom: 1em;
+		margin-right: 1em;
+		margin-left: 1em;
+	}
+	.Signature__line{
+		/*border-bottom: 1px solid black;*/
+	}
+
+	.DocumentView p{
+		padding-bottom: 0.4em;
+	}
+	.Signature p{
+		width: 12em;
+		border-top: 1px solid black;
+		padding-top: 0.4em;
+		margin-top: 1em;
+	}
+	.DocumentView__logo{
+		display: none;
+	}
+}
+
+
+
+
+@media screen and (min-width: 630px){
+	.DocumentView{
+		/*margin: 5em;*/
+		/*ont-size: 1.2em;*/
+		text-align: center;
+	}	
+
+	.DocumentView table{
+		text-align: left;
+		width: 70%;
+		margin: 0 auto;
+
+	}
+	.DocumentView td{
+		padding-bottom: 0.4em;
+		
+	}
+	.DocumentView__responsibility{
+		margin-top: 3em;
+		margin-bottom: 3em;
+	}
+	.DocumentView__signatures{
+		margin-top: 2em;
+	}
+
+
+	.DocumentView p{
+		padding-bottom: 0.4em;
+	}
+	.Signature p{
+		width: 12em;
+		border-top: 1px solid black;
+		padding-top: 0.4em;
+		margin-top: 1em;
+	}
+	.DocumentView__logo{
+		position: relative;
+		bottom: 3em;
+	}
+
+}

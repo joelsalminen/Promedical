@@ -1,42 +1,57 @@
 import React from 'react';
 
+import './DocumentView.css';
+import logo from '../../img/promedical-logo-jpg.jpg';
+
 const DocumentView = (props) => {
 	const { doc } = props;
 
 	return (
-		<div>
-			<h2>ProMecial</h2>
+		<div className="DocumentView">
+			<img
+				src={logo}
+				alt="Promedical"
+				className="DocumentView__logo"
+			/>
 			<table>
 				<tbody>
+
 					<tr>
-						<td>Asiakkaan nimi</td><td></td>
+						<td style={{fontWeight: 'bold'}}>Lainauksen suorittaja</td><td>{doc.lender}</td>
 					</tr>
 
 					<tr>
-						<td>Lainaajan nimi</td><td>{doc.lender}</td>
+						<td style={{fontWeight: 'bold'}}>Lainaaja</td><td>{doc.customer}</td>
 					</tr>
 
 					<tr>
-						<td>Lainattavat tuotteet</td><td>items</td>
+						<td style={{fontWeight: 'bold'}}>Lainattavat tuotteet</td><td>items</td>
 					</tr>
 
 					<tr>
-						<td>Lainauksen luonne</td><td>{doc.lendType}</td>
+						<td style={{fontWeight: 'bold'}}>Lainauksen luonne</td><td>{doc.lendType}</td>
 					</tr>
 
 					<tr>
-						<td>Laina-aika</td><td>{doc.startDate} - {doc.returnDate}</td>
+						<td style={{fontWeight: 'bold'}}>Laina-aika</td><td>{doc.startDate} - {doc.returnDate}</td>
 					</tr>
 				</tbody>
 			</table>
-			<p>*Tähän kohtaan tulee vakiomuotoinen vastuulauseke*</p>
-			<p>Paikka ja päivämäärä</p>
+			<p className="DocumentView__responsibility">*Tähän kohtaan tulee vakiomuotoinen vastuulauseke*</p>
+			<p style={{fontWeight: 'bold'}}>Paikka ja päivämäärä</p>
 			<p>Helsinki, {doc.startDate}</p>
-			<p>Allekirjoitukset</p>
-			<p>___________________</p>
-			<p>{doc.lender}, Promedical</p>
-			<p>___________________</p>
-			<p>{doc.customer}</p>
+			<div className="DocumentView__signatures">
+				<p className="DocumentView__signatureTitle">Allekirjoitukset</p>
+				<div className="Signature--left Signature">
+					<div className="Signature__line"></div>
+					<p>{doc.lender}, Promedical</p>
+				</div>
+				<div className="Signature--right Signature">
+					<div className="Signature__line"></div>
+					<p>{doc.customer}</p>
+				</div>
+
+			</div>
 
 
 		</div>
