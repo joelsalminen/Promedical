@@ -4,10 +4,20 @@ import axios from 'axios';
 import MainMenuButton from './MainComponents/MainMenuButton.js';
 import DocumentList from './DocumentsComponents/DocumentList.js';
 import DocumentFilter from './DocumentsComponents/DocumentFilter.js';
+import DocumentView from './DocumentsComponents/DocumentView.js';
 
 class Documents extends Component {
 	state = {
-		documents: []
+		documents: [],
+		showDocument: false,
+		doc: {}
+	}
+
+	toggleShowDocument = (doc) => {
+		this.setState(prevState => ({
+			showDocument: !prevState.showDocument,
+			doc
+		}));
 	}
 
 
@@ -37,17 +47,32 @@ class Documents extends Component {
 	}
 
 	render(){
-		const { documents } = this.state;
+		const { documents, showDocument, doc } = this.state;
 		return(
 			<div>
 				<MainMenuButton />
-				<DocumentFilter 
-					documents={documents}
-					filterDocuments={this.filterDocuments}
-				/>
-				<DocumentList 
-					documents={documents}
-				/>
+				{showDocument ? (
+						<div>
+							<button onClick={this.toggleShowDocument}>
+								Takaisin dokumentteihin
+							</button>
+							<DocumentView 
+								doc={doc}
+							/>
+						</div>
+					):(
+						<div>
+							<DocumentFilter 
+								documents={documents}
+								filterDocuments={this.filterDocuments}
+							/>
+							<DocumentList 
+								documents={documents}
+								toggleShowDocument={this.toggleShowDocument}
+							/>
+						</div>
+				)}
+
 			</div>
 		);
 	}

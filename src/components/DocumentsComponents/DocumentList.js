@@ -6,15 +6,14 @@ import DocumentView from './DocumentView.js';
 import './DocumentList.css';
 
 class DocumentList extends Component {
-	state = {
-		showDocument: false
-	}
+
 
 	toggleShowDocument = (doc) => {
-		this.setState(prevState => ({
-			showDocument: !prevState.showDocument,
-			doc
-		}));
+		this.props.toggleShowDocument(doc);
+		// this.setState(prevState => ({
+		// 	showDocument: !prevState.showDocument,
+		// 	doc
+		// }));
 	}
 
 	renderDocumentListItems = () => {
@@ -29,28 +28,15 @@ class DocumentList extends Component {
 	}
 
 	render(){
-		const { showDocument, doc } = this.state;
 
 		return (
-			<div>
-				{showDocument ? (
-						<div>
-							<button onClick={this.toggleShowDocument}>
-								Takaisin dokumentteihin
-							</button>
-							<DocumentView 
-								doc={doc}
-							/>
-						</div>
-
-					):(
-						<ul className="DocumentList">
-							{this.renderDocumentListItems()}
-						</ul>
-				)}
 
 
-			</div>
+			<ul className="DocumentList">
+				{this.renderDocumentListItems()}
+			</ul>
+
+
 		);
 	}
 
