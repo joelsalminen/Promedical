@@ -1,9 +1,16 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-const DocumentFilter = () => {
-	return (
-		<div>hi</div>
-	);
+class DocumentFilter extends Component {
+	onInputChange = (evt) => {
+		this.props.filterDocuments(evt.target.value)
+	}
+
+	render(){
+		return (
+			<input onChange={this.onInputChange}/>
+		);
+	}
+
 }
 
 export default DocumentFilter;

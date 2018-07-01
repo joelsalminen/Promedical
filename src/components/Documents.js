@@ -10,6 +10,12 @@ class Documents extends Component {
 		documents: []
 	}
 
+
+	filterDocuments = (value) => {
+		console.log(value)
+	}
+
+
 	componentDidMount(){
 		const data = {
 			customer: 'customer',
@@ -37,6 +43,7 @@ class Documents extends Component {
 				<MainMenuButton />
 				<DocumentFilter 
 					documents={documents}
+					filterDocuments={this.filterDocuments}
 				/>
 				<DocumentList 
 					documents={documents}
