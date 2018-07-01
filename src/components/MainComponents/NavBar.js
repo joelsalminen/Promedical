@@ -17,6 +17,7 @@ class NavBar extends Component{
 						<li><Link to="/varaus"><div><p>Varaus</p></div></Link></li>
 						<li><Link to="/lisaatuote"><div><p>Lisää tuote</p></div></Link></li>
 						<li><Link to="/varasto"><div><p>Varasto</p></div></Link></li>
+						<li><Link to="/dokumentit"><div><p>Dokumentit</p></div></Link></li>
 
 					</ul>
 				</div>

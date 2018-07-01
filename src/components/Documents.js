@@ -20,7 +20,6 @@ class Documents extends Component {
 			returnData: 'returnDate',
 		}
 		
-		console.log(data);
 		const url = '/api/documents/';
 		axios.get(url, data)
 			.then(res => {
@@ -35,6 +34,7 @@ class Documents extends Component {
 		return(
 			<div>
 				<MainMenuButton />
+
 				<DocumentList 
 					documents={documents}
 				/>

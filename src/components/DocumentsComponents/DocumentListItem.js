@@ -3,14 +3,23 @@ import React, { Component } from 'react';
 import './DocumentListItem.css';
 
 class DocumentListItem extends Component {
+
+	onDocumentClick = () => {
+		this.props.showDocument(this.props.doc)
+	}
+
 	render(){
-		const { document } = this.props;
+		const { doc } = this.props;
+
+
 		return (
 			<li className="DocumentListItem">
-					<p>{document.startDate}: {document.lender}</p>
+				<div onClick={this.onDocumentClick}>{doc.startDate}: {doc.lender}</div>
 			</li>
 		);
 	}
+
+
 
 }
 
