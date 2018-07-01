@@ -20,6 +20,13 @@ a:focus{
 	outline:none;
 }
 
+a:visited{
+	color: black;
+}
+a{
+	color: black;
+}
+
 button:hover{
 	cursor: pointer;
 }
