@@ -3,6 +3,7 @@ import axios from 'axios';
 
 import MainMenuButton from './MainComponents/MainMenuButton.js';
 import DocumentList from './DocumentsComponents/DocumentList.js';
+import DocumentFilter from './DocumentsComponents/DocumentFilter.js';
 
 class Documents extends Component {
 	state = {
@@ -34,7 +35,9 @@ class Documents extends Component {
 		return(
 			<div>
 				<MainMenuButton />
-
+				<DocumentFilter 
+					documents={documents}
+				/>
 				<DocumentList 
 					documents={documents}
 				/>
