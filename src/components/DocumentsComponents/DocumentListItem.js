@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom'
 
 import './DocumentListItem.css';
 
@@ -8,9 +7,7 @@ class DocumentListItem extends Component {
 		const { document } = this.props;
 		return (
 			<li className="DocumentListItem">
-				<Link to='dokumenttinakyma'>
 					<p>{document.startDate}: {document.lender}</p>
-				</Link>
 			</li>
 		);
 	}
