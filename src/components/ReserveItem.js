@@ -260,7 +260,7 @@ class ReserveItem extends Component{
           className="SuggestionItem__suggestionButton SuggestionItem__suggestionButton--lend"
           onClick={this.onSuggestionButtonClick}
         >
-          {showList ? 'Piilota': 'Näytä'}
+          {showList ? 'Piilota tuotelista': 'Näytä tuotelista'}
         </button>
       </div>
 
