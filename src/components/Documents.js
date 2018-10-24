@@ -51,6 +51,7 @@ class Documents extends Component {
 		const url = '/api/documents/';
 		axios.get(url, data)
 			.then(res => {
+				console.log(res.data);
 				this.setState({ documents: res.data })
 			});
 

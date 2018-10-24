@@ -150,6 +150,7 @@ class LendItem extends Component{
 			      },
 						success: (res)=>{
 							/* Reset input fields */
+							this.createDocument(data);
 							this.setState({
 								lendItem: "Valitse",
 								itemName: "", 
@@ -158,7 +159,8 @@ class LendItem extends Component{
 								price: "0",
 								toLend: [],
 								startDate: moment(),
-								returnDate: moment().add(7, 'days')
+								returnDate: moment().add(7, 'days'),
+								showList: false
 
 							});
 						}
@@ -172,6 +174,18 @@ class LendItem extends Component{
 			
 		});
 
+	}
+
+	createDocument(data){
+		$.ajax({
+			url: '/api/documents/',
+			method: 'post',
+      headers: {
+        'Authorization': localStorage.getItem('token')
+      },
+      data: data,
+		});
+		
 	}
 
 	resetFields(){
