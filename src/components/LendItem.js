@@ -189,7 +189,7 @@ class LendItem extends Component{
 	}
 
 	resetFields(){
-		const { items, toLend } = this.state;
+		const { toLend } = this.state;
 		const newItems = [];
 		toLend.forEach(item => {
 			newItems.push(item);

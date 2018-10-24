@@ -25,7 +25,7 @@ const DocumentView = (props) => {
 					</tr>
 
 					<tr>
-						<td style={{fontWeight: 'bold'}}>Lainattavat tuotteet</td><td>items</td>
+						<td style={{fontWeight: 'bold'}}>Lainattavat tuotteet</td><td>{doc.itemName}</td>
 					</tr>
 
 					<tr>

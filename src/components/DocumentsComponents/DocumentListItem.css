@@ -1,8 +1,15 @@
 .DocumentListItem{
-	border: 1px solid black;
+	border: 3px solid black;
 	padding: 0.4em;
-	background-color: yellow;
+	background-color: #006E90;
 	width: 80%;
 	margin: 0 auto;
 	margin-bottom: 0.2em;
+}
+
+.DocumentListItem:hover{
+	background-color: white;
+	border-color: #006E90;
+	color: #006E90;
+	cursor: pointer;
 }
