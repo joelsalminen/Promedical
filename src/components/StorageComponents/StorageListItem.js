@@ -8,7 +8,8 @@ class StorageListItem extends Component{
 		super(props)
 		this.state = {
 			isEditing: false,
-			name: this.props.item.name
+			name: this.props.item.name,
+			serial: this.props.item.serial
 		}
 
 		this.onNameChange = this.onNameChange.bind(this);

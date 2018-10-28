@@ -272,7 +272,7 @@ class LendItem extends Component{
 		});
 
 		/* Update states */
-		this.setState({items, toLend});
+		this.setState({items, toLend, itemName: ""});
 	}
 
 	onToLendClick = (itemToRemove) => {
@@ -361,7 +361,7 @@ class LendItem extends Component{
 				<input name="employee_name" value={this.state.user} onChange={this.onUserChange}/>
 
 				<p>Lainattava tuote:</p>
-				<input name="item_name" value={itemName} onChange={this.onItemNameChange}/>
+				<input name="item_name" value={itemName} placeholder="haku" onChange={this.onItemNameChange}/>
 
 
 				{/* ---------------- Suggestions items list ----------------*/}

@@ -85,6 +85,7 @@ class Items extends Component{
 	filterItemsInStorage(items){
 		/* Filtering items by search bar info */
 		items = items.filter(item => {
+			console.log(item)
 			let information = item.name.toLowerCase() + item.serial.toString();
 			return information.indexOf(this.state.nameSearch.toLowerCase())!== -1
 		});
@@ -378,7 +379,7 @@ class Items extends Component{
 					}
 
 				</DialogContainer>
-				<h1 className="PageHeader">Varasto</h1>
+				<h1 className="PageHeader">Seuranta</h1>
 				<div className="inputFields">
 					<input placeholder="haku" onChange={this.onNameChange} value={this.state.nameSearch}></input>
 				</div>

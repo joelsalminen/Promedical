@@ -73,7 +73,7 @@ class Documents extends Component {
 								onClick={this.toggleShowDocument}
 								className="Documents__BackButton"
 							>
-								Takaisin dokumentteihin
+								Takaisin sopimuslistaukseen
 							</button>
 							<DocumentView 
 								doc={doc}

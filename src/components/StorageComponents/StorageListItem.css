@@ -6,7 +6,11 @@
 
 .StorageListItem{
 	border: 1px solid black;
+	margin: 0 auto;
 	margin-bottom: 1em;
+	width: 90%;
+	background-color: #DCDCDC;
+	max-width: 900px;
 }
 
 .EditBox--left{
@@ -23,8 +27,6 @@
 }
 .EditBox{
 	margin-top: 0.5em;
-	/*margin-bottom: 0.5em;*/
-
 }
 .EditBox input{
 	margin-bottom: 0.5em;
