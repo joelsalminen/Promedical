@@ -4,6 +4,8 @@ import $ from 'jquery';
 import Menu from './MainComponents/MainMenuButton';
 import SuggestionList from "./MainComponents/SuggestionList";
 
+import "./DeleteItem.css";
+
 class DeleteItem extends Component {
 
 	constructor(props){
@@ -99,7 +101,7 @@ class DeleteItem extends Component {
 	    </p>
 
 		return (
-			<div>
+			<div className="DeleteItem">
 				<Menu />
 				
 					<h1 className="DeleteItem__header PageHeader">PoistaTuote</h1>
