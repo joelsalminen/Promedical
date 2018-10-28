@@ -5,8 +5,6 @@ import LoginForm from "./MainComponents/LoginForm";
 import RegistrationForm from "./MainComponents/RegistrationForm";
 import $ from 'jquery';
 import LogoutButton from "./MainComponents/LogoutButton";
-import '../App.css';
-import './Main.css';
 
 class Main extends Component{
 	constructor(props){

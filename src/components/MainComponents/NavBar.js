@@ -12,12 +12,13 @@ class NavBar extends Component{
 					<h1 className="NavBar__title">Promedical</h1>
 					<ul className="NavBar__list">
 
-						<li><Link to="/lainaus"><div><p>Lainaus</p></div> </Link></li>
-						<li><Link to="/palautus"><div><p>Palautus</p></div></Link></li>
-						<li><Link to="/varaus"><div><p>Varaus</p></div></Link></li>
-						<li><Link to="/lisaatuote"><div><p>Lisää tuote</p></div></Link></li>
-						<li><Link to="/varasto"><div><p>Seuranta</p></div></Link></li>
-						<li><Link to="/dokumentit"><div><p>Sopimukset</p></div></Link></li>
+						<Link to="/lainaus"><li><div><p>Lainaus</p></div> </li></Link>
+						<Link to="/palautus"><li><div><p>Palautus</p></div></li></Link>
+						<Link to="/varaus"><li><div><p>Varaus</p></div></li></Link>
+						<Link to="/lisaatuote"><li><div><p>Lisää tuote</p></div></li></Link>
+						<Link to="/poistatuote"><li><div><p>Poista tuote</p></div></li></Link>
+						<Link to="/varasto"><li><div><p>Seuranta</p></div></li></Link>
+						<Link to="/dokumentit"><li><div><p>Sopimukset</p></div></li></Link>
 
 					</ul>
 				</div>
