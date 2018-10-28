@@ -6,6 +6,7 @@ import Storage from './components/Storage';
 import ReserveItem from './components/ReserveItem';
 //import History from './components/History';
 import ReturnItem from './components/ReturnItem';
+import DeleteItem from './components/DeleteItem';
 import Documents from './components/Documents.js';
 
 import './Reset.css';
@@ -32,6 +33,7 @@ class App extends Component {
         <Route exact path="/lainaus" render={() => <LendItem />}/>
         <Route exact path="/palautus" render={()=> <ReturnItem />}/>
         <Route exact path="/lisaatuote" component={AddItem}/>
+        <Route exact path="/poistatuote" component={DeleteItem}/>
         <Route exact path="/varasto" render={()=> <Storage />}/>
         <Route exact path="/dokumentit" render={()=> <Documents />}/>
         {/* <Route exact path="/historia" component={History}/> */}
