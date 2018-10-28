@@ -81,11 +81,13 @@ class Documents extends Component {
 						</div>
 					):(
 						<div>
+							<h1>Sopimukset</h1>
 							<input 
 								onChange={this.onInputChange}
 								value={this.state.inputValue}
 								placeholder="haku"
 							/>
+
 							<DocumentList 
 								documents={filteredDocuments}
 								toggleShowDocument={this.toggleShowDocument}

@@ -1,6 +1,11 @@
 .Documents{
 	font-family: 'Encode Sans Condensed', sans-serif;
 	font-size: 1.4em;
+
+}
+.Documents h1{
+	font-size: 2em;
+	margin-bottom: 1em;
 }
 
 .Documents__BackButton{
